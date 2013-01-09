@@ -21,14 +21,15 @@ namespace Utils
 
 		[PerformanceLevel(18)]
 		public static void DrawLine(DrawingArgs dr, Gdk.Color color, int width, int x1, int y1, int x2, int y2) {
-			var rect = dr.Rectangle;
 			dr.GC.RgbFgColor = color;
 			dr.GC.SetLineAttributes(width, LineStyle.Solid, CapStyle.Butt, JoinStyle.Round);
-			x1 += rect.X;
-			y1 += rect.Y;
-			x2 += rect.X;
-			y2 += rect.Y;
 			dr.Window.DrawLine(dr.GC, x1, y1, x2, y2);
+		}
+
+		public static void DrawRectangle(DrawingArgs dr, Gdk.Color color, Gdk.Rectangle rect)
+		{
+			dr.GC.RgbFgColor = color;
+			dr.Window.DrawRectangle(dr.GC, true, rect);
 		}
 
 		private static void DrawMetricShortLine
@@ -69,24 +70,23 @@ namespace Utils
 
 		public static void DrawYellowRightTriangle(DrawingArgs dr, int x, int y, int w, int h)
 		{
-			var rect = dr.Rectangle;
 			var points = new Point[]{
-				new Point(rect.X + x, rect.Y + y), 
-				new Point(rect.X + x+w, rect.Y + y+h/2), 
-				new Point(rect.X + x, rect.Y + h)};
+				new Point(x, y), 
+				new Point(x+w, y+h/2), 
+				new Point(x, h)};
 			DrawPolygon(dr, new Gdk.Color(255, 255, 0), points);
 			DrawPolygonBorder(dr, new Gdk.Color(0, 0, 0), points);
 		}
 
 		public static void DrawYellowLeftTriangle(DrawingArgs dr, int x, int y, int w, int h) {
-			var rect = dr.Rectangle;
 			var points = new Point[]{
-				new Point(rect.X + x, rect.Y + y),
-				new Point(rect.X + x-w, rect.Y + y+h/2), 
-				new Point(rect.X + x, rect.Y + h)};
+				new Point(x, y),
+				new Point(x-w, y+h/2), 
+				new Point(x, h)};
 			DrawPolygon(dr, new Gdk.Color(255, 255, 0), points);
 			DrawPolygonBorder(dr, new Gdk.Color(0, 0, 0), points);
 		}
+
 	}
 }
 

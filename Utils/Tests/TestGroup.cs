@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace Play
+namespace Utils
 {
 	[TestFixture()]
 	public class Test

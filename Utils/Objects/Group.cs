@@ -32,7 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Play
+namespace Utils
 {
 	// A group is a object loose coupled with data that precalculates a truth value about some information.
 	// It is both a way to extract information out of data and a way to access data faster than by looking for it.
