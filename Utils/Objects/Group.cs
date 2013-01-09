@@ -329,74 +329,6 @@ namespace Utils
 			return 0;
 		}
 
-		public static bool operator <(Group a, int n)
-		{
-			return a.CompareTo(n) < 0;
-		}
-
-		public static bool operator <(Group a, Group b)
-		{
-			return a.CompareTo(b) < 0;
-		}
-
-		public static bool operator >(Group a, int n)
-		{
-			return a.CompareTo(n) > 0;
-		}
-
-		public static bool operator >(Group a, Group b)
-		{
-			return a.CompareTo(b) > 0;
-		}
-
-		public static bool operator <=(Group a, int n)
-		{
-			return a.CompareTo(n) <= 0;
-		}
-
-		public static bool operator <=(Group a, Group b)
-		{
-			return a.CompareTo(b) <= 0;
-		}
-
-		public static bool operator >=(Group a, int n)
-		{
-			return a.CompareTo(n) >= 0;
-		}
-
-		public static bool operator >=(Group a, Group b)
-		{
-			return a.CompareTo(b) >= 0;
-		}
-
-		public static bool operator ==(Group a, int n)
-		{
-			return a.CompareTo(n) == 0;
-		}
-
-		public static bool operator ==(Group a, Group b)
-		{
-			return a.CompareTo(b) == 0;
-		}
-
-		public static bool operator !=(Group a, int n)
-		{
-			return a.CompareTo(n) != 0;
-		}
-
-		public static bool operator !=(Group a, Group b)
-		{
-			return a.CompareTo(b) != 0;
-		}
-
-		public override bool Equals(object obj)
-		{
-			if (obj is Group)
-				return this.CompareTo((Group)obj) == 0;
-
-			return this.CompareTo((int)obj) == 0;
-		}
-
 		public override int GetHashCode()
 		{
 			return base.GetHashCode();
@@ -694,7 +626,7 @@ namespace Utils
 				var xor = (groups[i] - this) + (this - groups[i]);
 				var size = Group.Size(xor);
 				if (size > minSize) continue;
-				if (size != minSize || groups[i] < minGroup) {
+				if (size != minSize || groups[i].CompareTo(minGroup) < 0) {
 					minIndex = i;
 					minSize = size;
 					minGroup = groups[i];

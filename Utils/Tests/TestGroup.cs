@@ -63,7 +63,7 @@ namespace Utils
 			Group b = new Group();
 			
 			Group c = a + b;
-			Assert.True(a == c);
+			Assert.True(a.CompareTo(c) == 0);
 		}
 
 		[Test()]
@@ -112,11 +112,11 @@ namespace Utils
 			a.Add(0);
 			a.Add(10);
 			Assert.AreEqual(10, Group.Size(a));
-			Assert.True(a > 5);
-			Assert.True(a < 12);
-			Assert.True(a <= 10);
-			Assert.False(a < 10);
-			Assert.True(a >= 10);
+			Assert.True(a.CompareTo(5) > 0);
+			Assert.True(a.CompareTo(12) < 0);
+			Assert.True(a.CompareTo(10) <= 0);
+			Assert.False(a.CompareTo(10) < 0);
+			Assert.True(a.CompareTo(10) >= 0);
 		}
 
 		[Test()]
@@ -170,7 +170,7 @@ namespace Utils
 			Assert.True(g [15] == 81);
 			Assert.True(g [16] == 90);
 			Assert.True(g [17] == 91);
-			Assert.True(g == 9);
+			Assert.True(g.CompareTo(9) == 0);
 		}
 
 		[Test()]
@@ -180,11 +180,11 @@ namespace Utils
 			var b = new Group(new int[]{13, 15});
 			var c = new Group(new int[]{13, 14});
 
-			Assert.True(a == b);
-			Assert.True(a > c);
-			Assert.True(b > c);
-			Assert.True(a >= c);
-			Assert.True(b != c);
+			Assert.True(a.CompareTo(b) == 0);
+			Assert.True(a.CompareTo(c) > 0);
+			Assert.True(b.CompareTo(c) > 0);
+			Assert.True(a.CompareTo(c) >= 0);
+			Assert.True(b.CompareTo(c) != 0);
 		}
 
 		[Test()]
@@ -220,7 +220,7 @@ namespace Utils
 			var b = Group.FromBoolSamples(a);
 			var c = new Group(new int[]{0, 2, 4, 6});
 
-			Assert.True(b == c);
+			Assert.True(b.CompareTo(c) == 0);
 		}
 
 		[Test()]
@@ -232,8 +232,8 @@ namespace Utils
 			var d = a.MinInterval();
 			var e = new Group(new int[]{0, 3});
 
-			Assert.True(b == c);
-			Assert.True(d == e);
+			Assert.True(b.CompareTo(c) == 0);
+			Assert.True(d.CompareTo(e) == 0);
 		}
 
 		[Test()]
@@ -245,8 +245,8 @@ namespace Utils
 			var d = a.MinLeap();
 			var e = new Group(new int[]{9, 10});
 
-			Assert.True(b == c);
-			Assert.True(d == e);
+			Assert.True(b.CompareTo(c) == 0);
+			Assert.True(d.CompareTo(e) == 0);
 		}
 	}
 }
