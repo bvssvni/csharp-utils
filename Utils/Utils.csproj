@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -27,6 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,11 +43,17 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Modules\GdkDrawing.cs" />
     <Compile Include="Modules\PolygonHitTest.cs" />
-    <Compile Include="Objects\DrawingArgs.cs" />
     <Compile Include="Attributes\PerformanceLevel.cs" />
     <Compile Include="Advisors\GdkAdvisor.cs" />
     <Compile Include="Objects\Group.cs" />
     <Compile Include="Tests\TestGroup.cs" />
+    <Compile Include="Helpers\CleanImageHelper.cs" />
+    <Compile Include="Modules\CleanImage.cs" />
+    <Compile Include="Objects\DrawingArgs.cs" />
+    <Compile Include="Modules\SpriteAnalyzer.cs" />
+    <Compile Include="Objects\SpriteFit.cs" />
+    <Compile Include="Tests\TestSpriteSheetAnalyzer.cs" />
+    <Compile Include="Objects\SpriteIsland.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -54,5 +62,6 @@
     <Folder Include="Attributes\" />
     <Folder Include="Advisors\" />
     <Folder Include="Tests\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
