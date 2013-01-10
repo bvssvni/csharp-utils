@@ -47,6 +47,10 @@ namespace Utils
 		{
 		}
 
+		public Group (Group copyFrom) : base(copyFrom.ToArray())
+		{
+		}
+
 		public override string ToString()
 		{
 			var strb = new StringBuilder();
@@ -533,6 +537,12 @@ namespace Utils
 		/// </param>
 		public static Group Slice(int start, int end)
 		{
+			if (start > end) {
+				// Swap to get correct order.
+				var tmp = start;
+				start = end;
+				end = tmp;
+			}
 			var g = new Group(new int[]{start, end + 1});
 			return g;
 		}

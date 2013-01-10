@@ -3,6 +3,9 @@ using Gdk;
 
 namespace Utils
 {
+	/// <summary>
+	/// Used to pass ways of drawing to Gdk.
+	/// </summary>
 	public class DrawingArgs
 	{
 		public Gdk.Window Window;
