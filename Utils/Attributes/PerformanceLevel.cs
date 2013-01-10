@@ -13,7 +13,10 @@ namespace Utils
 	*/
 
 	/// <summary>
-	/// The approximate number of 2^X iterations between 7.5 and 15 seconds.
+	/// The approximate number of 2^X iterations between 7.5 and 15 seconds (average 10).
+	/// This is a way of measuring the lower bound on execution time.
+	/// One can use addition and subtraction to calculate the relative execution time on different machines.
+	/// If algorithm A runs in 2^X and B runs in 2^Y, then B runs 2^(Y-X) faster.
 	/// </summary>
 	public class PerformanceLevel : Attribute
 	{

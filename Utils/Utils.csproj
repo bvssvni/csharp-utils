@@ -56,6 +56,7 @@
     <Compile Include="Tests\TestSpriteSheetAnalyzer.cs" />
     <Compile Include="Objects\SpriteIsland.cs" />
     <Compile Include="Modules\RunScript.cs" />
+    <Compile Include="Tests\TestRunScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
