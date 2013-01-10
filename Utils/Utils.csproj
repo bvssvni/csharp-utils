@@ -38,6 +38,7 @@
     <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Mono.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Objects\SpriteFit.cs" />
     <Compile Include="Tests\TestSpriteSheetAnalyzer.cs" />
     <Compile Include="Objects\SpriteIsland.cs" />
+    <Compile Include="Modules\RunScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
