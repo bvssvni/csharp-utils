@@ -298,6 +298,19 @@ namespace Utils
 			return Group.Add(a, id);
 		}
 
+		public static Group Subtract(Group a, int id)
+		{
+			var b = new Group();
+			b.Add (id);
+			b.Add (id + 1);
+			return a - b;
+		}
+
+		public static Group operator -(Group a, int id)
+		{
+			return Group.Subtract (a, id);
+		}
+
 		// Returns the number of members in the group.
 		public static int Size(Group a)
 		{
