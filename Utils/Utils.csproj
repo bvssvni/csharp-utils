@@ -57,6 +57,8 @@
     <Compile Include="Objects\SpriteIsland.cs" />
     <Compile Include="Modules\RunScript.cs" />
     <Compile Include="Tests\TestRunScript.cs" />
+    <Compile Include="Tests\TestBinaryHeap.cs" />
+    <Compile Include="Objects\BinaryHeap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
