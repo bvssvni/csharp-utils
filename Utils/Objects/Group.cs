@@ -581,7 +581,7 @@ namespace Utils
 			}
 		}
 
-		public IEnumerable<int> ForwardIndex()
+		public IEnumerable<int> ForwardIndices()
 		{
 			int n = this.Count / 2;
 			for (int i = 0; i < n; i++) {
@@ -614,7 +614,7 @@ namespace Utils
 			}
 		}
 
-		public IEnumerable<int> BackwardIndex()
+		public IEnumerable<int> BackwardIndices()
 		{
 			int n = this.Count / 2;
 			for (int i = n-1; i >= 0; i--) {
@@ -683,7 +683,7 @@ namespace Utils
 			var minIndex = -1;
 			var minSize = int.MaxValue;
 			var minGroup = null as Group;
-			foreach (var i in filter.ForwardIndex()) {
+			foreach (var i in filter.ForwardIndices()) {
 				var xor = (groups[i] - this) + (this - groups[i]);
 				var size = Group.Size(xor);
 				if (size > minSize) continue;
