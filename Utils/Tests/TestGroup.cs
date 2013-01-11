@@ -248,6 +248,42 @@ namespace Utils
 			Assert.True(b.CompareTo(c) == 0);
 			Assert.True(d.CompareTo(e) == 0);
 		}
+
+		[Test()]
+		public void TestExternalInternal()
+		{
+			var a = new Group(new int[]{4, 5, 8, 10});
+			Assert.True(a.External(0) == 4);
+			Assert.True(a.External(1) == 8);
+			Assert.True(a.External(2) == 9);
+			Assert.True(a.External(3) == -1);
+			Assert.True(a.External(4) == -1);
+
+			Assert.True(a.Internal(0) == -1);
+			Assert.True(a.Internal(1) == -1);
+			Assert.True(a.Internal(2) == -1);
+			Assert.True(a.Internal(3) == -1);
+			Assert.True(a.Internal(4) == 0);
+			Assert.True(a.Internal(5) == -1);
+			Assert.True(a.Internal(6) == -1);
+			Assert.True(a.Internal(7) == -1);
+			Assert.True(a.Internal(8) == 1);
+			Assert.True(a.Internal(9) == 2);
+			Assert.True(a.Internal(10) == -1);
+			Assert.True(a.Internal(11) == -1);
+		}
+
+		[Test()]
+		public void TestContainsIndex()
+		{
+			var a = new Group(new int[]{4, 5, 8, 10});
+			Assert.True(a.ContainsIndex(4));
+			Assert.False(a.ContainsIndex(5));
+			Assert.False(a.ContainsIndex(7));
+			Assert.True(a.ContainsIndex(8));
+			Assert.True(a.ContainsIndex(9));
+			Assert.False(a.ContainsIndex(10));
+		}
 	}
 }
 

@@ -581,7 +581,13 @@ namespace Utils
 			}
 		}
 
-		public IEnumerable<int> ForwardIndices()
+		/// <summary>
+		/// Iterates through the indices in group forward.
+		/// </summary>
+		/// <returns>
+		/// The indices.
+		/// </returns>
+		public IEnumerable<int> IndicesForward()
 		{
 			int n = this.Count / 2;
 			for (int i = 0; i < n; i++) {
@@ -614,7 +620,13 @@ namespace Utils
 			}
 		}
 
-		public IEnumerable<int> BackwardIndices()
+		/// <summary>
+		/// Iterates through the indices in the group backwards.
+		/// </summary>
+		/// <returns>
+		/// The indices.
+		/// </returns>
+		public IEnumerable<int> IndicesBackward()
 		{
 			int n = this.Count / 2;
 			for (int i = n-1; i >= 0; i--) {
@@ -623,6 +635,64 @@ namespace Utils
 				for (int j = end-1; j >= start; j--) {
 					yield return j;
 				}
+			}
+		}
+
+
+		/// <summary>
+		/// Converts from an internal index within the group to external.
+		/// If it is outside the group, -1 is returned.
+		/// </summary>
+		/// <param name='internalIndex'>
+		/// The internal index to convert to external.
+		/// </param>
+		public int External(int internalIndex)
+		{
+			int n = this.Count / 2;
+			for (int i = 0; i < n; i++) {
+				int start = this[i*2];
+				int end = this[i*2 + 1];
+				if (internalIndex < 0) return -1;
+				if (internalIndex < end - start) {
+					return internalIndex + start;
+				} else {
+					internalIndex -= end - start;
+				}
+			}
+			return -1;
+		}
+
+		/// <summary>
+		/// Converts from an external index to an index internal to the group.
+		/// If it is outside the group, -1 is returned.
+		/// </summary>
+		/// <param name='externalIndex'>
+		/// The external index.
+		/// </param>
+		public int Internal(int externalIndex)
+		{
+			int n = this.Count / 2;
+			int c = 0;
+			for (int i = 0; i < n; i++) {
+				int invEnd = i == 0 ? 0 : this[i*2 - 1];
+				int start = this[i*2];
+				int end = this[i*2 + 1];
+				c += start - invEnd;
+
+				if (externalIndex < start) return -1;
+				if (externalIndex < end) return externalIndex - c;
+
+			}
+			return -1;
+		}
+
+		public bool ContainsIndex(int index)
+		{
+			int larger = this.BinarySearch(index);
+			if (larger >= 0) {
+				return (larger % 2) == 0;
+			} else {
+				return (~larger % 2) == 1;
 			}
 		}
 
@@ -683,7 +753,7 @@ namespace Utils
 			var minIndex = -1;
 			var minSize = int.MaxValue;
 			var minGroup = null as Group;
-			foreach (var i in filter.ForwardIndices()) {
+			foreach (var i in filter.IndicesForward()) {
 				var xor = (groups[i] - this) + (this - groups[i]);
 				var size = Group.Size(xor);
 				if (size > minSize) continue;
