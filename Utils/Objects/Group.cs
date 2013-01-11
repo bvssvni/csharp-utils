@@ -614,6 +614,44 @@ namespace Utils
 		}
 
 		/// <summary>
+		/// Finds the first group that contains an item.
+		/// </summary>
+		/// <param name='groups'>
+		/// The groups to search for item.
+		/// </param>
+		/// <param name='item'>
+		/// The item to search for.
+		/// </param>
+		public static int First(IList<Group> groups, int item)
+		{
+			int n = groups.Count;
+			for (int i = 0; i < n; i++) {
+				if (groups[i].BinarySearch(item) >= 0) return i;
+			}
+
+			return -1;
+		}
+
+		/// <summary>
+		/// Finds the last group that contains an item.
+		/// </summary>
+		/// <param name='groups'>
+		/// The groups to search for item.
+		/// </param>
+		/// <param name='item'>
+		/// The item to search for.
+		/// </param>
+		public static int Last(IList<Group> groups, int item)
+		{
+			int n = groups.Count;
+			for (int i = n-1; i >= 0; i--) {
+				if (groups[i].BinarySearch(item) >= 0) return i;
+			}
+			
+			return -1;
+		}
+
+		/// <summary>
 		/// Finds the most similar group in a list of groups, searching using a filter.
 		/// Uses XOR Boolean operation to find the mismatch.
 		/// If two groups have equally mismatch the one with lower indices will be returned.
