@@ -274,6 +274,13 @@ namespace Utils
 		}
 
 		[Test()]
+		public void TestExternal()
+		{
+			var a = Group.Slice (3, 3);
+			Assert.True(a.External(0) == 3);
+		}
+
+		[Test()]
 		public void TestContainsIndex()
 		{
 			var a = new Group(new int[]{4, 5, 8, 10});
