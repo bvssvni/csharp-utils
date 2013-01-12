@@ -284,6 +284,15 @@ namespace Utils
 			Assert.True(a.ContainsIndex(9));
 			Assert.False(a.ContainsIndex(10));
 		}
+
+		[Test()]
+		public void TestFirst()
+		{
+			var gr = new Group[]{Group.Slice (0, 2), Group.Slice(3, 3), Group.Slice (4, 6)};
+			Assert.True(Group.First(gr, 0) == 0);
+			Assert.True(Group.First(gr, 3) == 1);
+			Assert.True(Group.First(gr, 4) == 2);
+		}
 	}
 }
 

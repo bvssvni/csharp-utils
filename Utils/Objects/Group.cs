@@ -709,7 +709,7 @@ namespace Utils
 		{
 			int n = groups.Count;
 			for (int i = 0; i < n; i++) {
-				if (groups[i].BinarySearch(item) >= 0) return i;
+				if (groups[i].ContainsIndex(item)) return i;
 			}
 
 			return -1;
@@ -728,7 +728,7 @@ namespace Utils
 		{
 			int n = groups.Count;
 			for (int i = n-1; i >= 0; i--) {
-				if (groups[i].BinarySearch(item) >= 0) return i;
+				if (groups[i].ContainsIndex(item)) return i;
 			}
 			
 			return -1;
