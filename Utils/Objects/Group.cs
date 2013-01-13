@@ -107,7 +107,8 @@ namespace Utils
 				}
 				last = map[i];
 			}
-			if (g.Count % 2 == 1) g.Add (map[map.Length-1] + 1);
+			if ((g.Count & 1) == 1) g.Add (map[map.Length-1] + 1);
+
 			return g;
 		}
 
@@ -345,13 +346,13 @@ namespace Utils
 		}
 
 		// Returns the number of members in the group.
+		[PerformanceLevel(29)]
 		public static int Size(Group a)
 		{
 			int size = 0;
-			int na = a.Count / 2;
-			for (int i = 0; i < na; i++) {
-				size += a [i * 2 + 1] - a [i * 2];
-			}
+			int n = a.Count - 1;
+			for (int i = 0; i < n; i += 2) size += a[i+1] - a[i];
+
 			return size;
 		}
 
@@ -873,22 +874,25 @@ namespace Utils
 		/// <param name='g'>
 		/// The group to map with.
 		/// </param>
+		[PerformanceLevel(24)]
 		public int[] MapWith(Group g)
 		{
 			var c = g * this;
 			int minSize = Group.Size (c);
 			int[] map = new int[minSize];
-			int n = g.Count / 2;
+			int n = g.Count >> 1;
 			int m = this.Count;
 			int j = 0;
 			int s = 0;
 			int t = 0;
+			int start, end;
+			int k;
 			for (int i = 0; i < n; i++) {
-				int start = g[i*2];
-				int end = g[i*2 + 1];
-				for (int k = start; k < end; k++, t++) {
+				start = g[i << 1];
+				end = g[(i << 1) + 1];
+				for (k = start; k < end; k++, t++) {
 					if (s < m && this[s] <= k) s++;
-					if ((s % 2) == 0) continue;
+					if ((s & 1) == 0) continue;
 
 					map[j++] = t;
 					if (j == minSize) return map;
@@ -904,6 +908,13 @@ namespace Utils
 		/// as other groups transformed.
 		/// Boolean operations among the transformed group are still valid,
 		/// but contains only members that are in 'g'.
+		/// 
+		/// The algorithm corresponds to the following operation:
+		/// return Group.FromOrderedMap(this.MapWith(a));
+		/// 
+		/// But uses intersection and offset to map directly without creating a map.
+		/// This makes it approximately twice as fast.
+		/// 
 		/// </summary>
 		/// <returns>
 		/// Returns a group that is transformed to the internal space of 'g'.
@@ -911,9 +922,58 @@ namespace Utils
 		/// <param name='g'>
 		/// The group to use as transform.
 		/// </param>
-		public Group TransformedWith(Group g)
+		[PerformanceLevel(24)]
+		public Group TransformedWith(Group a)
 		{
-			return Group.FromOrderedMap(this.MapWith(g));
+			Group b = this;
+			Group arr = new Group();
+			
+			int alength = a.Count;
+			int blength = b.Count;
+			if (alength == 0 || blength == 0)
+				return arr;
+			
+			int i = 0, j = 0; 
+			bool isA = false; 
+			bool isB = false; 
+			bool was = false;
+			bool has = false;
+			int pa, pb, min;
+			int off = 0;
+			int last = int.MinValue;
+			while (i < alength && j < blength) {
+				// Get the last value from each group.
+				pa = i >= alength ? int.MaxValue : a [i];
+				pb = j >= blength ? int.MaxValue : b [j];
+				min = pa < pb ? pa : pb;
+				
+				// Advance the one with least value, both if they got the same.
+				if (pa == min) {
+					isA = !isA; 
+					i++;
+
+					// Add to offset to get the internal indices of 'a'.
+					if (isA) off += a[i] - (i == 0 ? 0 : a[i-1]);
+				}
+				if (pb == min) {
+					isB = !isB;
+					j++;
+				}
+				
+				// Find out if the new change should be added to the result.
+				has = isA && isB;
+				if (has != was) {
+					// Subtract offset to get internal 'a' and check for dupcliates.
+					min -= off;
+					if (min == last) arr.RemoveAt(arr.Count - 1);
+					else arr.Add(min);
+					last = min;
+				}
+				
+				was = has;
+			}
+			
+			return arr;
 		}
 	}
 

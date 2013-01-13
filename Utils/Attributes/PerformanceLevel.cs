@@ -17,10 +17,14 @@ namespace Utils
 	/// This is a way of measuring the lower bound on execution time.
 	/// One can use addition and subtraction to calculate the relative execution time on different machines.
 	/// If algorithm A runs in 2^X and B runs in 2^Y, then B runs 2^(Y-X) faster.
+	/// 
+	/// Functions tagged with this attribute are tested on small data sets.
+	/// The value is used to indicate the lower bound or best-case performance.
 	/// </summary>
 	public class PerformanceLevel : Attribute
 	{
 		public int Level;
+		public string Comments;
 
 		public PerformanceLevel (int level)
 		{

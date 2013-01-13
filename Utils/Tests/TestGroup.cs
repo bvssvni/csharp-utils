@@ -380,7 +380,42 @@ namespace Utils
 			Assert.True(c.Count == 2);
 			Assert.True(c[0] == 0);
 			Assert.True(c[1] == 4);
+		}
 
+		[Test()]
+		public void TestTransformedWith2()
+		{
+			var a = new Group(new int[]{2, 4, 6, 8});
+			var b = new Group(new int[]{2, 9});
+			var c = b.TransformedWith(a);
+
+			Assert.True(c.Count == 2);
+			Assert.True(c[0] == 0);
+			Assert.True(c[1] == 4);
+		}
+
+		[Test()]
+		public void TestTransformedWith3()
+		{
+			var a = new Group(new int[]{2, 4, 6, 8});
+			var b = new Group(new int[]{3, 9});
+			var c = b.TransformedWith(a);
+			
+			Assert.True(c.Count == 2);
+			Assert.True(c[0] == 1);
+			Assert.True(c[1] == 4);
+		}
+
+		[Test()]
+		public void TestTransformedWith4()
+		{
+			var a = new Group(new int[]{2, 4, 6, 8});
+			var b = new Group(new int[]{3, 7});
+			var c = b.TransformedWith(a);
+			
+			Assert.True(c.Count == 2);
+			Assert.True(c[0] == 1);
+			Assert.True(c[1] == 3);
 		}
 
 	}
