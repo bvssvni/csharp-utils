@@ -51,6 +51,10 @@ namespace Utils
 		{
 		}
 
+		public Group (int capacity) : base(capacity)
+		{
+		}
+
 		public override string ToString()
 		{
 			var strb = new StringBuilder();
@@ -642,6 +646,9 @@ namespace Utils
 		/// <summary>
 		/// Converts from an internal index within the group to external.
 		/// If it is outside the group, -1 is returned.
+		/// 
+		/// This method might be slow when called for each member of a group.
+		/// A more efficient way is using the 'Map()' function.
 		/// </summary>
 		/// <param name='internalIndex'>
 		/// The internal index to convert to external.
@@ -766,6 +773,59 @@ namespace Utils
 				}
 			}
 			return minIndex;
+		}
+
+		/// <summary>
+		/// Creates an array that maps internal indices of a group to external indices.
+		/// This can be used for random access of members in a group.
+		/// Since it only maps indices, it allows writing to the original array or list.
+		/// </summary>
+		public int[] Map()
+		{
+			int size = Group.Size (this);
+			int[] map = new int[size];
+			int n = this.Count / 2;
+			int j = 0;
+			for (int i = 0; i < n; i++) {
+				int start = this[i*2];
+				int end = this[i*2 + 1];
+				for (int k = start; k < end; k++) {
+					map[j++] = k;
+				}
+			}
+			return map;
+		}
+
+		/// <summary>
+		/// Creates an array of items that are member of the group.
+		/// The items are specified using a list as parameter.
+		/// 
+		/// This method can be used when a function takes an array as arguments but doesn't allow group as filter.
+		/// Notice that writing to a such array does not affect the original.
+		/// </summary>
+		/// <returns>
+		/// Returns an array of members mapped from list.
+		/// </returns>
+		/// <param name='list'>
+		/// The list containing members.
+		/// </param>
+		/// <typeparam name='T'>
+		/// The type of items.
+		/// </typeparam>
+		public T[] MapTo<T>(IList<T> list)
+		{
+			int size = Group.Size (this);
+			T[] map = new T[size];
+			int n = this.Count / 2;
+			int j = 0;
+			for (int i = 0; i < n; i++) {
+				int start = this[i*2];
+				int end = this[i*2 + 1];
+				for (int k = start; k < end; k++) {
+					map[j++] = list[k];
+				}
+			}
+			return map;
 		}
 	}
 

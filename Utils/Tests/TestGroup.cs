@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Utils
 {
 	[TestFixture()]
-	public class Test
+	public class TestGroup
 	{
 		[Test()]
 		public void TestIntersect1()
@@ -299,6 +299,33 @@ namespace Utils
 			Assert.True(Group.First(gr, 0) == 0);
 			Assert.True(Group.First(gr, 3) == 1);
 			Assert.True(Group.First(gr, 4) == 2);
+		}
+
+		[Test()]
+		public void TestMap()
+		{
+			var g = new Group(new int[]{0, 2, 7, 10});
+			var table = g.Map();
+			Assert.True(table[0] == 0);
+			Assert.True(table[1] == 1);
+			Assert.True(table[2] == 7);
+			Assert.True(table[3] == 8);
+		}
+
+		[Test()]
+		public void TestMapTo()
+		{
+			var items = new string[]{"One", "Two", "Three", "Four", "Five"};
+			var g = new Group(new int[]{0, 1, 3, 5});
+			var gItems = g.MapTo<string>(items);
+			Assert.True(gItems[0] == "One");
+			Assert.True(gItems[1] == "Four");
+			Assert.True(gItems[2] == "Five");
+
+			var first3 = Group.Slice (0, 3).MapTo<string>(items);
+			Assert.True(first3[0] == "One");
+			Assert.True(first3[1] == "Two");
+			Assert.True(first3[2] == "Three");
 		}
 	}
 }
