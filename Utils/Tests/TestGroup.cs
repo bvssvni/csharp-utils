@@ -327,6 +327,26 @@ namespace Utils
 			Assert.True(first3[1] == "Two");
 			Assert.True(first3[2] == "Three");
 		}
+
+		[Test()]
+		public void TestMapWith()
+		{
+			var items = new string[]{"0", "1", "2", "3", "4", "5", "6", "7"};
+			var a = new Group(new int[]{3, 8});
+			var b = new Group(new int[]{2, 5, 7, 8});
+			var aItems = a.MapTo<string>(items);
+
+			// Create a map of b in the internal space of a.
+			var map = b.MapWith(a);
+			Assert.True(map.Length == 3);
+			Assert.True(map[0] == 0);
+			Assert.True(map[1] == 1);
+			Assert.True(map[2] == 4);
+
+			Assert.True(aItems[map[0]] == "3");
+			Assert.True(aItems[map[1]] == "4");
+			Assert.True(aItems[map[2]] == "7");
+		}
 	}
 }
 

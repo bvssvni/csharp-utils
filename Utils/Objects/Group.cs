@@ -827,6 +827,42 @@ namespace Utils
 			}
 			return map;
 		}
+
+		/// <summary>
+		/// Creates a map within the internal space of group g.
+		/// 
+		/// This can be used when data is mapped by a group and you want to create
+		/// groups that preserve the same relationship to the new data as to the old data.
+		/// </summary>
+		/// <returns>
+		/// Returns an array mapping indices of this group into the internal space of g.
+		/// </returns>
+		/// <param name='g'>
+		/// The group to map with.
+		/// </param>
+		public int[] MapWith(Group g)
+		{
+			var c = g * this;
+			int minSize = Group.Size (c);
+			int[] map = new int[minSize];
+			int n = g.Count / 2;
+			int m = this.Count;
+			int j = 0;
+			int s = 0;
+			int t = 0;
+			for (int i = 0; i < n; i++) {
+				int start = g[i*2];
+				int end = g[i*2 + 1];
+				for (int k = start; k < end; k++, t++) {
+					if (s < m && this[s] <= k) s++;
+					if ((s % 2) == 0) continue;
+
+					map[j++] = t;
+					if (j == minSize) return map;
+				}
+			}
+			return map;
+		}
 	}
 
 }
