@@ -83,6 +83,35 @@ namespace Utils
 		}
 
 		/// <summary>
+		/// Creates a group from an ordered map.
+		/// 
+		/// The indices in the map has to increase.
+		/// Gaps are added to the group when one index differs more from the previous than 1.
+		/// </summary>
+		/// <returns>
+		/// Returns a group corresponding to a sorted map.
+		/// </returns>
+		/// <param name='map'>
+		/// The ordered map to create group from.
+		/// </param>
+		public static Group FromOrderedMap(int[] map)
+		{
+			var g = new Group();
+			int n = map.Length;
+			int last = map[0];
+			g.Add (last);
+			for (int i = 1; i < n; i++) {
+				if (map[i] != last + 1) {
+					g.Add (last);
+					g.Add (map[i]); 
+				}
+				last = map[i];
+			}
+			if (g.Count % 2 == 1) g.Add (map[map.Length-1] + 1);
+			return g;
+		}
+
+		/// <summary>
 		/// Finds the largest interval in the group.
 		/// </summary>
 		/// <returns>
@@ -779,6 +808,7 @@ namespace Utils
 		/// Creates an array that maps internal indices of a group to external indices.
 		/// This can be used for random access of members in a group.
 		/// Since it only maps indices, it allows writing to the original array or list.
+		/// The returned map is always ordered.
 		/// </summary>
 		public int[] Map()
 		{
@@ -832,7 +862,10 @@ namespace Utils
 		/// Creates a map within the internal space of group g.
 		/// 
 		/// This can be used when data is mapped by a group and you want to create
-		/// groups that preserve the same relationship to the new data as to the old data.
+		/// groups that preserve the same relationship order to each other.
+		/// 
+		/// The ordered of all groups mapped with a group is preserved,
+		/// but the indices changes and members outside the group is removed.
 		/// </summary>
 		/// <returns>
 		/// Returns an array mapping indices of this group into the internal space of g.
@@ -862,6 +895,25 @@ namespace Utils
 				}
 			}
 			return map;
+		}
+
+		/// <summary>
+		/// Creates a group that correspond to a map with 'g'.
+		/// 
+		/// The group returned has members in the same order
+		/// as other groups transformed.
+		/// Boolean operations among the transformed group are still valid,
+		/// but contains only members that are in 'g'.
+		/// </summary>
+		/// <returns>
+		/// Returns a group that is transformed to the internal space of 'g'.
+		/// </returns>
+		/// <param name='g'>
+		/// The group to use as transform.
+		/// </param>
+		public Group TransformedWith(Group g)
+		{
+			return Group.FromOrderedMap(this.MapWith(g));
 		}
 	}
 

@@ -347,6 +347,42 @@ namespace Utils
 			Assert.True(aItems[map[1]] == "4");
 			Assert.True(aItems[map[2]] == "7");
 		}
+
+		public void TestOrderedMap()
+		{
+			var indices = new int[]{2, 3, 5, 6, 7};
+			var g = Group.FromOrderedMap(indices);
+			Assert.True(g.Count == 4);
+			Assert.True(g[0] == 2);
+			Assert.True(g[1] == 4);
+			Assert.True(g[2] == 5);
+			Assert.True(g[3] == 8);
+		}
+
+		[Test()]
+		public void TestTransformedWith()
+		{
+			var a = new Group(new int[]{2, 4, 6, 8});
+			var b = new Group(new int[]{2, 8});
+			var map = b.MapWith(a);
+			Assert.True(map.Length == 4);
+			Assert.True(map[0] == 0);
+			Assert.True(map[1] == 1);
+			Assert.True(map[2] == 2);
+			Assert.True(map[3] == 3);
+
+			var c = Group.FromOrderedMap(map);
+			Assert.True(c.Count == 2);
+			Assert.True(c[0] == 0);
+			Assert.True(c[1] == 4);
+
+			c = b.TransformedWith(a);
+			Assert.True(c.Count == 2);
+			Assert.True(c[0] == 0);
+			Assert.True(c[1] == 4);
+
+		}
+
 	}
 }
 
