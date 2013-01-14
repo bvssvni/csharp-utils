@@ -113,6 +113,39 @@ namespace Utils
 		}
 
 		/// <summary>
+		/// Creates a group by examining each possibility in a potential.
+		/// A potential is an interval where each index represents a state.
+		/// Usually this is very simple structures, because the space grows rapidly.
+		/// </summary>
+		/// <returns>
+		/// Returns the group where all members are possibilities where the condition is true.
+		/// </returns>
+		/// <param name='first'>
+		/// The first index in the potential.
+		/// </param>
+		/// <param name='last'>
+		/// The last index in the potential.
+		/// </param>
+		/// <param name='f'>
+		/// A function that returns true or false for each possible state.
+		/// </param>
+		public static Group FromPotential(int first, int last, IsTrue<int> f)
+		{
+			var g = new Group();
+			bool was = false;
+			bool has = false;
+			for (int i = first; i <= last; i++) {
+				has = f(i);
+				if (has != was) g.Add (i);
+
+				was = has;
+			}
+			if ((g.Count & 1) == 1) g.Add (last+1);
+
+			return g;
+		}
+
+		/// <summary>
 		/// Finds the largest interval in the group.
 		/// </summary>
 		/// <returns>
