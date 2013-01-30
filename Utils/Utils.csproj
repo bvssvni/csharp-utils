@@ -59,6 +59,8 @@
     <Compile Include="Tests\TestRunScript.cs" />
     <Compile Include="Tests\TestBinaryHeap.cs" />
     <Compile Include="Objects\BinaryHeap.cs" />
+    <Compile Include="Modules\VectorGroup.cs" />
+    <Compile Include="Tests\TestVectorGroup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

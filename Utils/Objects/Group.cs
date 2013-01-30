@@ -627,6 +627,11 @@ namespace Utils
 			return g;
 		}
 
+		public static Group All(System.Collections.IList list)
+		{
+			return new Group(new int[]{0, list.Count});
+		}
+
 		/// <summary>
 		/// Returns an enumerator iterating forward a list.
 		/// </summary>
