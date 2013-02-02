@@ -66,6 +66,7 @@
     <Compile Include="Tests\TestVectorGroup.cs" />
     <Compile Include="Objects\DocumentBase.cs" />
     <Compile Include="Modules\SetupGrid.cs" />
+    <Compile Include="Modules\Text.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
