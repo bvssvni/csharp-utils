@@ -27,13 +27,13 @@ namespace Utils
 		}
 
 		/// <summary>
-		/// Setup grid using names from fields of object.
+		/// Setup grid using names from properties of object.
 		/// </summary>
-		/// <returns>The fields by type.</returns>
-		/// <param name="tree">Tree.</param>
-		/// <param name="type">Type.</param>
-		public static ListStore SetupFieldsByType (TreeView tree, Type type) {
-			var fields = type.GetFields ();
+		/// <returns>A ListStore object that is linked to the tree.</returns>
+		/// <param name="tree">The tree control to set up as grid.</param>
+		/// <param name="type">The type to get properties from.</param>
+		public static ListStore SetupPropertiesByType (TreeView tree, Type type) {
+			var fields = type.GetProperties ();
 			var types = new Type[fields.Length];
 			int i = 0;
 			foreach (var field in fields) {
@@ -46,6 +46,21 @@ namespace Utils
 			var list = new ListStore (types);
 			tree.Model = list;
 			return list;
+		}
+
+		/// <summary>
+		/// Adds properties of object to grid.
+		/// </summary>
+		/// <param name="list">The list to append a new row.</param>
+		/// <param name="obj">The object to get values from.</param>
+		public static void AddPropertiesByObject (ListStore list, object obj) {
+			var fields = obj.GetType ().GetProperties ();
+			var values = new string[fields.Length];
+			for (int i = 0; i < fields.Length; i++) {
+				values[i] = Convert.ToString (fields[i].GetValue (obj, null));
+			}
+
+			list.AppendValues (values);
 		}
 	}
 }
