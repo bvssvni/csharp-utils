@@ -39,6 +39,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.CSharp" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="Modules\VectorGroup.cs" />
     <Compile Include="Tests\TestVectorGroup.cs" />
     <Compile Include="Objects\DocumentBase.cs" />
+    <Compile Include="Modules\SetupGrid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
