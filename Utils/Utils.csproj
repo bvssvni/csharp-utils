@@ -67,6 +67,7 @@
     <Compile Include="Objects\DocumentBase.cs" />
     <Compile Include="Modules\SetupGrid.cs" />
     <Compile Include="Modules\Text.cs" />
+    <Compile Include="Modules\OpenFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
