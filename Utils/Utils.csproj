@@ -69,6 +69,9 @@
     <Compile Include="Modules\Text.cs" />
     <Compile Include="Modules\OpenFile.cs" />
     <Compile Include="Modules\SaveFile.cs" />
+    <Compile Include="Objects\Generator.cs" />
+    <Compile Include="Tests\TestGenerator.cs" />
+    <Compile Include="Objects\StandardGenerators.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
