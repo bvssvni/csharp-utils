@@ -82,6 +82,13 @@ namespace Utils
 			}, data);
 		}
 
+		public static Group FromCharInUnicodeArray(char ch, char[] text)
+		{
+			return Predicate<char>(delegate(char item) {
+				return item == ch;
+			}, text);
+		}
+
 		/// <summary>
 		/// Creates a group from an ordered map.
 		/// 
@@ -841,6 +848,17 @@ namespace Utils
 				}
 			}
 			return minIndex;
+		}
+
+		public int[] ToIndices()
+		{
+			var size = Group.Size (this);
+			var arr = new int[size];
+			int j = 0;
+			foreach (var i in this.IndicesForward()) {
+				arr[j++] = i;
+			}
+			return arr;
 		}
 
 		/// <summary>
