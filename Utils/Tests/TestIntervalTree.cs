@@ -9,8 +9,8 @@ namespace Utils
 		public void TestIntervalTree1 ()
 		{
 			var text = "{}".ToCharArray ();
-			var start = Group.FromCharInUnicodeArray ('{', text);
-			var end = Group.FromCharInUnicodeArray ('}', text);
+			var start = Parsing.FromCharInUnicodeArray ('{', text);
+			var end = Parsing.FromCharInUnicodeArray ('}', text);
 			var trees = IntervalTree.Nested (start.ToIndices(), end.ToIndices());
 			Assert.True (trees.Length == 1);
 			Assert.True (trees[0].Start == 0);
@@ -22,8 +22,8 @@ namespace Utils
 		public void TestIntervalTree2 ()
 		{
 			var text = "{{}}".ToCharArray ();
-			var start = Group.FromCharInUnicodeArray ('{', text);
-			var end = Group.FromCharInUnicodeArray ('}', text);
+			var start = Parsing.FromCharInUnicodeArray ('{', text);
+			var end = Parsing.FromCharInUnicodeArray ('}', text);
 			var trees = IntervalTree.Nested (start.ToIndices(), end.ToIndices());
 			Assert.True (trees.Length == 1);
 			Assert.True (trees[0].Start == 0);
@@ -38,8 +38,8 @@ namespace Utils
 		public void TestIntervalTree3 ()
 		{
 			var text = "{}{}".ToCharArray ();
-			var start = Group.FromCharInUnicodeArray ('{', text);
-			var end = Group.FromCharInUnicodeArray ('}', text);
+			var start = Parsing.FromCharInUnicodeArray ('{', text);
+			var end = Parsing.FromCharInUnicodeArray ('}', text);
 			var trees = IntervalTree.Nested (start.ToIndices(), end.ToIndices());
 
 			Assert.True (trees.Length == 2);
@@ -53,8 +53,8 @@ namespace Utils
 		public void TestIntervalTree4 ()
 		{
 			var text = "{{}{}}".ToCharArray ();
-			var start = Group.FromCharInUnicodeArray ('{', text);
-			var end = Group.FromCharInUnicodeArray ('}', text);
+			var start = Parsing.FromCharInUnicodeArray ('{', text);
+			var end = Parsing.FromCharInUnicodeArray ('}', text);
 			var trees = IntervalTree.Nested (start.ToIndices(), end.ToIndices());
 			
 			Assert.True (trees.Length == 1);
@@ -75,8 +75,8 @@ namespace Utils
 		public void TestIntervalTree5 ()
 		{
 			var text = "{{}{}}{}".ToCharArray ();
-			var start = Group.FromCharInUnicodeArray ('{', text);
-			var end = Group.FromCharInUnicodeArray ('}', text);
+			var start = Parsing.FromCharInUnicodeArray ('{', text);
+			var end = Parsing.FromCharInUnicodeArray ('}', text);
 			var trees = IntervalTree.Nested (start.ToIndices(), end.ToIndices());
 			
 			Assert.True (trees.Length == 2);
@@ -101,8 +101,8 @@ namespace Utils
 		public void TestIntervalTree6 ()
 		{
 			var text = "{{}{}}{{}}".ToCharArray ();
-			var start = Group.FromCharInUnicodeArray ('{', text);
-			var end = Group.FromCharInUnicodeArray ('}', text);
+			var start = Parsing.FromCharInUnicodeArray ('{', text);
+			var end = Parsing.FromCharInUnicodeArray ('}', text);
 			var trees = IntervalTree.Nested (start.ToIndices(), end.ToIndices());
 			
 			Assert.True (trees.Length == 2);

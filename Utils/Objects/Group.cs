@@ -75,18 +75,11 @@ namespace Utils
 		/// <param name='data'>
 		/// Data.
 		/// </param>
-		public static Group FromBoolSamples(bool[] data, bool invert = false)
+		public static Group FromBoolSamples (bool[] data, bool invert = false)
 		{
 			return Predicate<bool>(delegate(bool item) {
 				return item ^ invert;
 			}, data);
-		}
-
-		public static Group FromCharInUnicodeArray(char ch, char[] text)
-		{
-			return Predicate<char>(delegate(char item) {
-				return item == ch;
-			}, text);
 		}
 
 		/// <summary>
@@ -101,7 +94,7 @@ namespace Utils
 		/// <param name='map'>
 		/// The ordered map to create group from.
 		/// </param>
-		public static Group FromOrderedMap(int[] map)
+		public static Group FromOrderedMap (int[] map)
 		{
 			var g = new Group();
 			int n = map.Length;
