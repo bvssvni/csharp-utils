@@ -877,7 +877,7 @@ namespace Utils
 		/// </summary>
 		/// <returns>The chunk.</returns>
 		/// <param name="chunkSize">Chunk size.</param>
-		public int[] MapChunk(int chunkSize)
+		public int[] MapChunks(int chunkSize)
 		{
 			int size = Group.Size (this);
 			int[] map = new int[size];

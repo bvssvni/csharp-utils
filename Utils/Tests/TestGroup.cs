@@ -422,7 +422,7 @@ namespace Utils
 		public void TestMapChunk1()
 		{
 			var a = new Group(new int[]{0, 10});
-			var b = a.MapChunk(2);
+			var b = a.MapChunks(2);
 
 			Assert.True (b[0] == 0);
 			Assert.True (b[1] == 2);
