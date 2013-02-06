@@ -418,6 +418,19 @@ namespace Utils
 			Assert.True(c[1] == 3);
 		}
 
+		[Test()]
+		public void TestMapChunk1()
+		{
+			var a = new Group(new int[]{0, 10});
+			var b = a.MapChunk(2);
+
+			Assert.True (b[0] == 0);
+			Assert.True (b[1] == 2);
+			Assert.True (b[2] == 4);
+			Assert.True (b[3] == 6);
+			Assert.True (b[4] == 8);
+		}
+
 	}
 }
 

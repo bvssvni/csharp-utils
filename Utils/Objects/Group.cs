@@ -848,6 +848,9 @@ namespace Utils
 		/// This can be used for random access of members in a group.
 		/// Since it only maps indices, it allows writing to the original array or list.
 		/// The returned map is always ordered.
+		/// 
+		/// 	arr[map[i]]
+		/// 
 		/// </summary>
 		public int[] Map()
 		{
@@ -859,6 +862,33 @@ namespace Utils
 				int start = this[i*2];
 				int end = this[i*2 + 1];
 				for (int k = start; k < end; k++) {
+					map[j++] = k;
+				}
+			}
+			return map;
+		}
+
+		/// <summary>
+		/// Creates an array that maps chunks in a group to external indices.
+		/// Each chunk needs to be continious and cover the whole group.
+		/// If they are not, an exception will be thrown.
+		/// 
+		/// This can be used when parsing words of same size from a text.
+		/// </summary>
+		/// <returns>The chunk.</returns>
+		/// <param name="chunkSize">Chunk size.</param>
+		public int[] MapChunk(int chunkSize)
+		{
+			int size = Group.Size (this);
+			int[] map = new int[size];
+			int n = this.Count / 2;
+			int j = 0;
+			for (int i = 0; i < n; i++) {
+				int start = this[i*2];
+				int end = this[i*2 + 1];
+				if ((end - start) % chunkSize != 0) throw new Exception ("Group not divisible into chunks.");
+
+				for (int k = start; k < end; k += chunkSize) {
 					map[j++] = k;
 				}
 			}
@@ -1013,6 +1043,7 @@ namespace Utils
 			
 			return arr;
 		}
+
 	}
 
 }
