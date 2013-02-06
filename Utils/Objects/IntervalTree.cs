@@ -5,6 +5,7 @@ namespace Utils
 {
 	/// <summary>
 	/// Used to analyse text with nested structures, such as brackets '[]' or curly braces '{}'.
+	/// The IntervalTree is similar to a group, that it contains intervals in the context of a list or array.
 	/// </summary>
 	public class IntervalTree
 	{
@@ -19,7 +20,49 @@ namespace Utils
 		}
 
 		/// <summary>
+		/// Adds interval to tree.
+		/// If the interval intersects with the structure, it is not added.
+		/// </summary>
+		/// <param name="start">Start of interval.</param>
+		/// <param name="end">End of interval.</param>
+		public bool Add (int start, int end)
+		{
+			if (start < this.Start || end > this.End) return false;
+
+			// If no children, add to this node.
+			if (this.Children.Count == 0) {
+				this.Children.Add (new IntervalTree (start, end));
+				return true;
+			}
+
+			// Try to add to children.
+			int n = this.Children.Count;
+			for (int i = 0; i < n; i++) {
+				var child = this.Children[i];
+				bool partOutside = start < child.Start || end > child.End;
+				if (start < child.End && end > child.Start && partOutside) return false;
+				if (partOutside) continue;
+
+				return child.Add (start, end);
+			}
+
+			// Insert new node among children.
+			for (int i = 0; i < n; i++) {
+				var child = this.Children[i];
+				if (child.Start < start) continue;
+
+				this.Children.Insert(i, new IntervalTree (start, end));
+				return true;
+			}
+
+			this.Children.Add (new IntervalTree (start, end));
+			return true;
+		}
+
+		/// <summary>
 		/// Creates an array of trees from start and end brackets.
+		/// Uses similar algorithm to Boolean operations on groups.
+		/// Searches for minimum value and advances the one least one.
 		/// </summary>
 		/// <returns>Returns an array of trees.</returns>
 		/// <param name="start">Start brackets.</param>

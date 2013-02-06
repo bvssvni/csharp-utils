@@ -125,6 +125,34 @@ namespace Utils
 			Assert.True (d.Children[0].Start == 7);
 			Assert.True (d.Children[0].End == 8);
 		}
+
+		[Test()]
+		public void TestAddNode1 ()
+		{
+			var tree = new IntervalTree (0, 100);
+			bool added = tree.Add (0, 10);
+			Assert.True (added);
+			Assert.True (tree.Children.Count == 1);
+			var child = tree.Children[0];
+			Assert.True (child.Start == 0);
+			Assert.True (child.End == 10);
+
+			added = tree.Add (9, 15);
+			Assert.True (!added);
+
+			added = tree.Add (60, 65);
+			Assert.True (added);
+			child = tree.Children[1];
+			Assert.True (child.Start == 60);
+			Assert.True (child.End == 65);
+
+			added = tree.Add (20, 60);
+			Assert.True (added);
+			Assert.True (tree.Children.Count == 3);
+			child = tree.Children[1];
+			Assert.True (child.Start == 20);
+			Assert.True (child.End == 60);
+		}
 	}
 }
 
