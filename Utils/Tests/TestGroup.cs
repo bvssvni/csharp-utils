@@ -431,6 +431,78 @@ namespace Utils
 			Assert.True (b[4] == 8);
 		}
 
+		[Test()]
+		public void TestHeadsOf1 ()
+		{
+			var a = new Group (new int[] {0, 1});
+			var b = new Group (new int[] {1,2, 4,5});
+			var c = a.HeadsOf (b);
+			Assert.True (c.Count == 2);
+			Assert.True (c[0] == 1);
+			Assert.True (c[1] == 2);
+		}
+
+		[Test()]
+		public void TestHeadsOf2 ()
+		{
+			var a = new Group (new int[] {2, 3});
+			var b = new Group (new int[] {1,2, 4,5});
+			var c = a.HeadsOf (b);
+			Assert.True (c.Count == 2);
+			Assert.True (c[0] == 4);
+			Assert.True (c[1] == 5);
+		}
+
+		[Test()]
+		public void TestHeadsOf3 ()
+		{
+			var a = new Group (new int[] {2, 3, 10,12});
+			var b = new Group (new int[] {1,2, 4,5, 7,10});
+			var c = a.HeadsOf (b);
+			Assert.True (c.Count == 2);
+			Console.WriteLine (c[0].ToString());
+			Assert.True (c[0] == 4);
+			Assert.True (c[1] == 5);
+		}
+
+		[Test()]
+		public void TestHeadsOf4 ()
+		{
+			var a = new Group (new int[] {2, 3, 10,12});
+			var b = new Group (new int[] {1,2, 4,5, 7,10, 12,15});
+			var c = a.HeadsOf (b);
+			Assert.True (c.Count == 4);
+			Console.WriteLine (c[0].ToString());
+			Assert.True (c[0] == 4);
+			Assert.True (c[1] == 5);
+			Assert.True (c[2] == 12);
+			Assert.True (c[3] == 15);
+		}
+
+		[Test()]
+		public void TestLastOf1 ()
+		{
+			var a = new Group (new int[] {4,5});
+			var b = new Group (new int[] {0,4});
+			var c = a.LastsOf (b);
+			Assert.True (c.Count == 2);
+			Assert.True (c[0] == 0);
+			Assert.True (c[1] == 4);
+		}
+
+		[Test()]
+		public void TestLastOf2 ()
+		{
+			var a = new Group (new int[] {4,5, 7,10, 20,21});
+			var b = new Group (new int[] {5,7, 11,12, 13,14, 18,19});
+			var c = a.LastsOf (b);
+			Assert.True (c.Count == 4);
+			Assert.True (c[0] == 5);
+			Assert.True (c[1] == 7);
+			Assert.True (c[2] == 18);
+			Assert.True (c[3] == 19);
+		}
+
 	}
 }
 

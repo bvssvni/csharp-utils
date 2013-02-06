@@ -338,6 +338,73 @@ namespace Utils
 			return res;
 		}
 
+		/// <summary>
+		/// Creates a group that consists of the heads of the argument.
+		/// For each interval in this group, the first interval of the other group is added.
+		/// This is useful in parsing when you are interested in the term following a specific condition.
+		/// </summary>
+		/// <returns>Returns group with heads.</returns>
+		/// <param name="g">The group to get heads from.</param>
+		public Group HeadsOf (Group g)
+		{
+			Group res = new Group ();
+			int n = this.Count >> 1;
+			int j = 0;
+			int m = g.Count >> 1;
+			for (int i = 0; i < n; i++) {
+				int start = this[i << 1];
+				int end = this[(i << 1) + 1];
+
+				while (j < m && g[j << 1] < end) {
+					j++;
+				}
+
+				if (j >= m) break;
+
+				start = g[j << 1];
+				end = g[(j << 1) + 1];
+				res.Add (start);
+				res.Add (end);
+			}
+
+			return res;
+		}
+
+		/// <summary>
+		/// Creates a group that consists of the tail of the argument.
+		/// For each interval in this group, the last interval before from the other group is added.
+		/// This is useful in parsing when you are interested in the term before a condition.
+		/// </summary>
+		/// <returns>Returns group with lasts.</returns>
+		/// <param name="g">The group to get last from.</param>
+		public Group LastsOf (Group g)
+		{
+			Group res = new Group ();
+			int n = this.Count >> 1;
+			int m = g.Count >> 1;
+			int j = m - 1;
+			for (int i = n-1; i >= 0; i--) {
+				int start = this[i << 1];
+				int end = this[(i << 1) + 1];
+				
+				while (j >= 0 && g[(j << 1) + 1] > start) {
+					j--;
+				}
+				
+				if (j < 0) break;
+				
+				start = g[j << 1];
+				end = g[(j << 1) + 1];
+				res.Add (end);
+				res.Add (start);
+			}
+			res.Reverse ();
+			
+			return res;
+		}
+
+
+
 		public static Group operator *(Group a, IsTrueByIndex func)
 		{
 			return Group.Filter(a, func);
