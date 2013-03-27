@@ -67,8 +67,6 @@
     <Compile Include="Objects\DocumentBase.cs" />
     <Compile Include="Modules\SetupGrid.cs" />
     <Compile Include="Modules\Text.cs" />
-    <Compile Include="Modules\OpenFile.cs" />
-    <Compile Include="Modules\SaveFile.cs" />
     <Compile Include="Objects\Generator.cs" />
     <Compile Include="Tests\TestGenerator.cs" />
     <Compile Include="Objects\StandardGenerators.cs" />
@@ -83,6 +81,10 @@
     <Compile Include="Interfaces\IWriteVersion.cs" />
     <Compile Include="Interfaces\IUndoAction.cs" />
     <Compile Include="Objects\History.cs" />
+    <Compile Include="Modules\FileExtensionModule.cs" />
+    <Compile Include="Modules\DocumentModule.cs" />
+    <Compile Include="Modules\SaveFileModule.cs" />
+    <Compile Include="Modules\OpenFileModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
