@@ -1,8 +1,9 @@
 using System;
+using Play;
 
-namespace Utils
+namespace Play
 {
-	public class StandardGenerators
+	public class LinearGeneratorModule
 	{
 		public static Generator<int> Range (int start, int end, int step)
 		{
