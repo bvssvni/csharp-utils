@@ -1,6 +1,6 @@
 /*
 
-SaveFileModule - Makes it easier to get file name from file chooser.
+DocumentModule - Methods for making it easier to save and load in GTK#.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
@@ -31,10 +31,40 @@ either expressed or implied, of the FreeBSD Project.
 */
 
 using System;
+using Utils.Document;
 using Gtk;
 
-namespace Utils
+namespace Utils.Document.Gtk
 {
+	public class OpenFileModule
+	{
+		/// <summary>
+		/// Shows file chooser dialog with filters applied.
+		/// </summary>
+		/// <returns>A selected file name, null if pushing 'Cancel'.</returns>
+		/// <param name="window">The owner window of the dialog.</param>
+		/// <param name="filters">The filters to use in the dialog.</param>
+		public static string WithFilters(Window window, params string[] filters) {
+			var openFile = new FileChooserDialog ("Open", window, FileChooserAction.Open, 
+			                                      "Cancel", ResponseType.Cancel,
+			                                      "OK", ResponseType.Accept);
+			var filter = new FileFilter ();
+			for (int i = 0; i < filters.Length; i++)
+				filter.AddPattern (filters[i]);
+			openFile.Filter = filter;
+			if (openFile.Run() == (int)ResponseType.Accept) 
+			{
+				var filename = openFile.Filename;
+				openFile.Destroy ();
+				return filename;
+			}
+			
+			openFile.Destroy();
+			
+			return null;
+		}
+	}
+
 	public class SaveFileModule
 	{
 		/// <summary>
@@ -62,6 +92,55 @@ namespace Utils
 			saveFile.Destroy();
 			
 			return null;
+		}
+	}
+
+	public class FileExtensionModule
+	{
+		public static string[] AddStar(string[] extensions) {
+			var result = new string[extensions.Length];
+			for (var i = 0; i < result.Length; i++) {
+				result[i] = "*" + extensions[i];
+			}
+			return result;
+		}
+		
+		public static bool EndsWithAny(string file, string[] extensions) {
+			for (var i = 0; i < extensions.Length; i++) {
+				if (file.EndsWith(extensions[i])) return true;
+			}
+			
+			return false;
+		}
+	}
+
+	public class DocumentModule
+	{
+		public static void Save
+		(Window window, string[] fileExtensions, string filename, IWrite<string> data) {
+			var filter = FileExtensionModule.AddStar(fileExtensions);
+			if (filename == null) filename = SaveFileModule.WithFilters(window, filter);
+			if (filename == null) return;
+			if (!FileExtensionModule.EndsWithAny(filename, fileExtensions)) filename += fileExtensions[0];
+			
+			data.Save(filename);
+		}
+		
+		public static void SaveAs(Window window, string[] fileExtensions, IWrite<string> data) {
+			var filter = FileExtensionModule.AddStar(fileExtensions);
+			var filename = SaveFileModule.WithFilters(window, filter);
+			if (filename == null) return;
+			if (!FileExtensionModule.EndsWithAny(filename, fileExtensions)) filename += fileExtensions[0];
+			
+			data.Save(filename);
+		}
+		
+		public static void Open(Window window, string[] fileExtensions, IRead<string> data) {
+			var filter = FileExtensionModule.AddStar(fileExtensions);
+			var filename = OpenFileModule.WithFilters(window, filter);
+			if (filename == null) return;
+			
+			data.Read(filename);
 		}
 	}
 }
