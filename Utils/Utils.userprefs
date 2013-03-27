@@ -1,15 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/SaveFileModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/CamelCaseTextModule.cs">
     <Files>
-      <File FileName="Modules/FileExtensionModule.cs" Line="57" Column="1" />
-      <File FileName="Modules/DocumentModule.cs" Line="60" Column="46" />
-      <File FileName="Modules/SaveFileModule.cs" Line="69" Column="1" />
-      <File FileName="Modules/OpenFileModule.cs" Line="68" Column="1" />
+      <File FileName="Modules/CamelCaseTextModule.cs" Line="9" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State />
+        <State expanded="True">
+          <Node name="Utils" expanded="True">
+            <Node name="Modules" expanded="True">
+              <Node name="CamelCaseTextModule.cs" selected="True" />
+            </Node>
+            <Node name="Tests" expanded="True" />
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
