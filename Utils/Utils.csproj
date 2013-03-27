@@ -76,6 +76,13 @@
     <Compile Include="Tests\TestIntervalTree.cs" />
     <Compile Include="Modules\Parsing.cs" />
     <Compile Include="Advisors\UserInterfaceAdvisor.cs" />
+    <Compile Include="Interfaces\ICopyTo.cs" />
+    <Compile Include="Interfaces\IDraw.cs" />
+    <Compile Include="Interfaces\IRead.cs" />
+    <Compile Include="Interfaces\IWrite.cs" />
+    <Compile Include="Interfaces\IWriteVersion.cs" />
+    <Compile Include="Interfaces\IUndoAction.cs" />
+    <Compile Include="Objects\History.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -85,5 +92,6 @@
     <Folder Include="Advisors\" />
     <Folder Include="Tests\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>
