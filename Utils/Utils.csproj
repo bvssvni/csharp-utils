@@ -75,6 +75,7 @@
     <Compile Include="Objects\IntervalTree.cs" />
     <Compile Include="Tests\TestIntervalTree.cs" />
     <Compile Include="Modules\Parsing.cs" />
+    <Compile Include="Advisors\UserInterfaceAdvisor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

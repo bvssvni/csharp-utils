@@ -1,5 +1,5 @@
 /*
-Play - Group-oriented programming for C#.  
+Group - Group-oriented programming for C#.  
 BSD license.  
 by Sven Nilsen, 2012  
 http://www.cutoutpro.com  
