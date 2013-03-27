@@ -1,17 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/CamelCaseTextModule.cs">
-    <Files>
-      <File FileName="Modules/CamelCaseTextModule.cs" Line="9" Column="3" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True">
-              <Node name="CamelCaseTextModule.cs" selected="True" />
+            <Node name="Modules" expanded="True" />
+            <Node name="Objects" expanded="True" />
+            <Node name="Packs" expanded="True">
+              <Node name="Utils.Document.Gtk.cs" selected="True" />
             </Node>
-            <Node name="Tests" expanded="True" />
           </Node>
         </State>
       </Pad>

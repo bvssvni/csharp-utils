@@ -68,20 +68,11 @@
     <Compile Include="Tests\TestIntervalTree.cs" />
     <Compile Include="Modules\Parsing.cs" />
     <Compile Include="Advisors\UserInterfaceAdvisor.cs" />
-    <Compile Include="Interfaces\ICopyTo.cs" />
-    <Compile Include="Interfaces\IDraw.cs" />
-    <Compile Include="Interfaces\IRead.cs" />
-    <Compile Include="Interfaces\IWrite.cs" />
-    <Compile Include="Interfaces\IWriteVersion.cs" />
-    <Compile Include="Interfaces\IUndoAction.cs" />
-    <Compile Include="Objects\History.cs" />
-    <Compile Include="Modules\FileExtensionModule.cs" />
-    <Compile Include="Modules\DocumentModule.cs" />
-    <Compile Include="Modules\SaveFileModule.cs" />
-    <Compile Include="Modules\OpenFileModule.cs" />
     <Compile Include="Modules\CleanImageModule.cs" />
     <Compile Include="Modules\LinearGeneratorModule.cs" />
     <Compile Include="Modules\CamelCaseTextModule.cs" />
+    <Compile Include="Packs\Utils.Document.cs" />
+    <Compile Include="Packs\Utils.Document.Gtk.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -91,6 +82,7 @@
     <Folder Include="Tests\" />
     <Folder Include="Helpers\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Packs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PerformanceLevel.txt" />
