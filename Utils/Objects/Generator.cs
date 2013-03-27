@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Utils
+namespace Play
 {
 	/// <summary>
 	/// A generator is the equivelant of an algorithmic group.
@@ -27,7 +27,6 @@ namespace Utils
 	/// 
 	/// All generators should continue to produce higher values even they gets outside the bounds.
 	/// This is because the condition for continuing is checked after getting next value.
-	/// 
 	/// 
 	/// </summary>
 	public class Generator <T> where T : IComparable 

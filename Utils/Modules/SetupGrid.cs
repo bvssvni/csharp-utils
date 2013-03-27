@@ -38,7 +38,7 @@ namespace Utils
 			int i = 0;
 			foreach (var field in fields) {
 				types[i] = typeof(string);
-				var name = Text.CamelCaseToSpace (field.Name);
+				var name = CamelCaseTextModule.ToSpace (field.Name);
 				tree.AppendColumn (name, new CellRendererText(), "text", i);
 				i++;
 			}

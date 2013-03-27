@@ -49,7 +49,6 @@
     <Compile Include="Modules\PolygonHitTest.cs" />
     <Compile Include="Advisors\GdkAdvisor.cs" />
     <Compile Include="Objects\Group.cs" />
-    <Compile Include="Tests\TestGroup.cs" />
     <Compile Include="Helpers\CleanImageHelper.cs" />
     <Compile Include="Objects\DrawingArgs.cs" />
     <Compile Include="Modules\SpriteAnalyzer.cs" />
@@ -64,10 +63,7 @@
     <Compile Include="Tests\TestVectorGroup.cs" />
     <Compile Include="Objects\DocumentBase.cs" />
     <Compile Include="Modules\SetupGrid.cs" />
-    <Compile Include="Modules\Text.cs" />
     <Compile Include="Objects\Generator.cs" />
-    <Compile Include="Tests\TestGenerator.cs" />
-    <Compile Include="Objects\StandardGenerators.cs" />
     <Compile Include="Objects\IntervalTree.cs" />
     <Compile Include="Tests\TestIntervalTree.cs" />
     <Compile Include="Modules\Parsing.cs" />
@@ -84,12 +80,13 @@
     <Compile Include="Modules\SaveFileModule.cs" />
     <Compile Include="Modules\OpenFileModule.cs" />
     <Compile Include="Modules\CleanImageModule.cs" />
+    <Compile Include="Modules\LinearGeneratorModule.cs" />
+    <Compile Include="Modules\CamelCaseTextModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Modules\" />
     <Folder Include="Objects\" />
-    <Folder Include="Attributes\" />
     <Folder Include="Advisors\" />
     <Folder Include="Tests\" />
     <Folder Include="Helpers\" />
