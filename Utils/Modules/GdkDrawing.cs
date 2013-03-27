@@ -11,7 +11,7 @@ namespace Utils
 	/// </summary>
 	public class GdkDrawing
 	{
-		[PerformanceLevel(18)]
+		// cl 18.
 		public static void Clear(DrawingArgs dr, Gdk.Color color) {
 			var rect = dr.Rectangle;
 			var filled = true;
@@ -19,7 +19,7 @@ namespace Utils
 			dr.Window.DrawRectangle(dr.GC, filled, rect);
 		}
 
-		[PerformanceLevel(18)]
+		// cl 18.
 		public static void DrawLine(DrawingArgs dr, Gdk.Color color, int width, int x1, int y1, int x2, int y2) {
 			dr.GC.RgbFgColor = color;
 			dr.GC.SetLineAttributes(width, LineStyle.Solid, CapStyle.Butt, JoinStyle.Round);

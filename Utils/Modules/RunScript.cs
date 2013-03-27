@@ -12,7 +12,10 @@ namespace Utils
 	/// </summary>
 	public class RunScript
 	{
-		[PerformanceLevel(12)]
+		/// <summary>
+		/// cl 12.
+		/// </summary>
+		/// <param name="source">Source.</param>
 		public static void Run (string source)
 		{
 			Evaluator.Init(new string[]{});
@@ -21,7 +24,11 @@ namespace Utils
 			Evaluator.Run (source);
 		}
 
-		[PerformanceLevel(12)]
+		/// <summary>
+		/// cl 12.
+		/// </summary>
+		/// <param name="source">Source.</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public static T Evaluate<T>(string source)
 		{
 			Evaluator.Init(new string[]{});
@@ -30,7 +37,10 @@ namespace Utils
 			return (T)Convert.ChangeType(Evaluator.Evaluate(source), typeof(T));
 		}
 
-		[PerformanceLevel(12)]
+		/// <summary>
+		/// cl 12.
+		/// </summary>
+		/// <param name="source">Source.</param>
 		public static CompiledMethod Compile(string source)
 		{
 			Evaluator.Init(new string[]{});

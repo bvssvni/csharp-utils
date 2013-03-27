@@ -47,12 +47,10 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Modules\GdkDrawing.cs" />
     <Compile Include="Modules\PolygonHitTest.cs" />
-    <Compile Include="Attributes\PerformanceLevel.cs" />
     <Compile Include="Advisors\GdkAdvisor.cs" />
     <Compile Include="Objects\Group.cs" />
     <Compile Include="Tests\TestGroup.cs" />
     <Compile Include="Helpers\CleanImageHelper.cs" />
-    <Compile Include="Modules\CleanImage.cs" />
     <Compile Include="Objects\DrawingArgs.cs" />
     <Compile Include="Modules\SpriteAnalyzer.cs" />
     <Compile Include="Objects\SpriteFit.cs" />
@@ -85,6 +83,7 @@
     <Compile Include="Modules\DocumentModule.cs" />
     <Compile Include="Modules\SaveFileModule.cs" />
     <Compile Include="Modules\OpenFileModule.cs" />
+    <Compile Include="Modules\CleanImageModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -95,5 +94,8 @@
     <Folder Include="Tests\" />
     <Folder Include="Helpers\" />
     <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PerformanceLevel.txt" />
   </ItemGroup>
 </Project>

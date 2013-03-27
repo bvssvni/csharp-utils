@@ -446,7 +446,7 @@ namespace Utils
 		}
 
 		// Returns the number of members in the group.
-		[PerformanceLevel(29)]
+		// cl 29.
 		public static int Size(Group a)
 		{
 			int size = 0;
@@ -1013,6 +1013,8 @@ namespace Utils
 		/// 
 		/// The ordered of all groups mapped with a group is preserved,
 		/// but the indices changes and members outside the group is removed.
+		/// 
+		/// cl 24.
 		/// </summary>
 		/// <returns>
 		/// Returns an array mapping indices of this group into the internal space of g.
@@ -1020,7 +1022,6 @@ namespace Utils
 		/// <param name='g'>
 		/// The group to map with.
 		/// </param>
-		[PerformanceLevel(24)]
 		public int[] MapWith(Group g)
 		{
 			var c = g * this;
@@ -1061,6 +1062,7 @@ namespace Utils
 		/// But uses intersection and offset to map directly without creating a map.
 		/// This makes it approximately twice as fast.
 		/// 
+		/// cl 24.
 		/// </summary>
 		/// <returns>
 		/// Returns a group that is transformed to the internal space of 'g'.
@@ -1068,7 +1070,6 @@ namespace Utils
 		/// <param name='g'>
 		/// The group to use as transform.
 		/// </param>
-		[PerformanceLevel(24)]
 		public Group TransformedWith(Group a)
 		{
 			Group b = this;

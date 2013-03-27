@@ -1,5 +1,6 @@
 /*
-spritesheet-analyzer - GAnalyzes a horizontal sprite sheet sequence and finds offset + width.  
+SpriteAnalyzer - GAnalyzes a horizontal sprite sheet sequence and finds offset + width.  
+https://github.com/bvssvni/csharp-utils
 BSD license.  
 by Sven Nilsen, 2012  
 http://www.cutoutpro.com  
