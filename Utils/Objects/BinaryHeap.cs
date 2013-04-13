@@ -9,13 +9,19 @@ namespace Utils
 	{
 		private int m_count = 1;
 		private T[] m_items;
-
+		
+		public int Count {
+			get {
+				return m_count - 1;
+			}
+		}
+		
 		public BinaryHeap (int capacity)
 		{
 			// Add one extra because 0 is not used.
 			m_items = new T[capacity + 1];
 		}
-
+		
 		public void Push(T obj) {
 			this.m_items[this.m_count] = obj;
 			var bubbleIndex = this.m_count;
@@ -30,15 +36,15 @@ namespace Utils
 					break;
 				}
 			}             
-
+			
 			this.m_count++;
 		}
-
+		
 		public T Pop() {
 			this.m_count--;
 			var returnItem = this.m_items[1];
 			this.m_items[1] = this.m_items[this.m_count];
-
+			
 			int swapItem = 1, parent = 1;
 			do {
 				parent = swapItem;
@@ -56,7 +62,7 @@ namespace Utils
 						swapItem = 2 * parent;
 					}
 				}
-
+				
 				// One if the parent's children are smaller or equal, swap them.
 				if (parent != swapItem) {
 					var tmpIndex = this.m_items[parent];
@@ -64,7 +70,7 @@ namespace Utils
 					this.m_items[swapItem] = tmpIndex;
 				}
 			} while (parent != swapItem);
-
+			
 			return returnItem;
 		}
 	}

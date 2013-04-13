@@ -76,6 +76,19 @@ namespace Utils
 			
 			return gr;
 		}
+		
+		/// <summary>
+		/// Creates a group that fills the entire image.
+		/// </summary>
+		/// <param name='width'>
+		/// The width of the image.
+		/// </param>
+		/// <param name='height'>
+		/// The height of the image.
+		/// </param>
+		public static Group All(int width, int height) {
+			return new Group(new int[]{0, width * height});
+		}
 	}
 }
 

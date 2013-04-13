@@ -22,6 +22,14 @@ namespace Utils
 			heap.Push (2);
 			Assert.True(heap.Pop() == 2);
 		}
+
+		[Test()]
+		public void TestBinaryHeapCapacity()
+		{
+			var heap = new BinaryHeap<int>(2);
+			heap.Push(0);
+			heap.Push(1);
+		}
 	}
 }
 
