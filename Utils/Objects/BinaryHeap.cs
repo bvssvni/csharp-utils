@@ -7,12 +7,12 @@ namespace Utils
 {
 	public class BinaryHeap<T> where T : IComparable
 	{
-		private int m_count = 1;
+		public int Cursor = 1;
 		private T[] m_items;
 		
 		public int Count {
 			get {
-				return m_count - 1;
+				return Cursor - 1;
 			}
 		}
 		
@@ -23,12 +23,14 @@ namespace Utils
 		}
 		
 		public void Push(T obj) {
-			this.m_items[this.m_count] = obj;
-			var bubbleIndex = this.m_count;
+			this.m_items[this.Cursor] = obj;
+			var bubbleIndex = this.Cursor;
+			int parentIndex;
+			T tmpValue;
 			while (bubbleIndex != 1) {
-				var parentIndex = bubbleIndex / 2;
+				parentIndex = bubbleIndex / 2;
 				if (this.m_items[bubbleIndex].CompareTo(this.m_items[parentIndex]) <= 0) {
-					var tmpValue = this.m_items[parentIndex];
+					tmpValue = this.m_items[parentIndex];
 					this.m_items[parentIndex] = this.m_items[bubbleIndex];
 					this.m_items[bubbleIndex] = tmpValue;
 					bubbleIndex = parentIndex;
@@ -37,18 +39,19 @@ namespace Utils
 				}
 			}             
 			
-			this.m_count++;
+			this.Cursor++;
 		}
 		
 		public T Pop() {
-			this.m_count--;
+			this.Cursor--;
 			var returnItem = this.m_items[1];
-			this.m_items[1] = this.m_items[this.m_count];
+			this.m_items[1] = this.m_items[this.Cursor];
 			
 			int swapItem = 1, parent = 1;
+			T tmpIndex;
 			do {
 				parent = swapItem;
-				if ((2 * parent + 1) <= this.m_count) {
+				if ((2 * parent + 1) <= this.Cursor) {
 					// Both children exist.
 					if (this.m_items[parent].CompareTo(this.m_items[2 * parent]) >= 0) {
 						swapItem = 2 * parent;
@@ -56,7 +59,7 @@ namespace Utils
 					if (this.m_items[swapItem].CompareTo(this.m_items[2 * parent + 1]) >= 0) {
 						swapItem = 2 * parent + 1;
 					}
-				} else if ((2 * parent) <= this.m_count) {
+				} else if ((2 * parent) <= this.Cursor) {
 					// Only one child exists
 					if (this.m_items[parent].CompareTo(this.m_items[2 * parent]) >= 0) {
 						swapItem = 2 * parent;
@@ -65,7 +68,7 @@ namespace Utils
 				
 				// One if the parent's children are smaller or equal, swap them.
 				if (parent != swapItem) {
-					var tmpIndex = this.m_items[parent];
+					tmpIndex = this.m_items[parent];
 					this.m_items[parent] = this.m_items[swapItem];
 					this.m_items[swapItem] = tmpIndex;
 				}

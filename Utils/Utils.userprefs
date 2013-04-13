@@ -1,20 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/OffsetView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/Layers.cs">
     <Files>
       <File FileName="Modules/PixelGroupModule.cs" Line="95" Column="1" />
       <File FileName="Objects/BinaryHeap.cs" Line="26" Column="1" />
       <File FileName="Tests/TestBinaryHeap.cs" Line="31" Column="17" />
       <File FileName="Objects/OffsetView.cs" Line="63" Column="1" />
+      <File FileName="Objects/Layers.cs" Line="21" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True" />
-            <Node name="Objects" expanded="True">
-              <Node name="OffsetView.cs" selected="True" />
-            </Node>
+            <Node name="Objects" expanded="True" selected="True" />
             <Node name="Tests" expanded="True" />
           </Node>
         </State>
