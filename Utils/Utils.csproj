@@ -78,6 +78,7 @@
     <Compile Include="Helpers\CameraOffsetHelper.cs" />
     <Compile Include="Objects\OffsetView.cs" />
     <Compile Include="Modules\CairoPixelPositionModule.cs" />
+    <Compile Include="Modules\PixelGroupModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
