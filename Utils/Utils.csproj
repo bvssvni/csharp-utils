@@ -76,6 +76,7 @@
     <Compile Include="Packs\Utils.Document.Gtk.cs" />
     <Compile Include="Modules\CairoFillModule.cs" />
     <Compile Include="Helpers\CameraOffsetHelper.cs" />
+    <Compile Include="Objects\OffsetView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

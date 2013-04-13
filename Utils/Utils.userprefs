@@ -1,14 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/CairoFillModule.cs">
-    <Files>
-      <File FileName="Modules/CairoFillModule.cs" Line="1" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="References" expanded="True" />
             <Node name="Modules" expanded="True">
               <Node name="CairoFillModule.cs" selected="True" />
             </Node>
