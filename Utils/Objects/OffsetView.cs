@@ -9,13 +9,13 @@ namespace Utils
 	/// Scales and translates view correctly.
 	/// The model has to implement IDraw interface for Cairo context.
 	/// </summary>
-	public class OffsetView<T> where T : IDraw<Cairo.Context>
+	public class OffsetView : IDraw<Cairo.Context>
 	{
 		private double m_offsetX = 0;
 		private double m_offsetY = 0;
 		
 		private double m_scale;
-		private T m_model;
+		private IDraw<Cairo.Context> m_model;
 		
 		public double OffsetX {
 			get {
@@ -44,9 +44,9 @@ namespace Utils
 			}
 		}
 		
-		public OffsetView(T map, double scale)
+		public OffsetView(IDraw<Cairo.Context> model, double scale)
 		{
-			m_model = map;
+			m_model = model;
 			m_scale = scale;
 		}
 		
