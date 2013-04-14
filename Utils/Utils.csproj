@@ -76,11 +76,11 @@
     <Compile Include="Packs\Utils.Document.Gtk.cs" />
     <Compile Include="Modules\CairoFillModule.cs" />
     <Compile Include="Helpers\CameraOffsetHelper.cs" />
-    <Compile Include="Objects\OffsetView.cs" />
     <Compile Include="Modules\CairoPixelPositionModule.cs" />
     <Compile Include="Modules\PixelGroupModule.cs" />
-    <Compile Include="Objects\Layers.cs" />
     <Compile Include="Objects\IndexHeap.cs" />
+    <Compile Include="Views\LayersView.cs" />
+    <Compile Include="Views\OffsetView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -91,6 +91,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Packs\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PerformanceLevel.txt" />

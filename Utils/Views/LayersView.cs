@@ -7,7 +7,7 @@ namespace Utils
 	/// <summary>
 	/// Draw layers.
 	/// </summary>
-	public class Layers<T> : List<IDraw<T>>, IDraw<T>
+	public class LayersView<T> : List<IDraw<T>>, IDraw<T>
 	{
 		public void Draw(T context) {
 			int n = this.Count;
