@@ -80,6 +80,7 @@
     <Compile Include="Modules\PixelGroupModule.cs" />
     <Compile Include="Objects\IndexHeap.cs" />
     <Compile Include="Packs\Utils.View.cs" />
+    <Compile Include="Packs\Utils.PathFinding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
