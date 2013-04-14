@@ -80,6 +80,7 @@
     <Compile Include="Modules\CairoPixelPositionModule.cs" />
     <Compile Include="Modules\PixelGroupModule.cs" />
     <Compile Include="Objects\Layers.cs" />
+    <Compile Include="Objects\IndexHeap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
