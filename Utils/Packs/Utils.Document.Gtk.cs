@@ -1,6 +1,6 @@
 /*
 
-DocumentModule - Methods for making it easier to save and load in GTK#.
+Utils.Document.Gtk - Methods for making it easier to save and load in GTK#.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
