@@ -7,6 +7,7 @@ http://www.cutoutpro.com
 Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
 
+002 - Added ImageView.
 001 - Added PixelPathView.
 
 Redistribution and use in source and binary forms, with or without
@@ -130,6 +131,23 @@ namespace Utils.View
 				context.Rectangle(x, y, 1, 1);
 				context.Fill();
 			}
+		}
+	}
+	
+	/// <summary>
+	/// Draws cairo image to context.
+	/// </summary>
+	public class ImageView : IDraw<Cairo.Context>
+	{
+		private Cairo.ImageSurface m_image;
+		
+		public ImageView(Cairo.ImageSurface image)
+		{
+			m_image = image;
+		}
+		
+		public void Draw(Cairo.Context context) {
+			m_image.Show(context, 0, 0);
 		}
 	}
 }
