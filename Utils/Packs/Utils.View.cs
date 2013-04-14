@@ -4,8 +4,10 @@ Utils.View - Methods for mapping drawing routines in constructs.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
-Version: 0.000 in angular degrees version notation
+Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
+
+001 - Added PixelPathView.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -48,7 +50,7 @@ namespace Utils.View
 			}
 		}
 	}
-
+	
 	/// <summary>
 	/// Offset view.
 	/// 
@@ -102,6 +104,32 @@ namespace Utils.View
 			context.Scale(m_scale, m_scale);
 			m_model.Draw(context);
 			context.Restore();
+		}
+	}
+	
+	public class PixelPathView : IDraw<Cairo.Context>
+	{
+		public int Width;
+		public List<int> Indices;
+		public Cairo.Color Color;
+		
+		public PixelPathView(List<int> indices, int width)
+		{
+			Indices = indices;
+			Width = width;
+			Color = new Cairo.Color(0, 1, 0, 1);
+		}
+		
+		public void Draw(Cairo.Context context) {
+			context.Color = Color;
+			for (int i = 0; i < Indices.Count; i++) {
+				int p = Indices[i];
+				int x = p % Width;
+				int y = p / Width;
+				context.NewPath();
+				context.Rectangle(x, y, 1, 1);
+				context.Fill();
+			}
 		}
 	}
 }
