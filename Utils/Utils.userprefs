@@ -1,17 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Packs/Utils.View.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/Cheap.cs">
     <Files>
       <File FileName="Packs/Utils.View.cs" Line="155" Column="1" />
+      <File FileName="Objects/Cheap.cs" Line="191" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Objects" expanded="True" />
-            <Node name="Packs" expanded="True">
-              <Node name="Utils.View.cs" selected="True" />
-            </Node>
+            <Node name="Objects" expanded="True" selected="True" />
             <Node name="Tests" expanded="True" />
           </Node>
         </State>
