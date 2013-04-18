@@ -3,13 +3,16 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Objects/Cheap.cs">
     <Files>
       <File FileName="Packs/Utils.View.cs" Line="155" Column="1" />
-      <File FileName="Objects/Cheap.cs" Line="191" Column="1" />
+      <File FileName="Objects/Cheap.cs" Line="197" Column="1" />
+      <File FileName="Tests/TestCheap.cs" Line="30" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Objects" expanded="True" selected="True" />
+            <Node name="Objects" expanded="True">
+              <Node name="Cheap.cs" selected="True" />
+            </Node>
             <Node name="Tests" expanded="True" />
           </Node>
         </State>
@@ -24,7 +27,13 @@
         <State selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Utils" expanded="True">
+            <Node name="Utils" expanded="True">
+              <Node name="TestCheap" selected="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

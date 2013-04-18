@@ -30,8 +30,8 @@ namespace Utils
 
 			/*/
 			long startTime = DateTime.Now.ToFileTimeUtc();
-			for (int i = 0; i < (1 << 19); i++) {
-				var c = new Cheap<int>(new int[1024]);
+			for (int i = 0; i < (1 << 22); i++) {
+				var c = new Cheap<int>(1, 2);
 				c.Dispose();
 				if (Cheap<int>.Items.Length > (1 << 20)) {
 					System.GC.Collect();
