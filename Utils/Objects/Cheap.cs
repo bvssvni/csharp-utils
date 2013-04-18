@@ -3,8 +3,10 @@ Cheap - Precise memory management for C#.
 BSD license.
 by Sven Nilsen, 2012
 http://www.cutoutpro.com
-Version: 0.000 in angular degrees version notation
+Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
+
+0.001 - Added Semaphore and action.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -52,7 +54,9 @@ namespace Utils
 		private int pos;
 		private UInt64 id;
 		private bool disposed = false;
-		
+
+		// Defragmentation is only allowed when the semaphore is 0.
+		public static int Semaphore;
 		private static UInt64 LastId;
 		public static T[] Items;
 		private static Slice[] Slices;
@@ -76,12 +80,29 @@ namespace Utils
 			SliceLength = 0;
 			LastId = 0;
 			SliceOffset = 0;
+			Semaphore = 0;
+		}
+
+		public delegate void CheapAction(ref T item);
+
+		public void ForEach(CheapAction action) {
+			// Prevent defragmentation while we do the actions.
+			Semaphore++;
+			int start = 0;
+			int end = 0;
+			GetRange(ref start, ref end);
+			for (int i = start; i < end; i++) {
+				action(ref Items[i]);
+			}
+			Semaphore--;
 		}
 		
 		/// <summary>
 		/// Packs the lists together in memory.
 		/// </summary>
 		public static void Defragment() {
+			if (Semaphore > 0) return;
+
 			int moveSlices = 0;
 			int moveItems = 0;
 			int slice_length = SliceLength;

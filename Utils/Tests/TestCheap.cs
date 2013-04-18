@@ -7,7 +7,7 @@ namespace Utils
 	public class TestCheap
 	{
 		[Test()]
-		public void Test()
+		public void Test1()
 		{
 			var a = new Cheap<int>(1, 2);
 			int start = 0;
@@ -27,7 +27,6 @@ namespace Utils
 			Assert.True(b.GetRange(ref start, ref end));
 			Assert.True(start == 0);
 			Assert.True(end == 2);
-
 			b.Dispose();
 			Cheap<int>.Defragment();
 
@@ -44,6 +43,46 @@ namespace Utils
 			Assert.False(true);
 			//*/
 
+		}
+
+		[Test()]
+		public void Test2() {
+			var a = new Cheap<int>(1, 2);
+			var b = new Cheap<int>(3, 4);
+			a.Dispose();
+			Cheap<int>.Semaphore++;
+			// This will not have any effect since we are preventing
+			// it from defragmenting.
+			Cheap<int>.Defragment();
+			Assert.True(Cheap<int>.Items[0] == 1);
+			Assert.True(Cheap<int>.Items[1] == 2);
+			Cheap<int>.Semaphore--;
+
+			Cheap<int>.Defragment();
+			Assert.True(Cheap<int>.Items[0] == 3);
+			Assert.True(Cheap<int>.Items[1] == 4);
+
+			b.Dispose();
+			Cheap<int>.Defragment();
+		}
+
+		[Test()]
+		public void Test3() {
+			var a = new Cheap<int>(1, 2);
+			var b = new Cheap<int>(3, 4);
+			a.ForEach((ref int item) => item = 5);
+			Assert.True(Cheap<int>.Items[0] == 5);
+			Assert.True(Cheap<int>.Items[1] == 5);
+			Assert.True(Cheap<int>.Items[2] == 3);
+			Assert.True(Cheap<int>.Items[3] == 4);
+			b.ForEach((ref int item) => item = 7);
+			Assert.True(Cheap<int>.Items[0] == 5);
+			Assert.True(Cheap<int>.Items[1] == 5);
+			Assert.True(Cheap<int>.Items[2] == 7);
+			Assert.True(Cheap<int>.Items[3] == 7);
+			a.Dispose();
+			b.Dispose();
+			Cheap<int>.Defragment();
 		}
 	}
 }
