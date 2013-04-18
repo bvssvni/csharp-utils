@@ -27,8 +27,8 @@ namespace Utils
 			Assert.True(b.GetRange(ref start, ref end));
 			Assert.True(start == 0);
 			Assert.True(end == 2);
-			
-			/*
+
+			/*/
 			long startTime = DateTime.Now.ToFileTimeUtc();
 			for (int i = 0; i < (1 << 19); i++) {
 				var c = new Cheap<int>(new int[1024]);
@@ -41,7 +41,8 @@ namespace Utils
 			long diffTime = DateTime.Now.ToFileTimeUtc() - startTime;
 			Console.WriteLine(diffTime * 100e-9);
 			Assert.False(true);
-			*/
+			//*/
+
 		}
 	}
 }

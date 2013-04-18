@@ -46,7 +46,8 @@ namespace Utils
 	/// </summary>
 	public sealed class Cheap<T> : IDisposable
 	{
-		private const int MIN_BUFFER_SIZE = 1024;
+		private const int MIN_ITEM_BUFFER_SIZE = 1024;
+		private const int MIN_SLICE_BUFFER_SIZE = 128;
 		
 		private int pos;
 		private UInt64 id;
@@ -69,8 +70,8 @@ namespace Utils
 		}
 		
 		static Cheap() {
-			Items = new T[MIN_BUFFER_SIZE];
-			Slices = new Slice[128];
+			Items = new T[MIN_ITEM_BUFFER_SIZE];
+			Slices = new Slice[MIN_SLICE_BUFFER_SIZE];
 			ItemLength = 0;
 			SliceLength = 0;
 			LastId = 0;
@@ -112,13 +113,18 @@ namespace Utils
 			SliceLength -= moveSlices;
 			ItemLength -= moveItems;
 			SliceOffset = SliceLength;
-			
-			if (SliceLength < (Slices.Length >> 1)) {
-				Array.Resize<Slice>(ref Slices, Slices.Length >> 1);
+
+			// Resize slice array down if taking up less than 50% of buffer.
+			if (SliceLength < (MIN_SLICE_BUFFER_SIZE >> 1) && Slices.Length > (MIN_SLICE_BUFFER_SIZE << 1)) {
+				Array.Resize<Slice>(ref Slices, MIN_SLICE_BUFFER_SIZE);
+			} else if (SliceLength < (Slices.Length >> 1)) {
+				Array.Resize<Slice>(ref Slices, SliceLength << 1);
 			}
-			if (ItemLength < (MIN_BUFFER_SIZE >> 1) && Items.Length > (MIN_BUFFER_SIZE << 1)) {
-				Array.Resize<T>(ref Items, MIN_BUFFER_SIZE);
-			} else {
+
+			// Resize slice array down if taking up less than 50% of buffer.
+			if (ItemLength < (MIN_ITEM_BUFFER_SIZE >> 1) && Items.Length > (MIN_ITEM_BUFFER_SIZE << 1)) {
+				Array.Resize<T>(ref Items, MIN_ITEM_BUFFER_SIZE);
+			} else if (ItemLength < (Items.Length >> 1)) {
 				Array.Resize<T>(ref Items, ItemLength << 1);
 			}
 		}
