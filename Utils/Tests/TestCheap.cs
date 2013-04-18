@@ -28,15 +28,16 @@ namespace Utils
 			Assert.True(start == 0);
 			Assert.True(end == 2);
 
+			b.Dispose();
+			Cheap<int>.Defragment();
+
 			/*/
+			// We are creating a large object that makes the buffer reallocate,
+			// but when we remove it
 			long startTime = DateTime.Now.ToFileTimeUtc();
 			for (int i = 0; i < (1 << 22); i++) {
-				var c = new Cheap<int>(1, 2);
+				var c = new Cheap<int>(1, 2, 3);
 				c.Dispose();
-				if (Cheap<int>.Items.Length > (1 << 20)) {
-					System.GC.Collect();
-					Cheap<int>.Defragment();
-				}
 			}
 			long diffTime = DateTime.Now.ToFileTimeUtc() - startTime;
 			Console.WriteLine(diffTime * 100e-9);

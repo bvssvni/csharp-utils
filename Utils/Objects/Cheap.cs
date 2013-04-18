@@ -104,28 +104,32 @@ namespace Utils
 					}
 				}
 			}
-			
-			// Delete the moved slices.
+
 			for (int i = 0; i < moveSlices; i++) {
+				// Delete the old moved slice.
 				Slices[slice_length - i - 1].Id = UInt64.MaxValue;
 			}
-			
+
 			SliceLength -= moveSlices;
 			ItemLength -= moveItems;
 			SliceOffset = SliceLength;
 
-			// Resize slice array down if taking up less than 50% of buffer.
-			if (SliceLength < (MIN_SLICE_BUFFER_SIZE >> 1) && Slices.Length > (MIN_SLICE_BUFFER_SIZE << 1)) {
-				Array.Resize<Slice>(ref Slices, MIN_SLICE_BUFFER_SIZE);
-			} else if (SliceLength < (Slices.Length >> 1)) {
-				Array.Resize<Slice>(ref Slices, SliceLength << 1);
+			if (moveSlices > 0) {
+				// Resize slice array down if taking up less than 50% of buffer.
+				if (SliceLength < (MIN_SLICE_BUFFER_SIZE >> 1) && Slices.Length > (MIN_SLICE_BUFFER_SIZE << 1)) {
+					Array.Resize<Slice>(ref Slices, MIN_SLICE_BUFFER_SIZE);
+				} else if (SliceLength >= MIN_SLICE_BUFFER_SIZE && SliceLength < (Slices.Length >> 1)) {
+					Array.Resize<Slice>(ref Slices, SliceLength << 1);
+				}
 			}
 
-			// Resize slice array down if taking up less than 50% of buffer.
-			if (ItemLength < (MIN_ITEM_BUFFER_SIZE >> 1) && Items.Length > (MIN_ITEM_BUFFER_SIZE << 1)) {
-				Array.Resize<T>(ref Items, MIN_ITEM_BUFFER_SIZE);
-			} else if (ItemLength < (Items.Length >> 1)) {
-				Array.Resize<T>(ref Items, ItemLength << 1);
+			if (moveItems > 0) {
+				// Resize slice array down if taking up less than 50% of buffer.
+				if (ItemLength < (MIN_ITEM_BUFFER_SIZE >> 1) && Items.Length > (MIN_ITEM_BUFFER_SIZE << 1)) {
+					Array.Resize<T>(ref Items, MIN_ITEM_BUFFER_SIZE);
+				} else if (ItemLength >= MIN_ITEM_BUFFER_SIZE && ItemLength < (Items.Length >> 1)) {
+					Array.Resize<T>(ref Items, ItemLength << 1);
+				}
 			}
 		}
 		
@@ -176,14 +180,21 @@ namespace Utils
 			if (disposed) return;
 			
 			disposed = true;
-			
 			// Get the correct position in case of defragmentation.
 			int pos = this.pos;
 			while (Slices[pos].Id > this.id) --pos;
-			
+
 			// Flag the slice as deleted.
 			Slices[pos].Id = UInt64.MaxValue;
-			if (pos < SliceOffset) SliceOffset = pos;
+			if (pos < SliceOffset) {
+				SliceOffset = pos;
+			}
+			// When removing from end, update settings directly.
+			// In case of removing and adding large objects, prevents reallocation of buffer.
+			if (Slices[pos].Offset + Slices[pos].Count == ItemLength) {
+				ItemLength -= Slices[pos].Count;
+				--SliceLength;
+			}
 			
 			GC.SuppressFinalize(this);
 		}
