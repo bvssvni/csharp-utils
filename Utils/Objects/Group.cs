@@ -3,8 +3,10 @@ Group - Group-oriented programming for C#.
 BSD license.  
 by Sven Nilsen, 2012  
 http://www.cutoutpro.com  
-Version: 0.000 in angular degrees version notation  
+Version: 0.001 in angular degrees version notation  
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html  
+
+0.001 - Added 'AddIndex'.
 
 Redistribution and use in source and binary forms, with or without  
 modification, are permitted provided that the following conditions are met:  
@@ -110,6 +112,24 @@ namespace Play
 			if ((g.Count & 1) == 1) g.Add (map[map.Length-1] + 1);
 
 			return g;
+		}
+
+		/// <summary>
+		/// Adds the index to the end.
+		/// If it matches the last one, the last index is increased.
+		/// </summary>
+		/// <param name='index'>
+		/// The index to add to group.
+		/// </param>
+		public void AddIndex(int index) {
+			int n = this.Count;
+			if (n == 0 || index != this[n - 1]) {
+				this.Add(index);
+				this.Add(index + 1);
+				return;
+			}
+
+			this[n - 1]++;
 		}
 
 		/// <summary>

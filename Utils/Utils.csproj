@@ -83,6 +83,8 @@
     <Compile Include="Packs\Utils.PathFinding.cs" />
     <Compile Include="Objects\Cheap.cs" />
     <Compile Include="Tests\TestCheap.cs" />
+    <Compile Include="Modules\ElementGroupsModule.cs" />
+    <Compile Include="Tests\TestElementGroupsModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
