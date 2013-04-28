@@ -43,6 +43,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cairo" />
+    <Reference Include="OpenTK">
+      <HintPath>..\..\..\Downloads\opentk\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Tests\TestCheap.cs" />
     <Compile Include="Modules\ElementGroupsModule.cs" />
     <Compile Include="Tests\TestElementGroupsModule.cs" />
+    <Compile Include="Modules\GLTextureModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
