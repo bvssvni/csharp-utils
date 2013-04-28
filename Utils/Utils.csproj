@@ -89,6 +89,7 @@
     <Compile Include="Modules\ElementGroupsModule.cs" />
     <Compile Include="Tests\TestElementGroupsModule.cs" />
     <Compile Include="Modules\GLTextureModule.cs" />
+    <Compile Include="Modules\GLProjectionModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
