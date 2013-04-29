@@ -92,6 +92,7 @@
     <Compile Include="Modules\GLProjectionModule.cs" />
     <Compile Include="Objects\ResourceManager.cs" />
     <Compile Include="Tests\TestResourceManager.cs" />
+    <Compile Include="Modules\FindFilesModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
