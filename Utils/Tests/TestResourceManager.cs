@@ -18,9 +18,12 @@ namespace Utils
 		[Test()]
 		public void TestLoadUnload()
 		{
-			ResourceManager<ResourceItem>.LoadDelegate load = (string resource) => new ResourceItem (resource);
-			ResourceManager<ResourceItem>.UnloadDelegate unload = (ResourceItem item) => item = null;
-			var manager = new ResourceManager<ResourceItem> (load, unload, "hello");
+			ResourceManager<string, ResourceItem>.LoadDelegate load = (string resource) => new ResourceItem (resource);
+			ResourceManager<string, ResourceItem>.UnloadDelegate unload = (string resource, ResourceItem item) => item = null;
+			var manager = new ResourceManager<string, ResourceItem> ("hello");
+			manager.Load = load;
+			manager.Unload = unload;
+
 			Assert.True (manager.Resources [0] == null);
 			var helloId = manager.AddReference ("hello");
 			Assert.True (manager.Resources [0] == null);
@@ -35,9 +38,7 @@ namespace Utils
 		[Test()]
 		public void TestNoInitialResources()
 		{
-			ResourceManager<ResourceItem>.LoadDelegate load = (string resource) => new ResourceItem (resource);
-			ResourceManager<ResourceItem>.UnloadDelegate unload = (ResourceItem item) => item = null;
-			var manager = new ResourceManager<ResourceItem> (load, unload);
+			var manager = new ResourceManager<string, ResourceItem> ();
 			Assert.True (manager.Resources != null);
 		}
 	}
