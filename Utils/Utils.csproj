@@ -93,6 +93,7 @@
     <Compile Include="Objects\ResourceManager.cs" />
     <Compile Include="Tests\TestResourceManager.cs" />
     <Compile Include="Modules\FindFilesModule.cs" />
+    <Compile Include="Objects\GLShaderProgram.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
