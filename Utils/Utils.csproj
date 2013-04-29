@@ -90,6 +90,8 @@
     <Compile Include="Tests\TestElementGroupsModule.cs" />
     <Compile Include="Modules\GLTextureModule.cs" />
     <Compile Include="Modules\GLProjectionModule.cs" />
+    <Compile Include="Objects\ResourceManager.cs" />
+    <Compile Include="Tests\TestResourceManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

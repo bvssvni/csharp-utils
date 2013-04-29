@@ -1,18 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/Group.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/ResourceManager.cs">
     <Files>
-      <File FileName="Objects/Group.cs" Line="1150" Column="1" />
+      <File FileName="Objects/Group.cs" Line="1143" Column="15" />
+      <File FileName="Modules/GLTextureModule.cs" Line="14" Column="4" />
+      <File FileName="Modules/GLProjectionModule.cs" Line="20" Column="1" />
+      <File FileName="Objects/ResourceManager.cs" Line="13" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True" />
-            <Node name="Objects" expanded="True">
-              <Node name="Group.cs" selected="True" />
-            </Node>
-            <Node name="Packs" expanded="True" />
+            <Node name="Objects" expanded="True" selected="True" />
             <Node name="Tests" expanded="True" />
           </Node>
         </State>
@@ -27,11 +26,7 @@
         <State selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True">
-          <Node name="Utils" expanded="True">
-            <Node name="Utils" expanded="True" selected="True" />
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
