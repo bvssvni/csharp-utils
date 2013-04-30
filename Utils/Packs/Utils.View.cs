@@ -36,6 +36,7 @@ either expressed or implied, of the FreeBSD Project.
 using System;
 using System.Collections.Generic;
 using Utils.Document;
+using Cairo;
 
 namespace Utils.View
 {
@@ -58,13 +59,13 @@ namespace Utils.View
 	/// Scales and translates view correctly.
 	/// The model has to implement IDraw interface for Cairo context.
 	/// </summary>
-	public class OffsetView : IDraw<Cairo.Context>
+	public class OffsetView : IDraw<Context>
 	{
 		private double m_offsetX = 0;
 		private double m_offsetY = 0;
 		
 		private double m_scale;
-		private IDraw<Cairo.Context> m_model;
+		private IDraw<Context> m_model;
 		
 		public double OffsetX {
 			get {
@@ -93,13 +94,13 @@ namespace Utils.View
 			}
 		}
 		
-		public OffsetView(IDraw<Cairo.Context> model, double scale)
+		public OffsetView(IDraw<Context> model, double scale)
 		{
 			m_model = model;
 			m_scale = scale;
 		}
 		
-		public void Draw(Cairo.Context context) {
+		public void Draw(Context context) {
 			context.Save();
 			context.Translate(m_offsetX, m_offsetY);
 			context.Scale(m_scale, m_scale);
@@ -108,20 +109,20 @@ namespace Utils.View
 		}
 	}
 	
-	public class PixelPathView : IDraw<Cairo.Context>
+	public class PixelPathView : IDraw<Context>
 	{
 		public int Width;
 		public List<int> Indices;
-		public Cairo.Color Color;
+		public Color Color;
 		
 		public PixelPathView(List<int> indices, int width)
 		{
 			Indices = indices;
 			Width = width;
-			Color = new Cairo.Color(0, 1, 0, 1);
+			Color = new Color(0, 1, 0, 1);
 		}
 		
-		public void Draw(Cairo.Context context) {
+		public void Draw(Context context) {
 			context.Color = Color;
 			for (int i = 0; i < Indices.Count; i++) {
 				int p = Indices[i];
@@ -137,16 +138,16 @@ namespace Utils.View
 	/// <summary>
 	/// Draws cairo image to context.
 	/// </summary>
-	public class ImageView : IDraw<Cairo.Context>
+	public class ImageView : IDraw<Context>
 	{
-		private Cairo.ImageSurface m_image;
+		private ImageSurface m_image;
 		
-		public ImageView(Cairo.ImageSurface image)
+		public ImageView(ImageSurface image)
 		{
 			m_image = image;
 		}
 		
-		public void Draw(Cairo.Context context) {
+		public void Draw(Context context) {
 			m_image.Show(context, 0, 0);
 		}
 	}
