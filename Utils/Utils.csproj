@@ -96,6 +96,8 @@
     <Compile Include="Objects\GLShaderProgram.cs" />
     <Compile Include="Objects\GLShaderProgramManager.cs" />
     <Compile Include="Modules\GLShaderModule.cs" />
+    <Compile Include="Modules\LineIterationModule.cs" />
+    <Compile Include="Tests\TestLineIterationModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
