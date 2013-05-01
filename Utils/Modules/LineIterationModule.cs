@@ -55,28 +55,15 @@ namespace Utils
 		}
 
 		public static IEnumerable<Iteration> FourConnected (int x0, int y0, int x1, int y1) {
-			int dx = x1 - x0;
-			dx = dx < 0 ? -dx : dx;
-			int dy = y1 - y0;
-			dy = dy < 0 ? -dy : dy;
-			int ix = x0 < x1 ? 1 : -1;
-			int iy = y0 < y1 ? 1 : -1;
-			int e = 0;
-			int e1 = 0;
-			int e2 = 0;
-			int n = dx + dy;
-			for (int i = 0; i < n; ++i) {
-				yield return new Iteration () { X = x0, Y = y0, Index = i };
-				
-				e1 = e + dy;
-				e2 = e - dx;
-				if ( (e1 < 0 ? -e1 : e1) < (e2 < 0 ? -e2 : e2) ) {
-					x0 += ix;
-					e = e1;
-				} else {
-					y0 += iy;
-					e = e2;
-				}
+			int dx =  Math.Abs(x1-x0), sx = x0<x1 ? 1 : -1;
+			int dy = -Math.Abs(y1-y0), sy = y0<y1 ? 1 : -1; 
+			int err = dx+dy; /* error value e_xy */
+
+			int i = 0;
+			while (!(x0==x1 && y0==y1)){  /* loop */
+				yield return new Iteration () {X = x0, Y = y0, Index = i++};
+				if ((err<<1) >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+				else { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
 			}
 		}
 
@@ -101,6 +88,59 @@ namespace Utils
 				if (e2 < dx) {
 					err += dx;
 					y0 += sy;
+				}
+			}
+		}
+
+		private static void Swap<T>(ref T x, ref T y)
+		{
+			T tmp = y;
+			y = x;
+			x = tmp;
+		}
+		
+		public static IEnumerable<Iteration> FourteenConnected(int x0, int y0, int z0, int x1, int y1, int z1)
+		{
+			bool steepXY = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
+			if (steepXY) { Swap(ref x0, ref y0); Swap(ref x1, ref y1); }
+			
+			bool steepXZ = Math.Abs(z1 - z0) > Math.Abs(x1 - x0);
+			if (steepXZ) { Swap(ref x0, ref z0); Swap(ref x1, ref z1); }
+			
+			int deltaX = Math.Abs(x1 - x0);
+			int deltaY = Math.Abs(y1 - y0);
+			int deltaZ = Math.Abs(z1 - z0);
+			
+			int errorXY = deltaX / 2, errorXZ = deltaX / 2;
+			
+			int stepX = (x0 > x1) ? -1 : 1;  
+			int stepY = (y0 > y1) ? -1 : 1;
+			int stepZ = (z0 > z1) ? -1 : 1;
+			
+			int y=y0, z=z0;
+			
+			for(int x = x0; x < x1; x += stepX) 
+			{
+				int xCopy=x, yCopy=y, zCopy=z;
+				
+				if (steepXZ) Swap(ref xCopy, ref zCopy);
+				if (steepXY) Swap(ref xCopy, ref yCopy);
+
+				yield return new Iteration () { X = xCopy, Y = yCopy, Z = zCopy, Index = x - x0 };
+				
+				errorXY -= deltaY;
+				errorXZ -= deltaZ;
+				
+				if (errorXY < 0) 
+				{
+					y += stepY;
+					errorXY += deltaX;
+				}
+				
+				if (errorXZ < 0) 
+				{
+					z += stepZ;
+					errorXZ += deltaX;
 				}
 			}
 		}
