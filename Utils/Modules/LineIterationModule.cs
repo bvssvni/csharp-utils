@@ -6,6 +6,8 @@ http://www.cutoutpro.com
 Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
 
+0.001 - Improved FourConnected.
+
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice, this
@@ -118,7 +120,7 @@ namespace Utils
 			int stepZ = (z0 > z1) ? -1 : 1;
 			
 			int y=y0, z=z0;
-			
+			int i = 0;
 			for(int x = x0; x < x1; x += stepX) 
 			{
 				int xCopy=x, yCopy=y, zCopy=z;
@@ -126,7 +128,7 @@ namespace Utils
 				if (steepXZ) Swap(ref xCopy, ref zCopy);
 				if (steepXY) Swap(ref xCopy, ref yCopy);
 
-				yield return new Iteration () { X = xCopy, Y = yCopy, Z = zCopy, Index = x - x0 };
+				yield return new Iteration () { X = xCopy, Y = yCopy, Z = zCopy, Index = i++ };
 				
 				errorXY -= deltaY;
 				errorXZ -= deltaZ;

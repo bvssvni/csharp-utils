@@ -78,6 +78,30 @@ namespace Utils
 			}
 		}
 
+		/*
+		[Test()]
+		public void TestDiagonalSixConnected () {
+			int i = 0;
+			int[] expectedPos = new int[] {
+				0, 0, 0,
+				1, 0, 0,
+				1, 1, 0,
+				1, 1, 1,
+				2, 1, 1,
+				2, 2, 1,
+			};
+			foreach (var it in LineIterationModule.SixConnected (0, 0, 0, 2, 2, 2)) {
+				// TEST
+				Console.WriteLine ("{0} {1} {2} {3}", it.X, it.Y, it.Z, it.Index);
+
+				Assert.True (expectedPos [3*i] == it.X);
+				Assert.True (expectedPos [3*i+1] == it.Y);
+				Assert.True (expectedPos [3*i+2] == it.Z);
+				i++;
+			}
+		}
+		*/
+
 	}
 }
 
