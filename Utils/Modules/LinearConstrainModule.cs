@@ -51,19 +51,25 @@ namespace Utils
 			int radius_dim = radius.Length == 1 ? 0 : 1;
 			int x_dim = x.Length == 1 ? 0 : 1;
 			bool smaller, larger;
+			float _min, _max, _x, _radius;
 
 			for (int i = count - 1; i >= 0; --i) {
-				smaller = x[i * x_dim] - radius[i * radius_dim] < min[i * min_dim];
-				larger = x[i * x_dim] + radius[i * radius_dim] > max[i * max_dim];
+				_min = min[i * min_dim + offset];
+				_max = max[i * max_dim + offset];
+				_x = x[i * x_dim + offset];
+				_radius = radius[i * radius_dim + offset];
+
+				smaller = _x - _radius < _min;
+				larger = _x + _radius > _max;
 				dx[i] = 0;
 				if (smaller && larger) {
 					fit[i] = false;
 					continue;
 				}
 				if (smaller) {
-					dx[i] = min[i] + radius[i * radius_dim] - x[i * x_dim];
+					dx[i] = _min + _radius - _x;
 				} else if (larger) {
-					dx[i] = max[i * max_dim] - radius[i * radius_dim] - x[i * x_dim];
+					dx[i] = _max - _radius - _x;
 				}
 				fit[i] = true;
 			}
