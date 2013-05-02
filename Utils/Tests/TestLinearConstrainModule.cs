@@ -73,8 +73,10 @@ namespace Utils
 			var radius = new float[] {2, 2};
 			var dx = new float[] {0, 0};
 			var fit = new bool[] {false, false};
+			var offset = 0;
+			var count = 2;
 			
-			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			LinearConstrainModule.WithinMultiple (offset, count, min, max, radius, x, dx, fit);
 
 			Assert.True (dx[0] == 2);
 			Assert.True (dx[1] == 2);
@@ -83,7 +85,7 @@ namespace Utils
 			
 			x[0] = 100;
 			x[1] = 100;
-			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			LinearConstrainModule.WithinMultiple (offset, count, min, max, radius, x, dx, fit);
 			Assert.True (dx[0] == -2);
 			Assert.True (dx[1] == -2);
 			Assert.True (fit[0]);
@@ -91,7 +93,7 @@ namespace Utils
 			
 			x[0] = 50;
 			x[1] = 50;
-			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			LinearConstrainModule.WithinMultiple (offset, count, min, max, radius, x, dx, fit);
 			Assert.True (dx[0] == 0);
 			Assert.True (dx[1] == 0);
 			Assert.True (fit[0]);
@@ -99,7 +101,7 @@ namespace Utils
 			
 			radius[0] = 101;
 			radius[1] = 101;
-			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			LinearConstrainModule.WithinMultiple (offset, count, min, max, radius, x, dx, fit);
 			Assert.True (dx[0] == 0);
 			Assert.True (dx[1] == 0);
 			Assert.False (fit[0]);

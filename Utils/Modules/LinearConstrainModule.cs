@@ -42,20 +42,27 @@ namespace Utils
 	/// </summary>
 	public class LinearConstrainModule
 	{
-		public static void WithinMultiple (float[] min, float[] max, float[] radius, float[] x, float[] dx, bool[] fit) {
-			int n = min.Length;
-			for (int i = 0; i < n; ++i) {
-				bool smaller = x[i] - radius[i] < min[i];
-				bool larger = x[i] + radius[i] > max[i];
+		public static void WithinMultiple (int offset, int count, 
+		                                   float[] min, float[] max, 
+		                                   float[] radius, float[] x, float[] dx, 
+		                                   bool[] fit) {
+			int min_dim = min.Length == 1 ? 0 : 1;
+			int max_dim = max.Length == 1 ? 0 : 1;
+			int radius_dim = radius.Length == 1 ? 0 : 1;
+			int x_dim = x.Length == 1 ? 0 : 1;
+
+			for (int i = 0; i < count; ++i) {
+				bool smaller = x[i * x_dim] - radius[i * radius_dim] < min[i * min_dim];
+				bool larger = x[i * x_dim] + radius[i * radius_dim] > max[i * max_dim];
 				dx[i] = 0;
 				if (smaller && larger) {
 					fit[i] = false;
 					continue;
 				}
 				if (smaller) {
-					dx[i] = min[i] + radius[i] - x[i];
+					dx[i] = min[i] + radius[i * radius_dim] - x[i * x_dim];
 				} else if (larger) {
-					dx[i] = max[i] - radius[i] - x[i];
+					dx[i] = max[i * max_dim] - radius[i * radius_dim] - x[i * x_dim];
 				}
 				fit[i] = true;
 			}
