@@ -100,6 +100,7 @@
     <Compile Include="Modules\LineIterationModule.cs" />
     <Compile Include="Tests\TestLineIterationModule.cs" />
     <Compile Include="Modules\GLColorModule.cs" />
+    <Compile Include="Modules\GLSquareModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
