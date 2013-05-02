@@ -50,10 +50,11 @@ namespace Utils
 			int max_dim = max.Length == 1 ? 0 : 1;
 			int radius_dim = radius.Length == 1 ? 0 : 1;
 			int x_dim = x.Length == 1 ? 0 : 1;
+			bool smaller, larger;
 
-			for (int i = 0; i < count; ++i) {
-				bool smaller = x[i * x_dim] - radius[i * radius_dim] < min[i * min_dim];
-				bool larger = x[i * x_dim] + radius[i * radius_dim] > max[i * max_dim];
+			for (int i = count - 1; i >= 0; --i) {
+				smaller = x[i * x_dim] - radius[i * radius_dim] < min[i * min_dim];
+				larger = x[i * x_dim] + radius[i * radius_dim] > max[i * max_dim];
 				dx[i] = 0;
 				if (smaller && larger) {
 					fit[i] = false;
