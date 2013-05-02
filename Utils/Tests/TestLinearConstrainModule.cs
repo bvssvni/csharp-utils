@@ -63,6 +63,48 @@ namespace Utils
 			Assert.True (dy == 0);
 
 		}
+
+		[Test()]
+		public void TestWithinMultiple ()
+		{
+			var min = new float[] {0, 0};
+			var max = new float[] {100, 100};
+			var x = new float[] {0, 0};
+			var radius = new float[] {2, 2};
+			var dx = new float[] {0, 0};
+			var fit = new bool[] {false, false};
+			
+			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+
+			Assert.True (dx[0] == 2);
+			Assert.True (dx[1] == 2);
+			Assert.True (fit[0]);
+			Assert.True (fit[1]);
+			
+			x[0] = 100;
+			x[1] = 100;
+			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			Assert.True (dx[0] == -2);
+			Assert.True (dx[1] == -2);
+			Assert.True (fit[0]);
+			Assert.True (fit[1]);
+			
+			x[0] = 50;
+			x[1] = 50;
+			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			Assert.True (dx[0] == 0);
+			Assert.True (dx[1] == 0);
+			Assert.True (fit[0]);
+			Assert.True (fit[1]);
+			
+			radius[0] = 101;
+			radius[1] = 101;
+			LinearConstrainModule.WithinMultiple (min, max, radius, x, dx, fit);
+			Assert.True (dx[0] == 0);
+			Assert.True (dx[1] == 0);
+			Assert.False (fit[0]);
+			Assert.False (fit[1]);
+		}
 	}
 }
 

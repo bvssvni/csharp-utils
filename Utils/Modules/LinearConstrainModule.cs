@@ -42,6 +42,25 @@ namespace Utils
 	/// </summary>
 	public class LinearConstrainModule
 	{
+		public static void WithinMultiple (float[] min, float[] max, float[] radius, float[] x, float[] dx, bool[] fit) {
+			int n = min.Length;
+			for (int i = 0; i < n; ++i) {
+				bool smaller = x[i] - radius[i] < min[i];
+				bool larger = x[i] + radius[i] > max[i];
+				dx[i] = 0;
+				if (smaller && larger) {
+					fit[i] = false;
+					continue;
+				}
+				if (smaller) {
+					dx[i] = min[i] + radius[i] - x[i];
+				} else if (larger) {
+					dx[i] = max[i] - radius[i] - x[i];
+				}
+				fit[i] = true;
+			}
+		}
+
 		public static bool Between (float min, float max, float radius, float x, out float dx) {
 			bool smaller = x - radius < min;
 			bool larger = x + radius > max;
