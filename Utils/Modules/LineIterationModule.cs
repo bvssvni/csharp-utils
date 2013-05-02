@@ -3,10 +3,11 @@ LineIterationModule - Iterate pixel locations as enumerator.
 BSD license.
 by Sven Nilsen, 2012
 http://www.cutoutpro.com
-Version: 0.001 in angular degrees version notation
+Version: 0.002 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
 
 0.001 - Improved FourConnected.
+0.002 - Added SixConnected.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -144,6 +145,41 @@ namespace Utils
 					z += stepZ;
 					errorXZ += deltaX;
 				}
+			}
+		}
+
+		public static IEnumerable<Iteration> SixConnected(int x0, int y0, int z0, int x1, int y1, int z1)
+		{
+			int ix = x0 <= x1 ? 1 : -1;
+			int iy = y0 <= y1 ? 1 : -1;
+			int iz = z0 <= z1 ? 1 : -1;
+			// Slope is a factor between 0 and 1,
+			// where 0 is start and 1 is end.
+			float slope_x = x1 == x0 ? 1.0f : 0.0f;
+			float slope_y = y1 == y0 ? 1.0f : 0.0f;
+			float slope_z = z1 == z0 ? 1.0f : 0.0f;
+			int i = 0;
+			int x = x0;
+			int y = y0;
+			int z = z0;
+			// Stop at the voxel right before target.
+			while (!(x == x1 && y == y1 && z == z1)) {
+				yield return new Iteration () { X = x, Y = y, Z = z, Index = i++ };
+
+				if (slope_x <= slope_y && slope_x <= slope_z) {
+					x += ix;
+					slope_x = (float)(x - x0) / (x1 - x0);
+					continue;
+				}
+
+				if (slope_y <= slope_z) {
+					y += iy;
+					slope_y = (float)(y - y0) / (y1 - y0);
+					continue;
+				}
+
+				z += iz;
+				slope_z = (float)(z - z0) / (z1 - z0);
 			}
 		}
 
