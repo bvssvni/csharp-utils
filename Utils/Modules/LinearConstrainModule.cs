@@ -29,6 +29,7 @@ either expressed or implied, of the FreeBSD Project.
 */
 
 using System;
+using System.Drawing;
 
 namespace Utils
 {
@@ -69,6 +70,30 @@ namespace Utils
 				newX = min + radius;
 			} else {
 				newX = max - radius;
+			}
+
+			return true;
+		}
+
+		public static bool Within (RectangleF rect, float radius, float x, float y, out float newX, out float newY) {
+			newX = x;
+			newY = y;
+			bool smallerX = x - radius < rect.X;
+			bool largerX = x + radius > rect.X + rect.Width;
+			bool smallerY = y - radius < rect.Y;
+			bool largerY = y + radius > rect.Y + rect.Height;
+			if (smallerX && largerX || smallerY && largerY) {
+				return false;
+			}
+			if (smallerX) {
+				newX = rect.X + radius;
+			} else if (largerX) {
+				newX = rect.X + rect.Width - radius;
+			}
+			if (smallerY) {
+				newY = rect.Y + radius;
+			} else if (largerY) {
+				newY = rect.Y + rect.Height - radius;
 			}
 
 			return true;
