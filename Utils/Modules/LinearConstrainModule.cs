@@ -33,51 +33,36 @@ using System.Drawing;
 
 namespace Utils
 {
+	/// <summary>
+	/// Linear constrain module.
+	/// 
+	/// Returns true if it is possible to put coordinate inside.
+	/// 
+	/// Computes displacement.
+	/// </summary>
 	public class LinearConstrainModule
 	{
-		/// <summary>
-		/// Between the specified min, max, radius, x and newX.
-		/// 
-		/// Returns false if the radius is too large for the interval.
-		/// </summary>
-		/// <param name='min'>
-		/// Minimum.
-		/// </param>
-		/// <param name='max'>
-		/// Max.
-		/// </param>
-		/// <param name='radius'>
-		/// Radius.
-		/// </param>
-		/// <param name='x'>
-		/// The x coordinate.
-		/// </param>
-		/// <param name='newX'>
-		/// New x.
-		/// </param>
-		public static bool Between (float min, float max, float radius, float x, out float newX) {
+		public static bool Between (float min, float max, float radius, float x, out float dx) {
 			bool smaller = x - radius < min;
 			bool larger = x + radius > max;
+			dx = 0;
 			if (smaller && larger) {
-				newX = x;
 				return false;
 			}
-			if (!smaller && !larger) {
-				newX = x;
-				return true;
-			}
 			if (smaller) {
-				newX = min + radius;
-			} else {
-				newX = max - radius;
+				dx = min + radius - x;
+			} else if (larger) {
+				dx = max - radius - x;
 			}
 
 			return true;
 		}
 
-		public static bool Within (RectangleF rect, float radius, float x, float y, out float newX, out float newY) {
-			newX = x;
-			newY = y;
+		public static bool Within (RectangleF rect, float radius, 
+		                           float x, float y,
+		                           out float dx, out float dy) {
+			dx = 0;
+			dy = 0;
 			bool smallerX = x - radius < rect.X;
 			bool largerX = x + radius > rect.X + rect.Width;
 			bool smallerY = y - radius < rect.Y;
@@ -86,14 +71,14 @@ namespace Utils
 				return false;
 			}
 			if (smallerX) {
-				newX = rect.X + radius;
+				dx = rect.X + radius - x;
 			} else if (largerX) {
-				newX = rect.X + rect.Width - radius;
+				dx = rect.X + rect.Width - radius - x;
 			}
 			if (smallerY) {
-				newY = rect.Y + radius;
+				dy = rect.Y + radius - y;
 			} else if (largerY) {
-				newY = rect.Y + rect.Height - radius;
+				dy = rect.Y + rect.Height - radius - y;
 			}
 
 			return true;
