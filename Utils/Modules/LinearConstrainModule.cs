@@ -42,6 +42,35 @@ namespace Utils
 	/// </summary>
 	public class LinearConstrainModule
 	{
+		/// <summary>
+		/// Processes multiple arrays with scalar overloading.
+		/// 
+		/// Adds the displacment to dx.
+		/// </summary>
+		/// <param name='offset'>
+		/// Offset.
+		/// </param>
+		/// <param name='count'>
+		/// Count.
+		/// </param>
+		/// <param name='min'>
+		/// Minimum.
+		/// </param>
+		/// <param name='max'>
+		/// Max.
+		/// </param>
+		/// <param name='radius'>
+		/// Radius.
+		/// </param>
+		/// <param name='x'>
+		/// The x coordinate.
+		/// </param>
+		/// <param name='dx'>
+		/// Dx.
+		/// </param>
+		/// <param name='fit'>
+		/// Fit.
+		/// </param>
 		public static void WithinMultiple (int offset, int count, 
 		                                   float[] min, float[] max, 
 		                                   float[] radius, float[] x, float[] dx, 
@@ -50,26 +79,28 @@ namespace Utils
 			int max_dim = max.Length == 1 ? 0 : 1;
 			int radius_dim = radius.Length == 1 ? 0 : 1;
 			int x_dim = x.Length == 1 ? 0 : 1;
+			int dx_dim = dx.Length == 1 ? 0 : 1;
 			bool smaller, larger;
 			float _min, _max, _x, _radius;
+			int dx_i;
 
 			for (int i = count - 1; i >= 0; --i) {
 				_min = min[i * min_dim + offset];
 				_max = max[i * max_dim + offset];
 				_x = x[i * x_dim + offset];
 				_radius = radius[i * radius_dim + offset];
+				dx_i = i * dx_dim + offset;
 
 				smaller = _x - _radius < _min;
 				larger = _x + _radius > _max;
-				dx[i] = 0;
 				if (smaller && larger) {
 					fit[i] = false;
 					continue;
 				}
 				if (smaller) {
-					dx[i] = _min + _radius - _x;
+					dx[dx_i] += _min + _radius - _x;
 				} else if (larger) {
-					dx[i] = _max - _radius - _x;
+					dx[dx_i] += _max - _radius - _x;
 				}
 				fit[i] = true;
 			}
