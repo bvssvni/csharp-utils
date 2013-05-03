@@ -85,11 +85,11 @@ namespace Utils
 			int dx_i;
 
 			for (int i = count - 1; i >= 0; --i) {
-				_min = min[i * min_dim + offset];
-				_max = max[i * max_dim + offset];
-				_x = x[i * x_dim + offset];
-				_radius = radius[i * radius_dim + offset];
-				dx_i = i * dx_dim + offset;
+				_min = min[(i + offset) * min_dim];
+				_max = max[(i + offset) * max_dim];
+				_x = x[(i + offset) * x_dim];
+				_radius = radius[(i + offset) * radius_dim];
+				dx_i = (i + offset) * dx_dim;
 
 				smaller = _x - _radius < _min;
 				larger = _x + _radius > _max;

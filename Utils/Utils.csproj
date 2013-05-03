@@ -103,6 +103,7 @@
     <Compile Include="Modules\GLSquareModule.cs" />
     <Compile Include="Modules\LinearConstrainModule.cs" />
     <Compile Include="Tests\TestLinearConstrainModule.cs" />
+    <Compile Include="Modules\RelativeMotionModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
