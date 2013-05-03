@@ -190,6 +190,7 @@ namespace Utils
 			
 			ItemLength += capacity;
 			ch.pos = SliceLength++;
+			Array.Clear (Items, start, capacity);
 			Slices[ch.pos] = new Slice() {
 				Offset = start, 
 				Count = capacity, 

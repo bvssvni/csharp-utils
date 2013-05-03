@@ -4,26 +4,66 @@ namespace Utils
 {
 	public class DualModule
 	{
-		public static Cheap<DualF> Sum (Cheap<DualF> list, int stride) {
-			int start_in = 0, end_in = 0;
-			list.GetRange (ref start_in, ref end_in);
-			int n = (end_in - start_in) / stride;
-			var res = Cheap<DualF>.WithCapacity (n);
-			int start_out = 0, end_out = 0;
-			res.GetRange (ref start_out, ref end_out);
-			var items = Cheap<DualF>.Items;
-			int i, j;
-			int in_i, out_i;
-			for (i = n - 1; i >= 0; --i) {
-				out_i = start_out + i;
-				for (j = stride - 1; j >= 0; --j) {
-					in_i = start_in + i * stride + j;
-					items[out_i].X += items[in_i].X;
-					items[out_i].Dx += items[in_i].Dx;
+		public static void Multiply (float[] a, float[] b, float[] res) {
+			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int b_dim = b.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int a_i, b_i, res_i;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;
+				b_i = i * b_dim;
+				res_i = i * res_dim;
+				res[res_i] += a[a_i] * b[b_i];
+				res[res_i+1] += a[a_i] * b[b_i+1] + a[a_i+1] * b[b_i];
+			}
+		}
+
+		public static void Add (float[] a, float[] b, float[] res) {
+			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int b_dim = b.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int a_i, b_i, res_i;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;
+				b_i = i * b_dim;
+				res_i = i * res_dim;
+				res[res_i] += a[a_i] + b[b_i];
+				res[res_i+1] += a[b_i+1] + b[b_i+1];
+			}
+		}
+
+		public static bool AllEqual (float[] a, float[] b) {
+			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int b_dim = b.Length == 2 ? 0 : 2;
+			int a_i, b_i;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;
+				b_i = i * b_dim;
+				if (a[a_i] != b[b_i] || a[a_i+1] != b[b_i+1]) {
+					return false;
 				}
 			}
 
-			return res;
+			return true;
+		}
+
+		public static bool AnyEqual (float[] a, float[] b) {
+			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int b_dim = b.Length == 2 ? 0 : 2;
+			int a_i, b_i;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;
+				b_i = i * b_dim;
+				if (a[a_i] == b[b_i] && a[a_i+1] == b[b_i+1]) {
+					return true;
+				}
+			}
+			
+			return false;
 		}
 	}
 }

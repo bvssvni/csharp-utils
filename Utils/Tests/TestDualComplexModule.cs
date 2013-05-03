@@ -7,20 +7,26 @@ namespace Utils
 	public class TestDualComplexModule
 	{
 		[Test()]
-		public void TestSum()
-		{
-			var list = Cheap<DualF>.FromArray (new DualF (1, 2), new DualF (2, 1));
-			var items = Cheap<DualF>.Items;
-			var sum = DualModule.Sum (list, 2);
-			int start = 0, end = 0;
-			sum.GetRange (ref start, ref end);
-			Assert.True (end - start == 1);
-			Assert.True (items[start].X == 3);
-			Assert.True (items[start].Dx == 3);
+		public void TestMultiply () {
+			var a = new float[] {1, 2};
+			var b = new float[] {3, 5};
+			var c = new float[] {0, 0};
+			DualModule.Multiply (a, b, c);
+			var d = new float[] {3, 11};
+			Assert.True (c[0] == d[0] && c[1] == d[1]);
+		}
 
-			list.Dispose ();
-			sum.Dispose ();
-			Cheap<DualF>.Defragment ();
+		[Test()]
+		public void TestMultiplyScalar () {
+			var a = new float[] {1, 2};
+			var b = new float[] {3, 5, 4, 6};
+			var c = new float[] {0, 0, 0, 0};
+			DualModule.Multiply (a, b, c);
+			var d = new float[] {3, 11, 4, 14};
+
+			Console.WriteLine ("{0} {1} {2} {3}", c[0], c[1], c[2], c[3]);
+
+			Assert.True (DualModule.AllEqual (c, d));
 		}
 	}
 }
