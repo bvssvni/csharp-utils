@@ -9,13 +9,13 @@ namespace Utils
 		[Test()]
 		public void Test1()
 		{
-			var a = new Cheap<int>(1, 2);
+			var a = Cheap<int>.FromArray (1, 2);
 			int start = 0;
 			int end = 0;
 			Assert.True(a.GetRange(ref start, ref end));
 			Assert.True(start == 0);
 			Assert.True(end == 2);
-			var b = new Cheap<int>(3, 4);
+			var b = Cheap<int>.FromArray (3, 4);
 			Assert.True(b.GetRange(ref start, ref end));
 			Assert.True(start == 2);
 			Assert.True(end == 4);
@@ -47,8 +47,8 @@ namespace Utils
 
 		[Test()]
 		public void Test2() {
-			var a = new Cheap<int>(1, 2);
-			var b = new Cheap<int>(3, 4);
+			var a = Cheap<int>.FromArray (1, 2);
+			var b = Cheap<int>.FromArray (3, 4);
 			a.Dispose();
 			Cheap<int>.Semaphore++;
 			// This will not have any effect since we are preventing
@@ -68,8 +68,8 @@ namespace Utils
 
 		[Test()]
 		public void Test3() {
-			var a = new Cheap<int>(1, 2);
-			var b = new Cheap<int>(3, 4);
+			var a = Cheap<int>.FromArray (1, 2);
+			var b = Cheap<int>.FromArray (3, 4);
 			a.ForEach((ref int item) => item = 5);
 			Assert.True(Cheap<int>.Items[0] == 5);
 			Assert.True(Cheap<int>.Items[1] == 5);

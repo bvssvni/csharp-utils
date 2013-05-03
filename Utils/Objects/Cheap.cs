@@ -6,6 +6,7 @@ http://www.cutoutpro.com
 Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
 
+0.002 - Changed constructor to static method.
 0.001 - Added Semaphore and action.
 
 Redistribution and use in source and binary forms, with or without
@@ -168,8 +169,38 @@ namespace Utils
 			end = slice.Offset + slice.Count;
 			return true;
 		}
-		
-		public Cheap(params T[] data) {
+
+		public static Cheap<T> WithCapacity (int capacity) {
+			Cheap<T> ch = new Cheap<T> ();
+			
+			// Resize items array if necessary.
+			if (capacity + ItemLength > Items.Length) {
+				Array.Resize<T>(ref Items, (capacity + ItemLength) << 1);
+			}
+			
+			// Resize the slice array if necessary.
+			if (SliceLength + 1 > Slices.Length) {
+				Array.Resize<Slice>(ref Slices, Slices.Length << 1);
+			}
+			
+			// Insert data.
+			int start = ItemLength;
+			// Move defragment offset if adding right after it.
+			if (SliceOffset == SliceLength) ++SliceOffset;
+			
+			ItemLength += capacity;
+			ch.pos = SliceLength++;
+			Slices[ch.pos] = new Slice() {
+				Offset = start, 
+				Count = capacity, 
+				Id = ch.id = LastId++
+			};
+			
+			return ch;
+		}
+
+		public static Cheap<T> FromArray (params T[] data) {
+			Cheap<T> ch = new Cheap<T> ();
 			int n = data.Length;
 			
 			// Resize items array if necessary.
@@ -188,13 +219,15 @@ namespace Utils
 			if (SliceOffset == SliceLength) ++SliceOffset;
 			
 			ItemLength += n;
-			this.pos = SliceLength++;
+			ch.pos = SliceLength++;
 			data.CopyTo(Items, start);
-			Slices[pos] = new Slice() {
+			Slices[ch.pos] = new Slice() {
 				Offset = start, 
 				Count = n, 
-				Id = this.id = LastId++
+				Id = ch.id = LastId++
 			};
+
+			return ch;
 		}
 		
 		public void Dispose() {
