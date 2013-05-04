@@ -27,6 +27,31 @@ namespace Utils
 		}
 
 		[Test()]
+		public void TestPow () {
+			var a = new float[] {1, 2};
+			var b = new float[] {2, 0};
+			var c = new float[] {0, 0};
+			DualModule.Pow (a, b, c);
+			var d = new float[] {1, 4};
+			Assert.True (DualModule.AllEquals (c, d, 0.0001f));
+		}
+
+		[Test()]
+		public void TestPow2 () {
+			var a = new float[] {1, 2};
+			var b = new float[] {0, 2};
+			var c = new float[] {0, 0};
+			DualModule.Pow (a, b, c);
+			var d = new float[] {1, 0};
+
+			// TEST
+			Console.WriteLine ("{0} {1}", c[0], c[1]);
+			Console.WriteLine ("{0} {1}", d[0], d[1]);
+
+			Assert.True (DualModule.AllEquals (c, d, 0.0001f));
+		}
+
+		[Test()]
 		public void TestMultiplyScalar () {
 			var a = new float[] {1, 2};
 			var b = new float[] {3, 5, 4, 6};
