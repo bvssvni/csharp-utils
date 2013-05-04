@@ -23,14 +23,24 @@ namespace Utils
 			var c = new float[] {0, 0, 0, 0};
 			DualModule.Multiply (a, b, c);
 			var d = new float[] {3, 11, 4, 14};
-			Assert.True (DualModule.AllEqual (c, d));
+			Assert.True (DualModule.AllEquals (c, d));
 		}
 
 		[Test()]
-		public void TestAnyEqual () {
+		public void TestAnyEquals () {
 			var a = new float[] {1, 2};
 			var b = new float[] {3, 5, 1, 2};
-			Assert.True (DualModule.AnyEqual (a, b));
+			Assert.True (DualModule.AnyEquals (a, b));
+		}
+
+		[Test()]
+		public void TestAdd () {
+			var a = new float[] {1, 2};
+			var b = new float[] {3, 4};
+			var c = new float[2];
+			DualModule.Add (a, b, c);
+			var d = new float[] {4, 6};
+			Assert.True (DualModule.AllEquals (c, d));
 		}
 	}
 }
