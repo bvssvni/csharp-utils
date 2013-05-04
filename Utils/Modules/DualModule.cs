@@ -19,6 +19,23 @@ namespace Utils
 			}
 		}
 
+		public static void Divide (float[] a, float[] b, float[] res) {
+			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int b_dim = b.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int a_i, b_i, res_i;
+			float c;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;
+				b_i = i * b_dim;
+				res_i = i * res_dim;
+				c = 1.0f / b[b_i];
+				res[res_i] += a[a_i] * c;
+				res[res_i+1] += (a[a_i+1] * b[b_i] - a[a_i] * b[b_i+1]) * c * c;
+			}
+		}
+
 		public static void Add (float[] a, float[] b, float[] res) {
 			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
 			int a_dim = a.Length == 2 ? 0 : 2;
@@ -49,7 +66,7 @@ namespace Utils
 			}
 		}
 
-		public static bool AllEquals (float[] a, float[] b) {
+		public static bool AllEquals (float[] a, float[] b, float epsilon) {
 			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
 			int a_dim = a.Length == 2 ? 0 : 2;
 			int b_dim = b.Length == 2 ? 0 : 2;
@@ -57,7 +74,7 @@ namespace Utils
 			for (int i = count - 1; i >= 0; --i) {
 				a_i = i * a_dim;
 				b_i = i * b_dim;
-				if (a[a_i] != b[b_i] || a[a_i+1] != b[b_i+1]) {
+				if (Math.Abs(a[a_i] - b[b_i]) > epsilon || Math.Abs(a[a_i+1] - b[b_i+1]) > epsilon) {
 					return false;
 				}
 			}
