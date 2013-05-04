@@ -52,6 +52,19 @@ namespace Utils
 			}
 		}
 
+		public static void Exp (float[] b, float[] res) {
+			int count = b.Length >> 1;
+			int b_dim = b.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int b_i, res_i;
+			for (int i = count - 1; i >= 0; --i) {
+				b_i = i * b_dim;
+				res_i = i * res_dim;
+				res[res_i] += (float)(Math.Exp (b[b_i]));
+				res[res_i+1] += (float)(b[b_i+1]*Math.Exp (b[b_i]));
+			}
+		}
+
 		public static void Sqrt (float[] a, float[] res) {
 			int count = a.Length >> 1;
 			int a_dim = a.Length == 2 ? 0 : 2;

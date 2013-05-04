@@ -116,10 +116,15 @@ namespace Utils
 			var c = new float[2];
 			DualModule.Tan (a, c);
 			var d = new float[] {1, 2};
+			Assert.True (DualModule.AllEquals (c, d, 0.00001f));
+		}
 
-			// TEST
-			Console.WriteLine ("{0} {1}", c[0], c[1]);
-
+		[Test()]
+		public void TestExp() {
+			var a = new float[] {2, 1};
+			var c = new float[2];
+			DualModule.Exp (a, c);
+			var d = new float[] {(float)(Math.E * Math.E), (float)(Math.E * Math.E)};
 			Assert.True (DualModule.AllEquals (c, d, 0.00001f));
 		}
 	}
