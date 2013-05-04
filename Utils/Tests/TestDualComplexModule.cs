@@ -43,11 +43,6 @@ namespace Utils
 			var c = new float[] {0, 0};
 			DualModule.Pow (a, b, c);
 			var d = new float[] {1, 0};
-
-			// TEST
-			Console.WriteLine ("{0} {1}", c[0], c[1]);
-			Console.WriteLine ("{0} {1}", d[0], d[1]);
-
 			Assert.True (DualModule.AllEquals (c, d, 0.0001f));
 		}
 
@@ -85,6 +80,15 @@ namespace Utils
 			var c = new float[2];
 			DualModule.Subtract (a, b, c);
 			var d = new float[] {-2, -2};
+			Assert.True (DualModule.AllEquals (c, d, float.Epsilon));
+		}
+
+		[Test()]
+		public void TestSqrt() {
+			var a = new float[] {1, 2};
+			var c = new float[2];
+			DualModule.Sqrt (a, c);
+			var d = new float[] {1, 1};
 			Assert.True (DualModule.AllEquals (c, d, float.Epsilon));
 		}
 	}
