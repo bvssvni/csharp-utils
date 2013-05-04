@@ -91,6 +91,21 @@ namespace Utils
 			}
 		}
 
+		public static void Tan (float[] a, float[] res) {
+			int count = a.Length >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int a_i, res_i;
+			double sec;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;	
+				res_i = i * res_dim;
+				res[res_i] += (float)(Math.Tan (a[a_i]));
+				sec = 2 * Math.Cos (a[a_i]) / (Math.Cos(2 * a[a_i]) + 1);
+				res[res_i+1] += (float)(a[a_i+1]*sec*sec);
+			}
+		}
+
 		public static void Add (float[] a, float[] b, float[] res) {
 			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
 			int a_dim = a.Length == 2 ? 0 : 2;
