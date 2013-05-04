@@ -42,6 +42,16 @@ namespace Utils
 			var d = new float[] {4, 6};
 			Assert.True (DualModule.AllEquals (c, d));
 		}
+
+		[Test()]
+		public void TestSubtract() {
+			var a = new float[] {1, 2};
+			var b = new float[] {3, 4};
+			var c = new float[2];
+			DualModule.Subtract (a, b, c);
+			var d = new float[] {-2, -2};
+			Assert.True (DualModule.AllEquals (c, d));
+		}
 	}
 }
 
