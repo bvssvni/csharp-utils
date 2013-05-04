@@ -91,6 +91,24 @@ namespace Utils
 			var d = new float[] {1, 1};
 			Assert.True (DualModule.AllEquals (c, d, float.Epsilon));
 		}
+
+		[Test()]
+		public void TestSin() {
+			var a = new float[] {0.5f * (float)Math.PI, 1};
+			var c = new float[2];
+			DualModule.Sin (a, c);
+			var d = new float[] {1, 0};
+			Assert.True (DualModule.AllEquals (c, d, 0.00001f));
+		}
+		
+		[Test()]
+		public void TestCos() {
+			var a = new float[] {0.5f * (float)Math.PI, 1};
+			var c = new float[2];
+			DualModule.Cos (a, c);
+			var d = new float[] {0, -1};
+			Assert.True (DualModule.AllEquals (c, d, 0.00001f));
+		}
 	}
 }
 

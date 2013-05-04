@@ -65,6 +65,32 @@ namespace Utils
 			}
 		}
 
+		public static void Sin (float[] a, float[] res) {
+			int count = a.Length >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int a_i, res_i;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;
+				res_i = i * res_dim;
+				res[res_i] += (float)(Math.Sin (a[a_i]));
+				res[res_i+1] += (float)(a[a_i+1]*Math.Cos (a[a_i]));
+			}
+		}
+
+		public static void Cos (float[] a, float[] res) {
+			int count = a.Length >> 1;
+			int a_dim = a.Length == 2 ? 0 : 2;
+			int res_dim = res.Length == 2 ? 0 : 2;
+			int a_i, res_i;
+			for (int i = count - 1; i >= 0; --i) {
+				a_i = i * a_dim;	
+				res_i = i * res_dim;
+				res[res_i] += (float)(Math.Cos (a[a_i]));
+				res[res_i+1] += (float)(-a[a_i+1]*Math.Sin (a[a_i]));
+			}
+		}
+
 		public static void Add (float[] a, float[] b, float[] res) {
 			int count = (a.Length > b.Length ? a.Length : b.Length) >> 1;
 			int a_dim = a.Length == 2 ? 0 : 2;
