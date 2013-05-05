@@ -106,6 +106,7 @@
     <Compile Include="Tests\TestDualComplexModule.cs" />
     <Compile Include="Objects\DualF.cs" />
     <Compile Include="Modules\DualModule.cs" />
+    <Compile Include="Modules\RPGArenaModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
