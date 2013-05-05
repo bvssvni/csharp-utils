@@ -1,3 +1,8 @@
+Air attack
+	Entity A attacks entity B while in the air.
+	Decreases bravery of B for a short while.
+	A is vulnerable against attacks from ground.
+	Warrior shout triggered when jumping.
 Barserk
 	Entity A attacks without slowing down due to counter-attacks.
 	Increases bravery at the allies nearby.
@@ -7,6 +12,12 @@ Blindness
 	Attacks in random directions or by sounds.
 	Screams of pain.
 	Will get hurt when running into inanimate objects.
+Ground attack
+	Entity A jumps and creates a shock wave in the ground.
+	Allies automatically air attack to avoid shock wave.
+	Only one team member can perform a ground attack at any given time.
+	Entity A needs to have over 500/1000 in weight units to perform ground attack.
+	All enemies within range hit by shock wave experience strong melee attack.
 Power attack
 	Entity A stops attacking for a while to charge up.
 	The attack does more damage the longer one waits.
@@ -20,4 +31,4 @@ Traitor
 	Entity A switches from one team to another.
 	Increases bravery at the old team.
 	If more than 50% of a team commit treason, the rest of team gives up.
-	Those immune to traitor will fight to their death.
+	Those immune to traitor will fight to their deat
