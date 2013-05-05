@@ -18,10 +18,22 @@ Ground attack
 	Only one team member can perform a ground attack at any given time.
 	Entity A needs to have over 500/1000 in weight units to perform ground attack.
 	All enemies within range hit by shock wave experience strong melee attack.
+Invisible
+	Entity A becomes invisible to both allies and enemies.
+	Can not attack while invisible.
+	Increases bravery of allies.
+Life absorbation
+	Entity A absorbs life from entity B and turns it into attack power.
+	Decreases stamina of A.
+	Decreases bravery of enemies.
 Power attack
 	Entity A stops attacking for a while to charge up.
 	The attack does more damage the longer one waits.
 	While charging, is more vulnerable to melee attacks.
+Power push
+	Entity A displaces entity B.
+	Disrupts all attacks of entity B.
+	Stuns entity B for a short while.
 Protecting mother
 	Entity A defends another entity B with itself at risk.
 	Gains extra strength when entity B is nearby.
@@ -31,4 +43,4 @@ Traitor
 	Entity A switches from one team to another.
 	Increases bravery at the old team.
 	If more than 50% of a team commit treason, the rest of team gives up.
-	Those immune to traitor will fight to their deat
+	Those immune to traitor will fight to their death.
