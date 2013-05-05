@@ -6,26 +6,24 @@ namespace Utils
 	/// RPG arena module.
 	/// 
 	/// The idea is to give each attribute a value between 0 and 1000.
+	/// 1000 is the maximum value of any ability.
+	/// 100 is the starting point for the player.
 	/// </summary>
 	public class RPGArenaModule
 	{
-		public static float AttributeFromClass (Random rnd, int c) {
-			return (float) (rnd.Next(100) + c * 100);
-		}
-
 		public static float[] AttributesFromClasses (Random rnd, int[] cs) {
 			float[] res = new float [cs.Length];
 			for (int i = 0; i < cs.Length; i++) {
-				res [i] = cs [i];
+				res [i] = (float) (rnd.Next(100) + cs[i] * 100);
 			}
 
 			return res;
 		}
 
-		public static float[][] Arena (Random rnd, int[][] classes, params int[] enemies) {
-			float[][] res = new float[enemies.Length][];
-			for (int i = 0; i < enemies.Length; i++) {
-				res [i] = AttributesFromClasses (rnd, classes [enemies [i]]);
+		public static float[][] ArenaTeam (Random rnd, int[][] classes, params int[] team) {
+			float[][] res = new float[team.Length][];
+			for (int i = 0; i < team.Length; i++) {
+				res [i] = AttributesFromClasses (rnd, classes [team [i]]);
 			}
 
 			return res;

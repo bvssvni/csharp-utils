@@ -1,0 +1,23 @@
+Barserk
+	Entity A attacks without slowing down due to counter-attacks.
+	Increases bravery at the allies nearby.
+	Decreases bravery at enemies nearby.
+Blindness
+	Entity A looses vision for a short period.
+	Attacks in random directions or by sounds.
+	Screams of pain.
+	Will get hurt when running into inanimate objects.
+Power attack
+	Entity A stops attacking for a while to charge up.
+	The attack does more damage the longer one waits.
+	While charging, is more vulnerable to melee attacks.
+Protecting mother
+	Entity A defends another entity B with itself at risk.
+	Gains extra strength when entity B is nearby.
+	At win, entity B increase loyalty to A.
+	At escape, entity B decrease loyalty to A.
+Traitor
+	Entity A switches from one team to another.
+	Increases bravery at the old team.
+	If more than 50% of a team commit treason, the rest of team gives up.
+	Those immune to traitor will fight to their death.

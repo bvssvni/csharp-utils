@@ -119,5 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PerformanceLevel.txt" />
+    <None Include="RPG Dictionary.txt" />
   </ItemGroup>
 </Project>
