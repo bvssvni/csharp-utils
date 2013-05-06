@@ -109,3 +109,4 @@ Traitor
 	Increases bravery at the old team.
 	If more than 50% of a team commit treason, the rest of team gives up.
 	Those immune to traitor will fight to their death.
+	Triggers blood feud against entity A.
