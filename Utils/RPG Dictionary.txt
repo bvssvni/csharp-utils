@@ -19,7 +19,7 @@ Blood thirst
 	Entity A increases bravery after killing an enemy.
 Body guard
 	Entity A tries to move entity B away from intense attacks.
-	If entity B is under Darth Vader, pushes the entity performing it.
+	If entity B is under Darth Vader attack, pushes the entity performing it.
 Broken limb
 	Entity A moves slowly for a short period.
 	Can not jump.
