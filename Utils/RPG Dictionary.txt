@@ -28,6 +28,9 @@ Chain attack
 	A can not run while doing the chain attack.
 	Entity B can attack A.
 	While A performs chain attack, it can draw B closer with special attack.
+Critical kill
+	Entity A increases bravery.
+	Increases drop chance at end of battle.
 Fainted
 	Entity A lies on the ground unconscious for a short while.
 	Opens up stomp attack of nearby enemies.
@@ -37,6 +40,7 @@ Frozen
 Fury
 	Entity A gets stronger when bravery is full.
 	A special attack becomes available but reduces bravery.
+	Can move faster.
 Ground attack
 	Entity A jumps and creates a shock wave in the ground.
 	Allies automatically air attack to avoid shock wave.
