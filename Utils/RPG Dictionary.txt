@@ -46,6 +46,8 @@ Life absorbation
 	Entity A absorbs life from entity B and turns it into attack power.
 	Decreases stamina of A.
 	Decreases bravery of enemies.
+Lost captain
+	Entity A decreases bravery entity B dies.
 Power attack
 	Entity A stops attacking for a while to charge up.
 	The attack does more damage the longer one waits.
