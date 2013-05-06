@@ -15,6 +15,10 @@ Blindness
 	Attacks in random directions or by sounds.
 	Screams of pain.
 	Will get hurt when running into inanimate objects.
+Broken limb
+	Entity A moves slowly for a short period.
+	Can not jump.
+	Requires healing.
 Chain attack
 	Entity A restricts the movement of entity B to a circle around A.
 	A can not run while doing the chain attack.
@@ -29,6 +33,11 @@ Ground attack
 	Only one team member can perform a ground attack at any given time.
 	Entity A needs to have over 500/1000 in weight units to perform ground attack.
 	All enemies within range hit by shock wave experience strong melee attack.
+Heavy lift
+	Entity A lifts and carry items.
+	Can not perform jumping while carrying.
+	Can throw item at enemies.
+	Can be rocks, dead bodies etc.
 Invisible
 	Entity A becomes invisible to both allies and enemies.
 	Can not attack while invisible.
