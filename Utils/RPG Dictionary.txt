@@ -16,8 +16,8 @@ Blindness
 	Screams of pain.
 	Will get hurt when running into inanimate objects.
 Chain attack
-	Entity A restricts the movement of entity B.
-	Can not run while doing the chain attack.
+	Entity A restricts the movement of entity B to a circle around A.
+	A can not run while doing the chain attack.
 	Entity B can attack A.
 	While A performs chain attack, it can draw B closer with special attack.
 Ground attack
