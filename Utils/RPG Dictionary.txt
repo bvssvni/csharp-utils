@@ -15,6 +15,8 @@ Blindness
 	Attacks in random directions or by sounds.
 	Screams of pain.
 	Will get hurt when running into inanimate objects.
+Blood feud
+	Entity B focues attacks at entity A.
 Blood thirst
 	Entity A increases bravery after killing an enemy.
 Body guard
@@ -99,6 +101,9 @@ Speed attack
 Stomp attack
 	Entity A attacks unconscious entity B.
 	A kills B if performed before B awakes.
+Taunt
+	Entity A gives offense to entity B.
+	If successful, triggers a blood feud.
 Traitor
 	Entity A switches from one team to another.
 	Increases bravery at the old team.
