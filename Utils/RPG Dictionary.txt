@@ -29,6 +29,9 @@ Chain attack
 Frozen
 	Entity A can not move or attack enemies for a short while.
 	Increases bravery of nearby allies.
+Fury
+	Entity A gets stronger when bravery is full.
+	A special attack becomes available but reduces bravery.
 Ground attack
 	Entity A jumps and creates a shock wave in the ground.
 	Allies automatically air attack to avoid shock wave.
