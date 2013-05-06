@@ -1,3 +1,6 @@
+Entity A is the entity in activated mode.
+B, C, D etc. are subjects.
+
 Air attack
 	Entity A attacks entity B while in the air.
 	Decreases bravery of B for a short while.
@@ -12,6 +15,11 @@ Blindness
 	Attacks in random directions or by sounds.
 	Screams of pain.
 	Will get hurt when running into inanimate objects.
+Chain attack
+	Entity A restricts the movement of entity B.
+	Can not run while doing the chain attack.
+	Entity B can attack A.
+	While A performs chain attack, it can draw B closer with special attack.
 Ground attack
 	Entity A jumps and creates a shock wave in the ground.
 	Allies automatically air attack to avoid shock wave.
