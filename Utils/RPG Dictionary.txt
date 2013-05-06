@@ -70,6 +70,9 @@ Living shield
 	Entity A tries to stay away from the path of B.
 Lost captain
 	Entity A decreases bravery entity B dies.
+Ninja attack
+	Entity A crawls on surface above entity B.
+	Attacks from above.
 Power attack
 	Entity A stops attacking for a while to charge up.
 	The attack does more damage the longer one waits.
