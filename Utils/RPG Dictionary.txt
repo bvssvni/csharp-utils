@@ -20,6 +20,9 @@ Chain attack
 	A can not run while doing the chain attack.
 	Entity B can attack A.
 	While A performs chain attack, it can draw B closer with special attack.
+Frozen
+	Entity A can not move or attack enemies for a short while.
+	Increases bravery of nearby allies.
 Ground attack
 	Entity A jumps and creates a shock wave in the ground.
 	Allies automatically air attack to avoid shock wave.
