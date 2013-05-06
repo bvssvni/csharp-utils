@@ -67,6 +67,10 @@ Protecting mother
 	Gains extra strength when entity B is nearby.
 	At win, entity B increase loyalty to A.
 	At escape, entity B decrease loyalty to A.
+Speed attack
+	Entity A attacks entity B with a special attack.
+	The attack is only available when running.
+	Decreases bravery of entity B.
 Traitor
 	Entity A switches from one team to another.
 	Increases bravery at the old team.
