@@ -19,7 +19,7 @@ Blood thirst
 	Entity A increases bravery after killing an enemy.
 Body guard
 	Entity A tries to move entity B away from intense attacks.
-	Effective against Darth Vader.
+	If entity B is under Darth Vader, pushes the entity performing it.
 Broken limb
 	Entity A moves slowly for a short period.
 	Can not jump.
@@ -36,7 +36,7 @@ Chain attack
 Critical kill
 	Entity A increases bravery.
 	Increases drop chance at end of battle.
-Darth Vader
+Darth Vader attack
 	Entity A lifts entity B with magic.
 	Strangles B.
 	B can not attack while being strangled.
