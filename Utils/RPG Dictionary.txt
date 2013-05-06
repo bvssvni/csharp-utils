@@ -15,6 +15,8 @@ Blindness
 	Attacks in random directions or by sounds.
 	Screams of pain.
 	Will get hurt when running into inanimate objects.
+Body guard
+	Entity A tries to move entity B away from intense attacks.
 Broken limb
 	Entity A moves slowly for a short period.
 	Can not jump.
@@ -46,6 +48,10 @@ Life absorbation
 	Entity A absorbs life from entity B and turns it into attack power.
 	Decreases stamina of A.
 	Decreases bravery of enemies.
+Living shield
+	Entity A protects entity B from long range attacks.
+	Is only activated as long the fire is intense.
+	Entity A tries to stay away from the path of B.
 Lost captain
 	Entity A decreases bravery entity B dies.
 Power attack
