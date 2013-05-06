@@ -23,6 +23,10 @@ Broken limb
 	Entity A moves slowly for a short period.
 	Can not jump.
 	Requires healing.
+Carousel
+	Entity A grabs entity B and swings around.
+	Throws in random direction.
+	Entity B gets hurt when hitting inanimate objects.
 Chain attack
 	Entity A restricts the movement of entity B to a circle around A.
 	A can not run while doing the chain attack.
