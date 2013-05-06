@@ -28,6 +28,9 @@ Chain attack
 	A can not run while doing the chain attack.
 	Entity B can attack A.
 	While A performs chain attack, it can draw B closer with special attack.
+Fainted
+	Entity A lies on the ground unconscious for a short while.
+	Opens up stomp attack of nearby enemies.
 Frozen
 	Entity A can not move or attack enemies for a short while.
 	Increases bravery of nearby allies.
@@ -76,6 +79,9 @@ Speed attack
 	Entity A attacks entity B with a special attack.
 	The attack is only available when running.
 	Decreases bravery of entity B.
+Stomp attack
+	Entity A attacks unconscious entity B.
+	A kills B if performed before B awakes.
 Traitor
 	Entity A switches from one team to another.
 	Increases bravery at the old team.
