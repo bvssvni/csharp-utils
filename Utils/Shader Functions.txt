@@ -1,0 +1,29 @@
+/*
+Returns interpolated color given by two control points and colors.
+*/
+vec4 utils_gradient(
+	in vec2 xy,
+	in vec4 color1, 
+	in vec4 color2,
+	in vec2 pos1,
+	in vec2 pos2) 
+{
+	vec2 normal = normalize(pos2 - pos1);
+	float len = length(pos2 - pos1);
+	float f = (dot(xy, normal) - dot(pos1, normal)) / len;
+	return mix(color1, color2, clamp(f, 0.0, 1.0));
+}
+
+/*
+Maps from one scale to another.
+*/
+float utils_remap(
+	in float x,
+	in float start0,
+	in float end0,
+	in float start1,
+	in float end1)
+{
+	float f = (x - start0) / (end0 - start0);
+	return start1 + f * (end1 - start1);
+}

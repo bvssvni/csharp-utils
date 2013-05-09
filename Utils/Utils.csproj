@@ -120,5 +120,6 @@
   <ItemGroup>
     <None Include="PerformanceLevel.txt" />
     <None Include="RPG Dictionary.txt" />
+    <None Include="Shader Functions.txt" />
   </ItemGroup>
 </Project>
