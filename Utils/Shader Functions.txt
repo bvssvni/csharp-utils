@@ -27,3 +27,11 @@ float utils_remap(
 	float f = (x - start0) / (end0 - start0);
 	return start1 + f * (end1 - start1);
 }
+
+/*
+Maps from {-infinity, infinity}
+to {0, 1}.
+*/
+float utils_sigmoid (float x) {
+	return 1.0 / (1.0 + exp(-x));	
+}
