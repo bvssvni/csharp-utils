@@ -1,18 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/ResourceManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Shader Functions.txt">
     <Files>
-      <File FileName="Objects/Group.cs" Line="1143" Column="15" />
-      <File FileName="Modules/GLTextureModule.cs" Line="14" Column="4" />
-      <File FileName="Modules/GLProjectionModule.cs" Line="20" Column="1" />
-      <File FileName="Objects/ResourceManager.cs" Line="13" Column="1" />
+      <File FileName="Shader Functions.txt" Line="30" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Objects" expanded="True" selected="True" />
-            <Node name="Tests" expanded="True" />
+            <Node name="Shader Functions.txt" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -26,7 +22,11 @@
         <State selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Utils" expanded="True">
+            <Node name="Utils" expanded="True" selected="True" />
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
