@@ -126,5 +126,7 @@
     <None Include="Shader Functions.txt" />
     <None Include="Shaders\PositionColor.fsh" />
     <None Include="Shaders\PositionColor.vsh" />
+    <None Include="Shaders\Position.fsh" />
+    <None Include="Shaders\Position.vsh" />
   </ItemGroup>
 </Project>
