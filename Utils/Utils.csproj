@@ -118,10 +118,13 @@
     <Folder Include="Tests\" />
     <Folder Include="Helpers\" />
     <Folder Include="Packs\" />
+    <Folder Include="Shaders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PerformanceLevel.txt" />
     <None Include="RPG Dictionary.txt" />
     <None Include="Shader Functions.txt" />
+    <None Include="Shaders\PositionColor.fsh" />
+    <None Include="Shaders\PositionColor.vsh" />
   </ItemGroup>
 </Project>
