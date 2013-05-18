@@ -23,6 +23,14 @@ float utils_bounce (in vec2 range, in float start, in float vel, in float time) 
 }
 
 /*
+Returns true if a coordinate is within the radius of a circle.
+*/
+bool utils_circle (vec2 center, float radius, vec2 pos) {
+	vec2 d = pos - center;
+	return length (d) <= radius;
+}
+
+/*
 Returns interpolated color given by two control points and colors.
 */
 vec4 utils_gradient(
