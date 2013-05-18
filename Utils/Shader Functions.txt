@@ -40,6 +40,18 @@ bool utils_donut (vec2 center, vec2 range, vec2 pos) {
 }
 
 /*
+Returns true if a coordinate is within an ellipse.
+*/
+bool utils_ellipse (vec4 rect, vec2 pos) {
+	float r = rect.w / rect.z;
+	pos.xy -= rect.xy + 0.5 * rect.zw;
+	pos.x *= r;
+	r = 0.5 * rect.w;
+	float d = length (pos);
+	return d < r;
+}
+
+/*
 Returns interpolated color given by two control points and colors.
 */
 vec4 utils_gradient(
@@ -63,6 +75,16 @@ vec2 utils_position (vec2 resolution) {
 	vec2 pos = gl_FragCoord.xy / resolution.xy - vec2(0.5, 0.5);
 	pos.x *= resolution.x / resolution.y;
 	return pos;
+}
+
+/*
+Returns true if a coordinate is within a rectangle.
+*/
+bool utils_rectangle (vec4 rect, vec2 pos) {
+	return pos.x >= rect.x &&
+		pos.y >= rect.y &&
+		pos.x < rect.x + rect.z &&
+		pos.y < rect.y + rect.w;
 }
 
 /*
