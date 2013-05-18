@@ -96,15 +96,16 @@ bool utils_rectangle (vec4 rect, vec2 pos) {
 /*
 Returns true if a coordinate is within a rectangle border.
 */
-bool utils_rectangle_border (vec4 rect, float radius, vec2 pos) {
-	bool outer = pos.x >= rect.x - radius &&
-		pos.y >= rect.y - radius &&
-		pos.x < rect.x + rect.z + radius &&
-		pos.y < rect.y + rect.w + radius;
-	bool inner = pos.x >= rect.x + radius &&
-		pos.y >= rect.y + radius &&
-		pos.x < rect.x + rect.z - radius &&
-		pos.y < rect.y + rect.w - radius;
+bool utils_rectangle_border (vec4 rect, float border, vec2 pos) {
+	border *= 0.5;
+	bool outer = pos.x >= rect.x - border &&
+		pos.y >= rect.y - border &&
+		pos.x < rect.x + rect.z + border &&
+		pos.y < rect.y + rect.w + border;
+	bool inner = pos.x >= rect.x + border &&
+		pos.y >= rect.y + border &&
+		pos.x < rect.x + rect.z - border &&
+		pos.y < rect.y + rect.w - border;
 	return outer && !inner;
 }
 
