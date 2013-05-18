@@ -23,6 +23,15 @@ float utils_bounce (in vec2 range, in float start, in float vel, in float time) 
 }
 
 /*
+Returns true if a coordinate is in an infinite checker pattern
+given by the rectangle as reference.
+*/
+bool utils_checker (vec4 rect, vec2 pos) {
+	pos = mod (pos - rect.xy, 2.0 * rect.zw) / rect.zw;
+	return (pos.x >= 1.0) ^^ (pos.y < 1.0);
+}
+
+/*
 Returns true if a coordinate is within the radius of a circle.
 */
 bool utils_circle (vec2 center, float radius, vec2 pos) {
@@ -52,19 +61,16 @@ bool utils_ellipse (vec4 rect, vec2 pos) {
 }
 
 /*
-Returns interpolated color given by two control points and colors.
+Returns interpolated factor at coordinate by two control points.
 */
-vec4 utils_gradient(
-	in vec2 xy,
-	in vec4 color1, 
-	in vec4 color2,
+float utils_gradient(
 	in vec2 pos1,
-	in vec2 pos2) 
+	in vec2 pos2,
+	in vec2 pos) 
 {
 	vec2 normal = normalize(pos2 - pos1);
-	float len = length(pos2 - pos1);
-	float f = (dot(xy, normal) - dot(pos1, normal)) / len;
-	return mix(color1, color2, clamp(f, 0.0, 1.0));
+	float f = (dot(pos, normal) - dot(pos1, normal)) / length(pos2 - pos1);
+	return clamp(f, 0.0, 1.0);
 }
 
 /*
