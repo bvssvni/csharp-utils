@@ -27,7 +27,16 @@ Returns true if a coordinate is within the radius of a circle.
 */
 bool utils_circle (vec2 center, float radius, vec2 pos) {
 	vec2 d = pos - center;
-	return length (d) <= radius;
+	return length (d) < radius;
+}
+
+/*
+Returns true if a coordinate is within the range of a donut.
+*/
+bool utils_donut (vec2 center, vec2 range, vec2 pos) {
+	vec2 d = pos - center;
+	float len = length (d);
+	return len >= range.x && len < range.y;
 }
 
 /*
