@@ -39,6 +39,16 @@ vec4 utils_gradient(
 }
 
 /*
+Returns the position of fragment coordination centered at screen.
+The height maps from -0.5 to 0.5 and the width is adjusted accordingly.
+*/
+vec2 utils_position (vec2 resolution) {
+	vec2 pos = gl_FragCoord.xy / resolution.xy - vec2(0.5, 0.5);
+	pos.x *= resolution.x / resolution.y;
+	return pos;
+}
+
+/*
 Maps from one scale to another.
 */
 float utils_remap(
