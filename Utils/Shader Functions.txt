@@ -61,6 +61,31 @@ bool utils_ellipse (vec4 rect, vec2 pos) {
 }
 
 /*
+Returns true if coordinate is within an ellipse border.
+*/
+bool utils_ellipse_border (vec4 rect, float border, vec2 pos) {
+	vec4 re = rect + vec4 (-0.5 * border, -0.5 * border, border, border);
+	vec2 p = pos;
+	float r = re.w / re.z;
+	p.xy -= re.xy + 0.5 * re.zw;
+	p.x *= r;
+	r = 0.5 * re.w;
+	float d = length (p);
+	bool outer = d < r;
+	
+	re = rect - vec4 (-0.5 * border, -0.5 * border, border, border);
+	p = pos;
+	r = re.w / re.z;
+	p.xy -= re.xy + 0.5 * re.zw;
+	p.x *= r;
+	r = 0.5 * re.w;
+	d = length (p);
+	bool inner = d < r;
+	
+	return outer && !inner;
+}
+
+/*
 Returns interpolated factor at coordinate by two control points.
 */
 float utils_gradient(
