@@ -11,6 +11,8 @@ namespace Utils
 		{
 			var heap = new BinaryHeap<double>(10);
 			heap.Push (5);
+			Assert.True (heap.Peek () == 5);
+
 			heap.Push (4);
 			Assert.True(heap.Pop() == 4);
 			Assert.True(heap.Pop() == 5);

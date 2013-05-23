@@ -104,7 +104,6 @@
     <Compile Include="Modules\LinearConstrainModule.cs" />
     <Compile Include="Tests\TestLinearConstrainModule.cs" />
     <Compile Include="Tests\TestDualComplexModule.cs" />
-    <Compile Include="Objects\DualF.cs" />
     <Compile Include="Modules\DualModule.cs" />
     <Compile Include="Modules\RPGArenaModule.cs" />
     <Compile Include="Modules\StateModule.cs" />
