@@ -394,6 +394,11 @@ namespace Utils.Drawing
 
 	}
 
+	public class EventShape : ShapeBase
+	{
+
+	}
+
 	public class LayerShape : ShapeBase
 	{
 		public ConstraintBase Attachment;
