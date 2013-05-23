@@ -103,7 +103,7 @@ namespace Utils.Drawing
 		public Point EndPoint;
 	}
 
-	public static class Interpolation
+	public static class InterpolationModule
 	{
 		public delegate object Interpolate2Delegate (object a0, object a1, double time);
 		public delegate object Interpolate4Delegate (object a0, object a1, object a2, object a3, double time);
@@ -139,7 +139,7 @@ namespace Utils.Drawing
 		}
 	}
 
-	public static class HitCheck
+	public static class HitCheckModule
 	{
 		public delegate bool HitDelegate (object a, Point pos);
 
@@ -149,7 +149,7 @@ namespace Utils.Drawing
 		}
 	}
 
-	public static class Rendering
+	public static class RenderingModule
 	{
 		public delegate void DrawDelegate (Cairo.Context context);
 
