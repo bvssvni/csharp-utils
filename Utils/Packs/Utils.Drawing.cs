@@ -187,6 +187,11 @@ namespace Utils.Drawing
 		public ShapeBase Shape;
 		public List<ShapeTree> Children;
 
+		public ShapeTree ()
+		{
+
+		}
+
 		public ShapeTree (ShapeBase shape)
 		{
 			this.Shape = shape;
@@ -212,6 +217,35 @@ namespace Utils.Drawing
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
 			return (System.Collections.IEnumerator)GetEnumerator ();
+		}
+	}
+
+	public class Document : 
+		ShapeTree, 
+		Utils.Document.IRead<string>,
+		Utils.Document.IWrite<string>,
+		Utils.Document.IRead<Obf.OpenBinaryFormat>,
+		Utils.Document.IWriteVersion<Obf.OpenBinaryFormat, int>
+	{	
+		void Utils.Document.IRead<string>.Read(string file)
+		{
+			throw new NotImplementedException();
+		}
+
+		void Utils.Document.IWrite<string>.Save(string file)
+		{
+			throw new NotImplementedException();
+		}
+
+		void Utils.Document.IRead<Obf.OpenBinaryFormat>.Read(Obf.OpenBinaryFormat r)
+		{
+			throw new NotImplementedException();
+		}
+
+		void Utils.Document.IWriteVersion<Obf.OpenBinaryFormat, int>.Save(
+			Obf.OpenBinaryFormat writer, int version)
+		{
+			throw new NotImplementedException();
 		}
 	}
 
