@@ -114,6 +114,10 @@ namespace Utils
 
 			return gr;
 		}
+
+		public static void MarkDirty (Group properties) {
+			properties.ForEach ((int i) => Cheap<PropertyNode>.Items [i].Dirty = true);
+		}
 	}
 }
 
