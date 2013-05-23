@@ -70,7 +70,17 @@ namespace Utils
 				int start = 0;
 				int end = 0;
 				if (this.Properties.GetRange (ref start, ref end)) {
-					this.Compute (Cheap<PropertyNode>.Items, start, end);
+					var items = Cheap<PropertyNode>.Items;
+					for (int i = start; i < end; i++) {
+						int input = items [i].Input;
+						if (input == -1) {
+							continue;
+						}
+
+						items [i].Value = items [input].Value;
+					}
+
+					this.Compute (items, start, end);
 				}
 				Cheap<PropertyNode>.Semaphore--;
 			}
@@ -135,6 +145,41 @@ namespace Utils
 
 		public static void MarkDirty (Group properties) {
 			properties.ForEach ((int i) => Cheap<PropertyNode>.Items [i].Dirty = true);
+		}
+
+		public static bool Connect (ObjectNode fromObj, string fromProp,
+		                            ObjectNode toObj, string toProp) {
+			Cheap<PropertyNode>.Semaphore++;
+			int fromStart = 0;
+			int fromEnd = 0;
+			if (fromObj.Properties.GetRange (ref fromStart, ref fromEnd)) {
+				int fromIndex = -1;
+				for (int i = fromStart; i < fromEnd; i++) {
+					if (Cheap<PropertyNode>.Items [i].Name == fromProp) {
+						fromIndex = i;
+						break;
+					}
+				}
+				if (fromIndex == -1) {
+					Cheap<PropertyNode>.Semaphore--;
+					return false;
+				}
+
+				int toStart = 0;
+				int toEnd = 0;
+				if (toObj.Properties.GetRange (ref toStart, ref toEnd)) {
+					for (int i = toStart; i < toEnd; i++) {
+						if (Cheap<PropertyNode>.Items [i].Name == toProp) {
+							Cheap<PropertyNode>.Items [fromIndex].Input = i;
+							Cheap<PropertyNode>.Semaphore--;
+							return true;
+						}
+					}
+				}
+			}
+
+			Cheap<PropertyNode>.Semaphore--;
+			return false;
 		}
 	}
 }

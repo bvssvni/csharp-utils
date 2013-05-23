@@ -26,33 +26,73 @@ namespace Utils
 			};
 		}
 
+		private static void ComputeLength (PropertyNode[] items, int start, int end) {
+			var x = (double)items [start + 0].Value;
+			var y = (double)items [start + 1].Value;
+			var length = Math.Sqrt (x * x + y * y);
+			items [start + 2].Value = length;
+		}
+
+		private static ObjectNode CreateEllipse (string name,
+		                                         double x,
+		                                         double y,
+		                                         double width,
+		                                         double height) {
+			var ellipse = new ObjectNode (name, ComputeEllipse,
+			                              new PropertyNode ("X", x),
+			                              new PropertyNode ("Y", y),
+			                              new PropertyNode ("Width", width),
+			                              new PropertyNode ("Height", height),
+			                              new PropertyNode ("Rectangle", null));
+			return ellipse;
+		}
+
+		private static ObjectNode CreateLength (string name,
+		                                        double x,
+		                                        double y) {
+			var length = new ObjectNode (name, ComputeLength,
+			                             new PropertyNode ("X", x),
+			                             new PropertyNode ("Y", y),
+			                             new PropertyNode ("Length", null));
+			return length;
+		}
+
 		[Test()]
 		public void TestEllipse()
 		{
-			var ellipse = new ObjectNode ("ellipse1", ComputeEllipse,
-				new PropertyNode ("X", -100.0),
-				new PropertyNode ("Y", -100.0),
-				new PropertyNode ("Width", 200.0),
-				new PropertyNode ("Height", 200.0),
-				new PropertyNode ("Rectangle", new Rectangle ())
-            );
+			var ellipse = CreateEllipse ("ellipse1", -100.0, -100.0, 200.0, 200.0);
 
 			int start = 0;
 			int end = 0;
 			ellipse.Properties.GetRange (ref start, ref end);
-			var rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
-			Assert.True (rect.X == 0.0);
-			Assert.True (rect.Y == 0.0);
-			Assert.True (rect.Width == 0.0);
-			Assert.True (rect.Height == 0.0);
+			Assert.Null(Cheap<PropertyNode>.Items [start + 4].Value);
 			ellipse.Update ();
-			rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
+			var rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
 			Assert.True (rect.X == -100.0);
 			Assert.True (rect.Y == -100.0);
 			Assert.True (rect.Width == 200.0);
 			Assert.True (rect.Height == 200.0);
 			ellipse.Dispose ();
 			Cheap<PropertyNode>.Defragment ();
+		}
+
+		[Test()]
+		public void TestConnect ()
+		{
+			var ellipse = CreateEllipse ("ellipse1", -100.0, -100.0, 200.0, 200.0);
+			var length = CreateLength ("length1", -100.0, -100.0);
+			ellipse.SubNodes = Cheap<ObjectNode>.FromArray (length);
+			Assert.True (ComputeTreeModule.Connect (ellipse, "X", length, "Length"));
+			length.Update ();
+			ellipse.Update ();
+			int start = 0;
+			int end = 0;
+			ellipse.Properties.GetRange (ref start, ref end);
+			var rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
+			Assert.True (rect.X > 0.0);
+			ellipse.Dispose ();
+			Cheap<PropertyNode>.Defragment ();
+			Cheap<ObjectNode>.Defragment ();
 		}
 	}
 }
