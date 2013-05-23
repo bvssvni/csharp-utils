@@ -4,7 +4,7 @@ using Play;
 
 namespace Utils
 {
-	public class Graph
+	public class ComputeTree
 	{
 		// This is the kind of function that gets called
 		// when an object is marked dirty.
@@ -17,7 +17,6 @@ namespace Utils
 		{
 			public string Name;
 			public object Value;
-			public Group Outputs;
 			public int Input;
 			public bool Dirty;
 
@@ -25,7 +24,6 @@ namespace Utils
 				this.Name = name;
 				this.Value = value;
 				this.Input = -1;
-				this.Outputs = null;
 				this.Dirty = false;
 			}
 
@@ -40,10 +38,7 @@ namespace Utils
 		{
 			public string Name;
 			public Cheap<PropertyNode> Properties;
-			// This may be switch to Cheap<PropertyNode> to avoid
-			// one object to be in multiple sub branches.
-			// However, it is not necessary to change this before tests shows this is a problem.
-			public Group SubNodes;
+			public Cheap<ObjectNode> SubNodes;
 			public ComputeDelegate Compute;
 
 			public ObjectNode (string name, ComputeDelegate compute, params PropertyNode[] properties) {
@@ -68,14 +63,11 @@ namespace Utils
 					return gr;
 				}
 
-				SubNodes.ForEach ((int child) => {
-					var childNode = Cheap<ObjectNode>.Items [child];
-					var props = childNode.Properties;
+				SubNodes.ForEach ((ref ObjectNode child) => {
 					int start = 0;
 					int end = 0;
-					if (props.GetRange (ref start, ref end) &&
-					    !gr.ContainsIndex (start)) {
-						gr = childNode.SubBranchProperties (gr);
+					if (child.Properties.GetRange (ref start, ref end)) {
+						gr = child.SubBranchProperties (gr);
 					}
 				});
 
@@ -83,7 +75,7 @@ namespace Utils
 			}
 		}
 
-		public Graph()
+		public ComputeTree()
 		{
 		}
 
@@ -100,21 +92,6 @@ namespace Utils
 				gr += input;
 			});
 
-			return gr;
-		}
-
-		// Gets the output properties of a group.
-		// This are all properties that rely on this group.
-		public static Group OutputProperties (Group properties) {
-			var gr = new Group ();
-			properties.ForEach ((int i) => {
-				var outputs = Cheap<PropertyNode>.Items [i].Outputs;
-				if (outputs == null) {
-					return;
-				}
-
-				gr += outputs;
-			});
 			return gr;
 		}
 
