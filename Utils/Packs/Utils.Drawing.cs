@@ -221,6 +221,7 @@ namespace Utils.Drawing
 	public class ShapeTree : IEnumerable<ShapeBase>
 	{
 		public ShapeBase Shape;
+		public ShapeTree Parent;
 		public List<ShapeTree> Children;
 
 		public ShapeTree ()
@@ -236,8 +237,10 @@ namespace Utils.Drawing
 
 		public ShapeTree AddChild (ShapeBase shape)
 		{
-			Children.Add (new ShapeTree (shape));
-			return Children [Children.Count - 1];
+			var node = new ShapeTree (shape);
+			node.Parent = this;
+			Children.Add (node);
+			return node;
 		}
 
 		public IEnumerator<ShapeBase> GetEnumerator()
