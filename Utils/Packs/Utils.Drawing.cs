@@ -664,5 +664,31 @@ namespace Utils.Drawing
 			throw new System.NotImplementedException();
 		}
 	}
+
+	/// <summary>
+	/// State switch shape.
+	/// 
+	/// Copies values from old selected to new selected child.
+	/// Makes it possible to program duplicates of same structure
+	/// and still make them appear as one.
+	/// </summary>
+	public class StateSwitchShape : ShapeBase
+	{
+		public int SelectedChild;
+
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
 }
 
