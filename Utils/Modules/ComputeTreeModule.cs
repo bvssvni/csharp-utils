@@ -4,13 +4,11 @@ using Play;
 
 namespace Utils
 {
-	public class ComputeTree
+	public class ComputeTreeModule
 	{
 		// This is the kind of function that gets called
 		// when an object is marked dirty.
 		public delegate void ComputeDelegate (ObjectNode node);
-
-		public Cheap<ObjectNode> Objects;
 
 		// Represents a property.
 		public struct PropertyNode : IComparable<PropertyNode>
@@ -75,7 +73,7 @@ namespace Utils
 			}
 		}
 
-		public ComputeTree()
+		public ComputeTreeModule()
 		{
 		}
 

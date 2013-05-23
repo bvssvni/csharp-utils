@@ -112,8 +112,8 @@
     <Compile Include="Packs\Utils.Drawing.cs" />
     <Compile Include="Tests\TestDrawing.cs" />
     <Compile Include="Objects\OpenBinaryFormat.cs" />
-    <Compile Include="Objects\ComputeTree.cs" />
     <Compile Include="Tests\TestComputeTree.cs" />
+    <Compile Include="Modules\ComputeTreeModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
