@@ -148,6 +148,21 @@ namespace Utils
 			c.Dispose ();
 			Cheap<int>.Defragment ();
 		}
+
+		[Test()]
+		public void TestUnionGroup () {
+			var a = Cheap<int>.FromArray (1, 2, 3);
+			var b = Cheap<int>.FromArray (4, 5, 6);
+			var gr = Cheap<int>.UnionGroup (a, b);
+			Assert.True (gr.Count == 4);
+			Assert.True (gr[0] == 0);
+			Assert.True (gr[1] == 3);
+			Assert.True (gr[2] == 3);
+			Assert.True (gr[3] == 6);
+			a.Dispose ();
+			b.Dispose ();
+			Cheap<int>.Defragment ();
+		}
 	}
 }
 

@@ -112,6 +112,7 @@
     <Compile Include="Packs\Utils.Drawing.cs" />
     <Compile Include="Tests\TestDrawing.cs" />
     <Compile Include="Objects\OpenBinaryFormat.cs" />
+    <Compile Include="Objects\Graph.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -33,6 +33,7 @@ either expressed or implied, of the FreeBSD Project.
 
 using System;
 using System.Collections.Generic;
+using Play;
 
 namespace Utils
 {
@@ -352,6 +353,20 @@ namespace Utils
 			
 			Semaphore--;
 			return ch;
+		}
+
+		public static Group UnionGroup (params Cheap<T>[] lists) {
+			var gr = new Group (lists.Length * 2);
+			int start = 0;
+			int end = 0;
+			foreach (var list in lists) {
+				if (list.GetRange (ref start, ref end)) {
+					gr.Add (start);
+					gr.Add (end);
+				}
+			}
+
+			return gr;
 		}
 
 		public static Cheap<T> WithCapacity (int capacity) {
