@@ -249,17 +249,20 @@ namespace Utils.Drawing
 		}
 	}
 
-	public class EllipseShape : ShapeBase
-	{
-		public Brush Brush;
-		public Pen Border;
-		public Rectangle Rectangle;
-	}
-
-	public class RectangleShape : ShapeBase
+	public class RectangleShapeBase : ShapeBase
 	{
 		public Look Look;
 		public Rectangle Rectangle;
+	}
+
+	public class EllipseShape : RectangleShapeBase
+	{
+
+	}
+
+	public class RectangleShape : RectangleShapeBase
+	{
+
 	}
 
 	public class LineShape : ShapeBase
@@ -279,7 +282,17 @@ namespace Utils.Drawing
 
 	}
 
+	public class OpenCatmullCurveShape : PolygonShapeBase
+	{
+
+	}
+
 	public class QuadraticBezierShape : PolygonShapeBase
+	{
+
+	}
+
+	public class OpenQuadraticBezierShape : PolygonShapeBase
 	{
 
 	}
