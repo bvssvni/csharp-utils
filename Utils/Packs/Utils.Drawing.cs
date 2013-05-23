@@ -305,6 +305,20 @@ namespace Utils.Drawing
 
 	}
 
+	
+	public enum Anchor {
+		Right = 1,
+		Bottom = 2,
+		Left = 4,
+		Top = 8
+	}
+
+	public class View
+	{
+		public Anchor Anchor;
+		public Rectangle FitInside;
+	}
+
 	public class Document : 
 		ShapeTree, 
 		Utils.Document.IRead<string>,
