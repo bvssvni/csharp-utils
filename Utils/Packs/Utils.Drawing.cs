@@ -25,6 +25,12 @@ namespace Utils.Drawing
 		public double Y;
 	}
 
+	public struct Wheel
+	{
+		public Point Pos;
+		public double Angle;
+	}
+
 	public interface IMultiply<T>
 	{
 		T Multiply (T b);
