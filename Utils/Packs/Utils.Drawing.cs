@@ -329,8 +329,9 @@ namespace Utils.Drawing
 		}
 	}
 
-	public class KeyFrame : ShapeTree
+	public class KeyFrameShape : ShapeTree
 	{
+		public double Time;
 		public ShapeBase State;
 		public ShapeBase TangentIn;
 		public ShapeBase TangentOut;
@@ -341,13 +342,21 @@ namespace Utils.Drawing
 	}
 
 	/// <summary>
-	/// Key frame collection.
-	/// 
 	/// Added to shape tree as nodes to simplify data structure.
 	/// </summary>
-	public class KeyFrameCollection : ShapeTree
+	public class AnimationShape : ShapeTree
 	{
+		public Address Address;
+		public string Property;
+	}
 
+	/// <summary>
+	/// Multiple animations put together into an action.
+	/// </summary>
+	public class ActionShape : ShapeTree
+	{
+		public List<AnimationShape> KeyFrameCollections;
+		public List<double> Offset;
 	}
 	
 	public enum Anchor {
