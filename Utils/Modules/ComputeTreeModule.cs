@@ -32,7 +32,7 @@ namespace Utils
 		}
 
 		// Represents an object.
-		public struct ObjectNode : IComparable<ObjectNode>
+		public struct ObjectNode : IComparable<ObjectNode>, IDisposable
 		{
 			public string Name;
 			public Cheap<PropertyNode> Properties;
@@ -44,6 +44,20 @@ namespace Utils
 				this.Properties = Cheap<PropertyNode>.FromArray (properties);
 				this.SubNodes = null;
 				this.Compute = compute;
+				this.disposed = false;
+			}
+
+			private bool disposed;
+			public void Dispose()
+			{
+				if (disposed) return;
+
+				Properties.Dispose ();
+				if (SubNodes != null) {
+					SubNodes.Dispose ();
+				}
+
+				GC.SuppressFinalize(this);
 			}
 
 			int IComparable<ObjectNode>.CompareTo(ObjectNode other)
