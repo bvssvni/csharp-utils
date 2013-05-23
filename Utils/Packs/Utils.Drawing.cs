@@ -196,9 +196,15 @@ namespace Utils.Drawing
 		public string ChildName;
 	}
 
+	/// <summary>
+	/// Represents a relative location in shape tree.
+	/// If a group of items are copied and inserted in same parent node,
+	/// they should be able to maintain correct relationship.
+	/// </summary>
 	public class Address : List<NavigationBase>
 	{
-
+		public ShapeTree Target;
+		public bool Valid;
 	}
 
 	public class Attachment
