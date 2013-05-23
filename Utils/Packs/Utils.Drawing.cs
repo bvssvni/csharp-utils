@@ -207,9 +207,20 @@ namespace Utils.Drawing
 		public bool Valid;
 	}
 
-	public class Attachment
+	public abstract class AttachmentBase
 	{
 
+	}
+
+	public class SinglePointAttachment : AttachmentBase
+	{
+		public Address Point;
+	}
+
+	public class BoneAttachment : AttachmentBase
+	{
+		public Address Point1;
+		public Address Point2;
 	}
 
 	public abstract class ShapeBase
@@ -350,6 +361,21 @@ namespace Utils.Drawing
 	}
 
 	public class DeformShape : ShapeBase
+	{
+
+	}
+
+	public class AbsoluteShape : ShapeBase
+	{
+
+	}
+
+	public class RepeatShape : ShapeBase
+	{
+
+	}
+
+	public class RevolveShape : ShapeBase
 	{
 
 	}
