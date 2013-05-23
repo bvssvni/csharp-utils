@@ -273,6 +273,13 @@ namespace Utils.Drawing
 	{
 		public string Name;
 		public bool Visible;
+		public string[] Properties;
+
+		public abstract object this[int indexer]
+		{
+			get;
+			set;
+		}
 
 		public abstract ShapeBase CopyTo (ShapeBase shape);
 	}
@@ -393,6 +400,15 @@ namespace Utils.Drawing
 	{
 		public Point Position;
 
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -403,6 +419,15 @@ namespace Utils.Drawing
 	{
 		public Look Look;
 		public Rectangle Rectangle;
+
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
 
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
@@ -425,6 +450,15 @@ namespace Utils.Drawing
 		public Pen Border;
 		public Line Line;
 
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -435,6 +469,15 @@ namespace Utils.Drawing
 	{
 		public Look Look;
 		public List<Point> Points;
+
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
 
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
@@ -466,6 +509,15 @@ namespace Utils.Drawing
 	{
 		public Cairo.ImageSurface Surface;
 
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -478,6 +530,15 @@ namespace Utils.Drawing
 		public List<Rectangle> SourceRectangles;
 		public List<Rectangle> TargetRectangles;
 
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -486,6 +547,15 @@ namespace Utils.Drawing
 
 	public class DeformShape : ShapeBase
 	{
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -494,6 +564,15 @@ namespace Utils.Drawing
 
 	public class AbsoluteShape : ShapeBase
 	{
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -502,6 +581,18 @@ namespace Utils.Drawing
 
 	public class RepeatShape : ShapeBase
 	{
+		public int RepeatX;
+		public int RepeatY;
+
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -510,6 +601,17 @@ namespace Utils.Drawing
 
 	public class RevolveShape : ShapeBase
 	{
+		public int Resolution;
+
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -518,6 +620,15 @@ namespace Utils.Drawing
 
 	public class EventShape : ShapeBase
 	{
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
+
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
 			throw new System.NotImplementedException();
@@ -529,6 +640,15 @@ namespace Utils.Drawing
 		public ConstraintBase Attachment;
 		public Matrix ModelTransform;
 		public Matrix RestTransform;
+
+		public override object this[int indexer] {
+			get {
+				throw new System.NotImplementedException();
+			}
+			set {
+				throw new System.NotImplementedException();
+			}
+		}
 
 		public override ShapeBase CopyTo(ShapeBase shape)
 		{
