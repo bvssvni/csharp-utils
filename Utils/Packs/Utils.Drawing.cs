@@ -17,6 +17,10 @@ namespace Utils.Drawing
 		public double Y1;
 		public double X2;
 		public double Y2;
+
+		public static ABRectangle FromRectangle (Rectangle rect) {
+			throw new NotImplementedException ();
+		}
 	}
 
 	public struct Point
@@ -441,6 +445,11 @@ namespace Utils.Drawing
 	}
 
 	public class RectangleShape : RectangleShapeBase
+	{
+
+	}
+
+	public class RoundRectangleShape : RectangleShapeBase
 	{
 
 	}
