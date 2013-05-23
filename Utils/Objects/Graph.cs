@@ -6,6 +6,10 @@ namespace Utils
 {
 	public class Graph
 	{
+		// This is the kind of function that gets called
+		// when an object is marked dirty.
+		public delegate void ComputeDelegate (ObjectNode node);
+
 		public Cheap<ObjectNode> Objects;
 
 		// Represents a property.
@@ -36,7 +40,18 @@ namespace Utils
 		{
 			public string Name;
 			public Cheap<PropertyNode> Properties;
+			// This may be switch to Cheap<PropertyNode> to avoid
+			// one object to be in multiple sub branches.
+			// However, it is not necessary to change this before tests shows this is a problem.
 			public Group SubNodes;
+			public ComputeDelegate Compute;
+
+			public ObjectNode (string name, ComputeDelegate compute, params PropertyNode[] properties) {
+				this.Name = name;
+				this.Properties = Cheap<PropertyNode>.FromArray (properties);
+				this.SubNodes = null;
+				this.Compute = compute;
+			}
 
 			int IComparable<ObjectNode>.CompareTo(ObjectNode other)
 			{
@@ -49,7 +64,11 @@ namespace Utils
 			// It is assumed that no objects overlap.
 			public Group SubBranchProperties (Group gr = null) {
 				gr += Cheap<PropertyNode>.UnionGroup (this.Properties);
-				foreach (var child in SubNodes.IndicesForward ()) {
+				if (SubNodes == null) {
+					return gr;
+				}
+
+				SubNodes.ForEach ((int child) => {
 					var childNode = Cheap<ObjectNode>.Items [child];
 					var props = childNode.Properties;
 					int start = 0;
@@ -58,7 +77,7 @@ namespace Utils
 					    !gr.ContainsIndex (start)) {
 						gr = childNode.SubBranchProperties (gr);
 					}
-				}
+				});
 
 				return gr;
 			}
