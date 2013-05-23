@@ -31,7 +31,7 @@ namespace Utils.Drawing
 		public Point EndPoint;
 	}
 
-	public interface HitCheck<T>
+	public interface IHit<T>
 	{
 		bool Hit (T pos);
 	}
@@ -73,10 +73,12 @@ namespace Utils.Drawing
 		public Color Color;
 	}
 
-	public class Shape
+	public abstract class Shape : IHit<Point>
 	{
 		public string Name;
 		public bool Visible;
+
+		public abstract bool Hit(Point pos);
 	}
 
 	public class ShapeTree
@@ -90,21 +92,33 @@ namespace Utils.Drawing
 		public Brush Brush;
 		public Pen Border;
 		public Rectangle Rectangle;
+
+		public override bool Hit (Point pos) {
+			throw new NotImplementedException ();
+		}
 	}
 
 	public class RectangleShape : Shape
 	{
 		public Look Look;
 		public Rectangle Rectangle;
+
+		public override bool Hit (Point pos) {
+			throw new NotImplementedException ();
+		}
 	}
 
 	public class LineShape : Shape
 	{
 		public Pen Border;
 		public Line Line;
+
+		public override bool Hit (Point pos) {
+			throw new NotImplementedException ();
+		}
 	}
 
-	public class PolygonShape : Shape
+	public abstract class PolygonShape : Shape
 	{
 		public Look Look;
 		public List<Point> Points;
@@ -112,12 +126,18 @@ namespace Utils.Drawing
 
 	public class CatmullCurveShape : PolygonShape
 	{
-
+		public override bool Hit(Point pos)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class QuadraticBezierShape : PolygonShape
 	{
-
+		public override bool Hit(Point pos)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
 
