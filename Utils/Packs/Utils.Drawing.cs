@@ -159,6 +159,20 @@ namespace Utils.Drawing
 		}
 	}
 
+	/// <summary>
+	/// Tree permission module.
+	/// 
+	/// Tells whether nodes of a type can be added to a parent node.
+	/// This can be used to restrict 'Animation' to 'Action' nodes only.
+	/// </summary>
+	public static class TreePermissionModule
+	{
+		public static bool AllowChildNodeType (ShapeTree parent, Type type)
+		{
+			throw new NotImplementedException ();
+		}
+	}
+
 	public static class RenderingModule
 	{
 		public delegate void DrawDelegate (Cairo.Context context);
