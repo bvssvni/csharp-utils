@@ -286,6 +286,14 @@ namespace Utils.Drawing
 		{
 			throw new NotImplementedException();
 		}
+
+		public ShapeTree Find (ShapeTree source, Address address) {
+			throw new NotImplementedException ();
+		}
+
+		public Address CreateAddress (ShapeTree source, string path) {
+			throw new NotImplementedException ();
+		}
 	}
 
 	public class ControlPointShape : ShapeBase
