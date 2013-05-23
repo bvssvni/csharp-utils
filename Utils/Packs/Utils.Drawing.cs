@@ -124,6 +124,21 @@ namespace Utils.Drawing
 		}
 	}
 
+	public static class ShapeFactoryModule
+	{
+		public static ShapeBase Default (Type type)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public static object Zero (Type type)
+		{
+			// TODO: Create zero default values,
+			// used for tangents in key frames.
+			throw new NotImplementedException ();
+		}
+	}
+
 	public static class HitCheck
 	{
 		public delegate bool HitDelegate (object a, Point pos);
@@ -140,6 +155,12 @@ namespace Utils.Drawing
 
 		public static DrawDelegate DrawingRoutine (Type type)
 		{
+			throw new NotImplementedException ();
+		}
+
+		public static Rectangle Bounds (ShapeBase shape)
+		{
+			// TODO: Compute bounds of shape, used for marking regions as dirty.
 			throw new NotImplementedException ();
 		}
 	}
@@ -433,6 +454,28 @@ namespace Utils.Drawing
 	public class OpenQuadraticBezierShape : PolygonShapeBase
 	{
 
+	}
+
+	public class ImageShape : ShapeBase
+	{
+		public Cairo.ImageSurface Surface;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
+
+	public class SpriteSheetShape : ShapeBase
+	{
+		public Cairo.ImageSurface Surface;
+		public List<Rectangle> SourceRectangles;
+		public List<Rectangle> TargetRectangles;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class DeformShape : ShapeBase
