@@ -8,7 +8,7 @@ namespace Utils
 	{
 		// This is the kind of function that gets called
 		// when an object is marked dirty.
-		public delegate void ComputeDelegate (ObjectNode node);
+		public delegate void ComputeDelegate (PropertyNode[] items, int start, int end);
 
 		// Represents a property.
 		public struct PropertyNode : IComparable<PropertyNode>
@@ -63,6 +63,16 @@ namespace Utils
 			int IComparable<ObjectNode>.CompareTo(ObjectNode other)
 			{
 				return Name.CompareTo (other.Name);
+			}
+
+			public void Update () {
+				Cheap<PropertyNode>.Semaphore++;
+				int start = 0;
+				int end = 0;
+				if (this.Properties.GetRange (ref start, ref end)) {
+					this.Compute (Cheap<PropertyNode>.Items, start, end);
+				}
+				Cheap<PropertyNode>.Semaphore--;
 			}
 
 			// Gets the properties of sub branch, including object.

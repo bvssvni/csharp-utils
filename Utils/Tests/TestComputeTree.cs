@@ -16,15 +16,12 @@ namespace Utils
 			public double Height;
 		}
 
-		private static void ComputeEllipse (ComputeTreeModule.ObjectNode obj) {
-			int start = 0;
-			int end = 0;
-			obj.Properties.GetRange (ref start, ref end);
-			var x = (double)Cheap<PropertyNode>.Items [start + 0].Value;
-			var y = (double)Cheap<PropertyNode>.Items [start + 1].Value;
-			var width = (double)Cheap<PropertyNode>.Items [start + 2].Value;
-			var height = (double)Cheap<PropertyNode>.Items [start + 3].Value;
-			Cheap<PropertyNode>.Items [start + 4].Value = new Rectangle () {
+		private static void ComputeEllipse (PropertyNode[] items, int start, int end) {
+			var x = (double)items [start + 0].Value;
+			var y = (double)items [start + 1].Value;
+			var width = (double)items [start + 2].Value;
+			var height = (double)items [start + 3].Value;
+			items [start + 4].Value = new Rectangle () {
 				X = x, Y = y, Width = width, Height = height
 			};
 		}
@@ -48,7 +45,7 @@ namespace Utils
 			Assert.True (rect.Y == 0.0);
 			Assert.True (rect.Width == 0.0);
 			Assert.True (rect.Height == 0.0);
-			ellipse.Compute (ellipse);
+			ellipse.Update ();
 			rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
 			Assert.True (rect.X == -100.0);
 			Assert.True (rect.Y == -100.0);
