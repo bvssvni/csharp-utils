@@ -109,6 +109,7 @@
     <Compile Include="Modules\StateModule.cs" />
     <Compile Include="Tests\TestStateModule.cs" />
     <Compile Include="Modules\OrientationModule.cs" />
+    <Compile Include="Packs\Utils.Drawing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
