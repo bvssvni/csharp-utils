@@ -207,20 +207,34 @@ namespace Utils.Drawing
 		public bool Valid;
 	}
 
-	public abstract class AttachmentBase
+	public abstract class ConstraintBase
 	{
 
 	}
 
-	public class SinglePointAttachment : AttachmentBase
+	public class ParentConstraint : ConstraintBase
+	{
+		public Address Parent;
+	}
+
+	public class SinglePointConstraint : ConstraintBase
 	{
 		public Address Point;
 	}
 
-	public class BoneAttachment : AttachmentBase
+	public class BoneConstraint : ConstraintBase
 	{
 		public Address Point1;
 		public Address Point2;
+	}
+
+	public class FeedbackConstraint : ConstraintBase
+	{
+		public Address Point1;
+		public Address Point2;
+		public Address RelativeLayer;
+		public double MinAngle;
+		public double MaxAngle;
 	}
 
 	public abstract class ShapeBase
@@ -382,7 +396,7 @@ namespace Utils.Drawing
 
 	public class LayerShape : ShapeBase
 	{
-
+		public ConstraintBase Attachment;
 	}
 }
 
