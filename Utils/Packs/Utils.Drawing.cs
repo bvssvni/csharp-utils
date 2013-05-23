@@ -176,6 +176,36 @@ namespace Utils.Drawing
 		public Color Color;
 	}
 
+	public class NavigationBase
+	{
+
+	}
+
+	public class UpNavigation : NavigationBase
+	{
+
+	}
+
+	public class RootNavigation : NavigationBase
+	{
+
+	}
+
+	public class ChildNavigation : NavigationBase
+	{
+		public string ChildName;
+	}
+
+	public class Address : List<NavigationBase>
+	{
+
+	}
+
+	public class Attachment
+	{
+
+	}
+
 	public abstract class ShapeBase
 	{
 		public string Name;
@@ -249,6 +279,11 @@ namespace Utils.Drawing
 		}
 	}
 
+	public class ControlPointShape : ShapeBase
+	{
+		public Point Position;
+	}
+
 	public class RectangleShapeBase : ShapeBase
 	{
 		public Look Look;
@@ -298,6 +333,11 @@ namespace Utils.Drawing
 	}
 
 	public class DeformShape : ShapeBase
+	{
+
+	}
+
+	public class LayerShape : ShapeBase
 	{
 
 	}
