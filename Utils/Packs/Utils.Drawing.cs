@@ -117,6 +117,11 @@ namespace Utils.Drawing
 		{
 			throw new NotImplementedException ();
 		}
+
+		public static Interpolate4Delegate CubicBezier (Type type)
+		{
+			throw new NotImplementedException ();
+		}
 	}
 
 	public static class HitCheck
@@ -289,6 +294,8 @@ namespace Utils.Drawing
 	public class KeyFrame : ShapeTree
 	{
 		public ShapeBase State;
+		public ShapeBase TangentIn;
+		public ShapeBase TangentOut;
 
 		public void SetState (ShapeBase shape) {
 			throw new NotImplementedException ();
@@ -304,7 +311,6 @@ namespace Utils.Drawing
 	{
 
 	}
-
 	
 	public enum Anchor {
 		Right = 1,
