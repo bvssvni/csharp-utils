@@ -37,6 +37,17 @@ using System.Collections.Generic;
 namespace Utils
 {
 	/// <summary>
+	/// Allows common operations on all Cheap types.
+	/// </summary>
+	public interface ICheap : IDisposable
+	{
+		bool GetRange (ref int start, ref int end);
+		Array StaticArray {get;}
+		ICheap Copy ();
+		void Sort ();
+	}
+
+	/// <summary>
 	/// Uses static array to store data for precise memory management.
 	/// Exposes the static array by giving out start and end indices.
 	/// Not thread safe.
@@ -46,8 +57,11 @@ namespace Utils
 	/// 
 	/// For structs: Reduces fragmentation of memory.
 	/// For objects: Allows objects to be released under controlled conditions.
+	/// 
+	/// Requires objects to be comparable.
 	/// </summary>
-	public sealed class Cheap<T> : IDisposable
+	public sealed class Cheap<T> : ICheap
+		where T : IComparable<T>
 	{
 		private const int MIN_ITEM_BUFFER_SIZE = 1024;
 		private const int MIN_SLICE_BUFFER_SIZE = 128;
@@ -104,6 +118,7 @@ namespace Utils
 		public static void Defragment() {
 			if (Semaphore > 0) return;
 
+			Semaphore++;
 			int moveSlices = 0;
 			int moveItems = 0;
 			int slice_length = SliceLength;
@@ -153,24 +168,194 @@ namespace Utils
 					Array.Resize<T>(ref Items, ItemLength << 1);
 				}
 			}
+
+			Semaphore--;
 		}
 		
 		public bool GetRange(ref int start, ref int end)
 		{
+			Semaphore++;
 			// Get the correct position in case of defragmentation.
 			int pos = this.pos;
 			while (Slices[pos].Id > this.id) --pos;
 			
-			if (Slices[pos].Id != this.id) return false;
-			
+			if (Slices[pos].Id != this.id) {
+				Semaphore--;
+				return false;
+			}
+
 			this.pos = pos;
 			var slice = Slices[pos];
 			start = slice.Offset;
 			end = slice.Offset + slice.Count;
+			Semaphore--;
 			return true;
 		}
 
+		public Array StaticArray {
+			get {
+				return Items;
+			}
+		}
+
+		public ICheap Copy () {
+			Semaphore++;
+			int start = 0;
+			int end = 0;
+			if (!GetRange (ref start, ref end)) {
+				Semaphore--;
+				return null;
+			}
+
+			int length = end - start;
+			var copy = WithCapacity (length);
+			int toEnd = 0;
+			int toStart = 0;
+			if (!GetRange (ref toStart, ref toEnd)) {
+				Semaphore--;
+				return null;
+			}
+
+			// Copy items by value.
+			for (int i = 0; i < length; i++) {
+				Items [i + toStart] = Items [i - start];
+			}
+
+			Semaphore--;
+			return copy;
+		}
+
+		public void Sort () {
+			Semaphore++;
+			int start = 0;
+			int end = 0;
+			if (!GetRange (ref start, ref end)) {
+				Semaphore--;
+				return;
+			}
+
+			Array.Sort (Items, start, end);
+			Semaphore--;
+		}
+
+		private static void ResizeItems (int capacity) {
+			// Resize items array if necessary.
+			if (capacity + ItemLength > Items.Length) {
+				Array.Resize<T>(ref Items, (capacity + ItemLength) << 1);
+			}
+		}
+
+		public static Cheap<T> Concatenate (params Cheap<T>[] lists) {
+			Semaphore++;
+			int start = 0;
+			int end = 0;
+			int off = ItemLength;
+			int n = lists.Length;
+			for (int j = 0; j < n; ++j) {
+				if (lists [j].GetRange (ref start, ref end)) {
+					// Concat the list.
+					ResizeItems (end - start);
+					for (int i = start; i < end; ++i) {
+						Items [ItemLength++] = Items [i];
+					}
+				}
+			}
+			
+			// Resize the slice array if necessary.
+			if (SliceLength + 1 > Slices.Length) {
+				Array.Resize<Slice>(ref Slices, Slices.Length << 1);
+			}
+
+			var ch = new Cheap<T> ();
+			ch.pos = SliceLength++;
+			Slices[ch.pos] = new Slice() {
+				Offset = off, 
+				Count = ItemLength - off, 
+				Id = ch.id = LastId++
+			};
+
+			Semaphore--;
+			return ch;
+		}
+
+		public static Cheap<T> Union (params Cheap<T>[] list) {
+			Semaphore++;
+			int n = list.Length;
+			int[] endItem = new int[n];
+			int[] index = new int[n];
+			int capacity = 0;
+			for (int i = n - 1; i >= 0; --i) {
+				list [i].GetRange (ref index[i], ref endItem[i]);
+				capacity += endItem[i] - index[i];
+			}
+
+			// Join by popping off the least value.
+			var ch = Cheap<T>.WithCapacity (capacity);
+			int start = 0;
+			int end = 0;
+			ch.GetRange (ref start, ref end);
+			T min = default (T);
+			int minList = -1;
+			for (int i = start; i < end; ++i) {
+				minList = -1;
+				for (int j = n - 1; j >= 0; --j) {
+					if (index[j] >= endItem[j]) {
+						continue;
+					}
+					if (minList == -1 || Items [index[j]].CompareTo (min) < 0) {
+						min = Items [index[j]];
+						minList = j;
+					}
+				}
+
+				Items [i] = min;
+				index[minList]++;
+			}
+
+			Semaphore--;
+			return ch;
+		}
+
+		public static Cheap<T> Union (IComparer<T> comparer, params Cheap<T>[] list) {
+			Semaphore++;
+			int n = list.Length;
+			int[] endItem = new int[n];
+			int[] index = new int[n];
+			int capacity = 0;
+			for (int i = n - 1; i >= 0; --i) {
+				list [i].GetRange (ref index[i], ref endItem[i]);
+				capacity += endItem[i] - index[i];
+			}
+			
+			// Join by popping off the least value.
+			var ch = Cheap<T>.WithCapacity (capacity);
+			int start = 0;
+			int end = 0;
+			ch.GetRange (ref start, ref end);
+			T min = default (T);
+			int minList = -1;
+			for (int i = start; i < end; ++i) {
+				minList = -1;
+				for (int j = n - 1; j >= 0; --j) {
+					if (index[j] >= endItem[j]) {
+						continue;
+					}
+					if (minList == -1 || comparer.Compare(Items [index[j]], min) < 0) {
+						min = Items [index[j]];
+						minList = j;
+					}
+				}
+				
+				Items [i] = min;
+				index[minList]++;
+			}
+			
+			Semaphore--;
+			return ch;
+		}
+
 		public static Cheap<T> WithCapacity (int capacity) {
+			Semaphore++;
 			Cheap<T> ch = new Cheap<T> ();
 			
 			// Resize items array if necessary.
@@ -196,11 +381,13 @@ namespace Utils
 				Count = capacity, 
 				Id = ch.id = LastId++
 			};
-			
+
+			Semaphore--;
 			return ch;
 		}
 
 		public static Cheap<T> FromArray (params T[] data) {
+			Semaphore++;
 			Cheap<T> ch = new Cheap<T> ();
 			int n = data.Length;
 			
@@ -228,6 +415,7 @@ namespace Utils
 				Id = ch.id = LastId++
 			};
 
+			Semaphore--;
 			return ch;
 		}
 		
@@ -235,6 +423,7 @@ namespace Utils
 			if (disposed) return;
 			
 			disposed = true;
+			Semaphore++;
 			// Get the correct position in case of defragmentation.
 			int pos = this.pos;
 			while (Slices[pos].Id > this.id) --pos;
@@ -250,7 +439,8 @@ namespace Utils
 				ItemLength -= Slices[pos].Count;
 				--SliceLength;
 			}
-			
+
+			Semaphore--;
 			GC.SuppressFinalize(this);
 		}
 		

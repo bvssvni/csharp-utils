@@ -84,6 +84,70 @@ namespace Utils
 			b.Dispose();
 			Cheap<int>.Defragment();
 		}
+
+		[Test()]
+		public void TestSort () {
+			var a = Cheap<int>.FromArray (4, 3, 2, 1);
+			a.Sort ();
+			int start = 0;
+			int end = 0;
+			a.GetRange (ref start, ref end);
+			int i = 0;
+			Assert.True (Cheap<int>.Items[start + i++] == 1);
+			Assert.True (Cheap<int>.Items[start + i++] == 2);
+			Assert.True (Cheap<int>.Items[start + i++] == 3);
+			Assert.True (Cheap<int>.Items[start + i++] == 4);
+			a.Dispose ();
+			Cheap<int>.Defragment ();
+		}
+
+		[Test()]
+		public void TestConcat () {
+			var a = Cheap<int>.FromArray (1, 2, 3);
+			var b = Cheap<int>.FromArray (4, 5, 6);
+			var c = Cheap<int>.Concatenate(a, b);
+			int start = 0;
+			int end = 0;
+			c.GetRange (ref start, ref end);
+			Assert.True (start == 6);
+			Assert.True (end == 12);
+			Assert.True (end - start == 6);
+			int i = 0;
+			Assert.True (Cheap<int>.Items[start + i++] == 1);
+			Assert.True (Cheap<int>.Items[start + i++] == 2);
+			Assert.True (Cheap<int>.Items[start + i++] == 3);
+			Assert.True (Cheap<int>.Items[start + i++] == 4);
+			Assert.True (Cheap<int>.Items[start + i++] == 5);
+			Assert.True (Cheap<int>.Items[start + i++] == 6);
+			a.Dispose ();
+			b.Dispose ();
+			c.Dispose ();
+			Cheap<int>.Defragment ();
+		}
+
+		[Test()]
+		public void TestUnion () {
+			var a = Cheap<int>.FromArray (1, 3, 5);
+			var b = Cheap<int>.FromArray (2, 4, 6);
+			var c = Cheap<int>.Union (a, b);
+			int start = 0;
+			int end = 0;
+			c.GetRange (ref start, ref end);
+			Assert.True (start == 6);
+			Assert.True (end == 12);
+			Assert.True (end - start == 6);
+			int i = 0;
+			Assert.True (Cheap<int>.Items[start + i++] == 1);
+			Assert.True (Cheap<int>.Items[start + i++] == 2);
+			Assert.True (Cheap<int>.Items[start + i++] == 3);
+			Assert.True (Cheap<int>.Items[start + i++] == 4);
+			Assert.True (Cheap<int>.Items[start + i++] == 5);
+			Assert.True (Cheap<int>.Items[start + i++] == 6);
+			a.Dispose ();
+			b.Dispose ();
+			c.Dispose ();
+			Cheap<int>.Defragment ();
+		}
 	}
 }
 
