@@ -31,11 +31,6 @@ namespace Utils.Drawing
 		public Point EndPoint;
 	}
 
-	public enum Component
-	{
-		Visibility = 1
-	}
-
 	public interface HitCheck<T>
 	{
 		bool Hit (T pos);
@@ -43,7 +38,9 @@ namespace Utils.Drawing
 
 	public class Brush
 	{
+		public void Draw (Cairo.Context context, Shape shape) {
 
+		}
 	}
 
 	public class Pen
@@ -76,15 +73,10 @@ namespace Utils.Drawing
 		public Color Color;
 	}
 
-	public class ComponentBase
-	{
-
-	}
-
 	public class Shape
 	{
 		public string Name;
-		public Dictionary<Component, ComponentBase> Components;
+		public bool Visible;
 	}
 
 	public class ShapeTree
@@ -102,8 +94,7 @@ namespace Utils.Drawing
 
 	public class RectangleShape : Shape
 	{
-		public Brush Brush;
-		public Pen Border;
+		public Look Look;
 		public Rectangle Rectangle;
 	}
 
@@ -115,8 +106,7 @@ namespace Utils.Drawing
 
 	public class PolygonShape : Shape
 	{
-		public Brush Brush;
-		public Pen Border;
+		public Look Look;
 		public List<Point> Points;
 	}
 
