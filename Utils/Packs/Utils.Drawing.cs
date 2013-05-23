@@ -103,22 +103,27 @@ namespace Utils.Drawing
 		public Point EndPoint;
 	}
 
-	public interface IHit<T>
-	{
-		bool Hit (T pos);
-	}
-
 	public static class Interpolation
 	{
-		public delegate object Interpolate2 (object a0, object a1, double time);
-		public delegate object Interpolate4 (object a0, object a1, object a2, object a3, double time);
+		public delegate object Interpolate2Delegate (object a0, object a1, double time);
+		public delegate object Interpolate4Delegate (object a0, object a1, object a2, object a3, double time);
 
-		public static Interpolate2 Linear (Type type)
+		public static Interpolate2Delegate Linear (Type type)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public static Interpolate4 Catmull (Type type)
+		public static Interpolate4Delegate Catmull (Type type)
+		{
+			throw new NotImplementedException ();
+		}
+	}
+
+	public static class HitCheck
+	{
+		public delegate bool HitDelegate (object a, Point pos);
+
+		public static HitDelegate Detector (Type type)
 		{
 			throw new NotImplementedException ();
 		}
@@ -126,7 +131,7 @@ namespace Utils.Drawing
 
 	public class Brush
 	{
-		public void Draw (Cairo.Context context, Shape shape) {
+		public void Draw (Cairo.Context context, ShapeBase shape) {
 
 		}
 	}
@@ -161,79 +166,56 @@ namespace Utils.Drawing
 		public Color Color;
 	}
 
-	public abstract class Shape : IHit<Point>
+	public abstract class ShapeBase
 	{
 		public string Name;
 		public bool Visible;
-
-		public abstract bool Hit(Point pos);
 	}
 
 	public class ShapeTree
 	{
-		public Shape Shape;
+		public ShapeBase Shape;
 		public List<ShapeTree> Children;
 	}
 
-	public class EllipseShape : Shape
+	public class EllipseShape : ShapeBase
 	{
 		public Brush Brush;
 		public Pen Border;
 		public Rectangle Rectangle;
-
-		public override bool Hit (Point pos) {
-			throw new NotImplementedException ();
-		}
 	}
 
-	public class RectangleShape : Shape
+	public class RectangleShape : ShapeBase
 	{
 		public Look Look;
 		public Rectangle Rectangle;
-
-		public override bool Hit (Point pos) {
-			throw new NotImplementedException ();
-		}
 	}
 
-	public class LineShape : Shape
+	public class LineShape : ShapeBase
 	{
 		public Pen Border;
 		public Line Line;
-
-		public override bool Hit (Point pos) {
-			throw new NotImplementedException ();
-		}
 	}
 
-	public abstract class PolygonShape : Shape
+	public abstract class PolygonShapeBase : ShapeBase
 	{
 		public Look Look;
 		public List<Point> Points;
 	}
 
-	public class CatmullCurveShape : PolygonShape
+	public class CatmullCurveShape : PolygonShapeBase
 	{
-		public override bool Hit(Point pos)
-		{
-			throw new System.NotImplementedException();
-		}
+
 	}
 
-	public class QuadraticBezierShape : PolygonShape
+	public class QuadraticBezierShape : PolygonShapeBase
 	{
-		public override bool Hit(Point pos)
-		{
-			throw new System.NotImplementedException();
-		}
+
 	}
 
-	public class DeformShape : Shape
+	public class DeformShape : ShapeBase
 	{
-		public override bool Hit(Point pos)
-		{
-			throw new System.NotImplementedException();
-		}
+
 	}
 }
 
