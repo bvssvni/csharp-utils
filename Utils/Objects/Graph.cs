@@ -17,6 +17,14 @@ namespace Utils
 			public int Input;
 			public bool Dirty;
 
+			public PropertyNode (string name, object value) {
+				this.Name = name;
+				this.Value = value;
+				this.Input = -1;
+				this.Outputs = null;
+				this.Dirty = false;
+			}
+
 			int IComparable<PropertyNode>.CompareTo(PropertyNode other)
 			{
 				return Name.CompareTo (other.Name);
@@ -64,7 +72,15 @@ namespace Utils
 		// This are all properties that this group depend on.
 		public static Group InputProperties (Group properties) {
 			var gr = new Group (Group.Size (properties));
-			properties.ForEach ((int i) => gr += Cheap<PropertyNode>.Items [i].Input);
+			properties.ForEach ((int i) => {
+				var input = Cheap<PropertyNode>.Items [i].Input;
+				if (input == -1) {
+					return;
+				}
+
+				gr += input;
+			});
+
 			return gr;
 		}
 
@@ -72,7 +88,14 @@ namespace Utils
 		// This are all properties that rely on this group.
 		public static Group OutputProperties (Group properties) {
 			var gr = new Group ();
-			properties.ForEach ((int i) => gr += Cheap<PropertyNode>.Items [i].Outputs);
+			properties.ForEach ((int i) => {
+				var outputs = Cheap<PropertyNode>.Items [i].Outputs;
+				if (outputs == null) {
+					return;
+				}
+
+				gr += outputs;
+			});
 			return gr;
 		}
 
@@ -80,7 +103,15 @@ namespace Utils
 		// These properties needs to redirect the 'input' value to copied group.
 		public static Group InternalDependencies (Group properties) {
 			var gr = properties;
-			properties.ForEach ((int i) => gr -= Cheap<PropertyNode>.Items [i].Input);
+			properties.ForEach ((int i) => {
+				var input = Cheap<PropertyNode>.Items [i].Input;
+				if (input == -1) {
+					return;
+				}
+
+				gr -= input;
+			});
+
 			return gr;
 		}
 	}
