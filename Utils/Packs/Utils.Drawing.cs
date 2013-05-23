@@ -237,10 +237,12 @@ namespace Utils.Drawing
 		public double MaxAngle;
 	}
 
-	public abstract class ShapeBase
+	public abstract class ShapeBase : Utils.Document.ICopyTo<ShapeBase>
 	{
 		public string Name;
 		public bool Visible;
+
+		public abstract ShapeBase CopyTo (ShapeBase shape);
 	}
 
 	public class ShapeTree : IEnumerable<ShapeBase>
@@ -284,6 +286,25 @@ namespace Utils.Drawing
 		}
 	}
 
+	public class KeyFrame : ShapeTree
+	{
+		public ShapeBase State;
+
+		public void SetState (ShapeBase shape) {
+			throw new NotImplementedException ();
+		}
+	}
+
+	/// <summary>
+	/// Key frame collection.
+	/// 
+	/// Added to shape tree as nodes to simplify data structure.
+	/// </summary>
+	public class KeyFrameCollection : ShapeTree
+	{
+
+	}
+
 	public class Document : 
 		ShapeTree, 
 		Utils.Document.IRead<string>,
@@ -324,12 +345,22 @@ namespace Utils.Drawing
 	public class ControlPointShape : ShapeBase
 	{
 		public Point Position;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class RectangleShapeBase : ShapeBase
 	{
 		public Look Look;
 		public Rectangle Rectangle;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class EllipseShape : RectangleShapeBase
@@ -346,12 +377,22 @@ namespace Utils.Drawing
 	{
 		public Pen Border;
 		public Line Line;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public abstract class PolygonShapeBase : ShapeBase
 	{
 		public Look Look;
 		public List<Point> Points;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class CatmullCurveShape : PolygonShapeBase
@@ -376,32 +417,54 @@ namespace Utils.Drawing
 
 	public class DeformShape : ShapeBase
 	{
-
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class AbsoluteShape : ShapeBase
 	{
-
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class RepeatShape : ShapeBase
 	{
-
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class RevolveShape : ShapeBase
 	{
-
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class EventShape : ShapeBase
 	{
-
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 	public class LayerShape : ShapeBase
 	{
 		public ConstraintBase Attachment;
+		public Matrix ModelTransform;
+		public Matrix RestTransform;
+
+		public override ShapeBase CopyTo(ShapeBase shape)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
 
