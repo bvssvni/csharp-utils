@@ -25,6 +25,78 @@ namespace Utils.Drawing
 		public double Y;
 	}
 
+	public interface IMultiply<T>
+	{
+		T Multiply (T b);
+	}
+
+	public interface IRotate<T, G>
+	{
+		T Rotate (G angle);
+	}
+
+	public interface ITranslate<T, G>
+	{
+		T Translate (G pos);
+	}
+
+	public interface IScale<T, G>
+	{
+		T Scale (G info);
+	}
+
+	public interface IShear<T, G>
+	{
+		T Shear (G info);
+	}
+
+	public struct Matrix : 
+		IMultiply<Matrix>,
+		IRotate<Matrix, double>,
+		ITranslate<Matrix, Point>,
+		IScale<Matrix, Point>,
+		IScale<Matrix, double>,
+		IShear<Matrix, Point>
+	{
+		public double M11;
+		public double M12;
+		public double M13;
+		public double M21;
+		public double M22;
+		public double M23;
+		public double M31;
+		public double M32;
+		public double M33;
+
+		public static Matrix Identity () {
+			throw new NotImplementedException ();
+		}
+
+		public Matrix Multiply (Matrix b) {
+			throw new NotImplementedException ();
+		}
+
+		public Matrix Rotate (double angleInRadians) {
+			throw new NotImplementedException ();
+		}
+
+		public Matrix Translate (Point pos) {
+			throw new NotImplementedException ();
+		}
+
+		public Matrix Scale (Point pos) {
+			throw new NotImplementedException ();
+		}
+
+		public Matrix Scale (double scale) {
+			throw new NotImplementedException ();
+		}
+
+		public Matrix Shear (Point pos) {
+			throw new NotImplementedException ();
+		}
+	}
+
 	public struct Line
 	{
 		public Point StartPoint;
@@ -34,6 +106,22 @@ namespace Utils.Drawing
 	public interface IHit<T>
 	{
 		bool Hit (T pos);
+	}
+
+	public static class Interpolation
+	{
+		public delegate object Interpolate2 (object a0, object a1, double time);
+		public delegate object Interpolate4 (object a0, object a1, object a2, object a3, double time);
+
+		public static Interpolate2 Linear (Type type)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public static Interpolate4 Catmull (Type type)
+		{
+			throw new NotImplementedException ();
+		}
 	}
 
 	public class Brush
@@ -133,6 +221,14 @@ namespace Utils.Drawing
 	}
 
 	public class QuadraticBezierShape : PolygonShape
+	{
+		public override bool Hit(Point pos)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
+
+	public class DeformShape : Shape
 	{
 		public override bool Hit(Point pos)
 		{
