@@ -110,6 +110,7 @@
     <Compile Include="Tests\TestStateModule.cs" />
     <Compile Include="Modules\OrientationModule.cs" />
     <Compile Include="Packs\Utils.Drawing.cs" />
+    <Compile Include="Tests\TestDrawing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -182,10 +182,37 @@ namespace Utils.Drawing
 		public bool Visible;
 	}
 
-	public class ShapeTree
+	public class ShapeTree : IEnumerable<ShapeBase>
 	{
 		public ShapeBase Shape;
 		public List<ShapeTree> Children;
+
+		public ShapeTree (ShapeBase shape)
+		{
+			this.Shape = shape;
+			Children = new List<ShapeTree> ();
+		}
+
+		public ShapeTree AddChild (ShapeBase shape)
+		{
+			Children.Add (new ShapeTree (shape));
+			return Children [Children.Count - 1];
+		}
+
+		public IEnumerator<ShapeBase> GetEnumerator()
+		{
+			foreach (var child in Children) {
+				yield return child.Shape;
+				foreach (var item in child) {
+					yield return item;
+				}
+			}
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return (System.Collections.IEnumerator)GetEnumerator ();
+		}
 	}
 
 	public class EllipseShape : ShapeBase
