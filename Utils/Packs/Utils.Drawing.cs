@@ -129,6 +129,16 @@ namespace Utils.Drawing
 		}
 	}
 
+	public static class Rendering
+	{
+		public delegate void DrawDelegate (Cairo.Context context);
+
+		public static DrawDelegate DrawingRoutine (Type type)
+		{
+			throw new NotImplementedException ();
+		}
+	}
+
 	public class Brush
 	{
 		public void Draw (Cairo.Context context, ShapeBase shape) {
