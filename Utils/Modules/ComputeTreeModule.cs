@@ -65,6 +65,24 @@ namespace Utils
 				return Name.CompareTo (other.Name);
 			}
 
+			public T GetProperty<T> (string name) {
+				Cheap<PropertyNode>.Semaphore++;
+				int start = 0;
+				int end = 0;
+				T res = default (T);
+				if (Properties.GetRange (ref start, ref end)) {
+					for (int i = start; i < end; i++) {
+						var prop = Cheap<PropertyNode>.Items [i];
+						if (prop.Name == name) {
+							res = (T)Convert.ChangeType (prop.Value, typeof (T));
+						}
+					}
+				}
+
+				Cheap<PropertyNode>.Semaphore--;
+				return res;
+			}
+
 			public void Update () {
 				Cheap<PropertyNode>.Semaphore++;
 				int start = 0;

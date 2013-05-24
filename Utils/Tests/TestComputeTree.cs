@@ -14,6 +14,13 @@ namespace Utils
 			public double Y;
 			public double Width;
 			public double Height;
+
+			public bool IsZero () {
+				return 	X == 0.0 &&
+						Y == 0.0 &&
+						Width == 0.0 &&
+						Height == 0.0;
+			}
 		}
 
 		private static void ComputeEllipse (PropertyNode[] items, int start, int end) {
@@ -43,7 +50,7 @@ namespace Utils
 			                              new PropertyNode ("Y", y),
 			                              new PropertyNode ("Width", width),
 			                              new PropertyNode ("Height", height),
-			                              new PropertyNode ("Rectangle", null));
+			                              new PropertyNode ("Rectangle", new Rectangle ()));
 			return ellipse;
 		}
 
@@ -61,13 +68,9 @@ namespace Utils
 		public void TestEllipse()
 		{
 			var ellipse = CreateEllipse ("ellipse1", -100.0, -100.0, 200.0, 200.0);
-
-			int start = 0;
-			int end = 0;
-			ellipse.Properties.GetRange (ref start, ref end);
-			Assert.Null(Cheap<PropertyNode>.Items [start + 4].Value);
+			Assert.True (ellipse.GetProperty<Rectangle> ("Rectangle").IsZero ());
 			ellipse.Update ();
-			var rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
+			var rect = ellipse.GetProperty<Rectangle> ("Rectangle");
 			Assert.True (rect.X == -100.0);
 			Assert.True (rect.Y == -100.0);
 			Assert.True (rect.Width == 200.0);
@@ -85,10 +88,7 @@ namespace Utils
 			Assert.True (ComputeTreeModule.Connect (ellipse, "X", length, "Length"));
 			length.Update ();
 			ellipse.Update ();
-			int start = 0;
-			int end = 0;
-			ellipse.Properties.GetRange (ref start, ref end);
-			var rect = (Rectangle)Cheap<PropertyNode>.Items [start + 4].Value;
+			var rect = ellipse.GetProperty<Rectangle> ("Rectangle");
 			Assert.True (rect.X > 0.0);
 			ellipse.Dispose ();
 			Cheap<PropertyNode>.Defragment ();
