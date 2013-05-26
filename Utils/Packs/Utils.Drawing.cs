@@ -34,6 +34,11 @@ namespace Utils.Drawing
 	{
 		public double X;
 		public double Y;
+
+		public Point (double x, double y) {
+			this.X = x;
+			this.Y = y;
+		}
 	}
 
 	public struct Wheel
@@ -118,6 +123,16 @@ namespace Utils.Drawing
 	{
 		public Point StartPoint;
 		public Point EndPoint;
+
+		public Line (Point p1, Point p2) {
+			StartPoint = p1;
+			EndPoint = p2;
+		}
+
+		public Line (double x1, double y1, double x2, double y2) {
+			StartPoint = new Point (x1, y1);
+			EndPoint = new Point (x2, y2);
+		}
 	}
 
 	public static class InterpolationModule
@@ -192,12 +207,13 @@ namespace Utils.Drawing
 
 		public static void FillRectangle (Cairo.Context context, ShapeTree tree) {
 			var shape = tree.Shape as RectangleShape;
-			if (shape.Look.Fill is SolidBrush) {
-				var solidBrush = (SolidBrush)shape.Look.Fill;
+			if (tree.Look.Fill is SolidBrush) {
+				var solidBrush = (SolidBrush)tree.Look.Fill;
 				if (solidBrush.Color.A > 0.0) {
 					var c = solidBrush.Color;
 					var r = shape.Rectangle;
 					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.NewPath ();
 					context.Rectangle (r.X, r.Y, r.Width, r.Height);
 					context.Fill ();
 				}
@@ -206,15 +222,109 @@ namespace Utils.Drawing
 
 		public static void BorderRectangle (Cairo.Context context, ShapeTree tree) {
 			var shape = tree.Shape as RectangleShape;
-			if (shape.Look.Border is SolidPen) {
-				var solidPen = (SolidPen)shape.Look.Border;
+			if (tree.Look.Border is SolidPen) {
+				var solidPen = (SolidPen)tree.Look.Border;
 				if (solidPen.Color.A > 0.0 && solidPen.Width > 0.0) {
 					var c = solidPen.Color;
 					var w = solidPen.Width;
 					var r = shape.Rectangle;
 					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.NewPath ();
 					context.LineWidth = w;
 					context.Rectangle (r.X, r.Y, r.Width, r.Height);
+					context.Stroke ();
+				}
+			}
+		}
+
+		public static void FillEllipse (Cairo.Context context, ShapeTree tree) {
+			var shape = tree.Shape as EllipseShape;
+			if (tree.Look.Fill is SolidBrush) {
+				var solidBrush = (SolidBrush)tree.Look.Fill;
+				if (solidBrush.Color.A > 0.0) {
+					var c = solidBrush.Color;
+					var r = shape.Rectangle;
+					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.NewPath ();
+					context.Save ();
+					
+					var x = r.X;
+					var y = r.Y;
+					var xDis = 0.5 * r.Width;
+					var yDis = 0.5 * r.Height;
+					var kappa = 0.5522848; // 4 * ((√(2) - 1) / 3)
+					var ox = xDis * kappa;  // control point offset horizontal
+					var oy = yDis * kappa;  // control point offset vertical
+					var xe = x + xDis;      // x-end
+					var ye = y + yDis;      // y-end
+					
+					context.Translate (xDis, yDis);
+					context.MoveTo(x - xDis, y);
+					context.CurveTo(x - xDis, y - oy, x - ox, y - yDis, x, y - yDis);
+					context.CurveTo(x + ox, y - yDis, xe, y - oy, xe, y);
+					context.CurveTo(xe, y + oy, x + ox, ye, x, ye);
+					context.CurveTo(x - ox, ye, x - xDis, y + oy, x - xDis, y);
+
+					context.Fill ();
+					context.Restore ();
+				}
+			}
+		}
+
+		public static void BorderEllipse (Cairo.Context context, ShapeTree tree) {
+			var shape = tree.Shape as EllipseShape;
+			if (tree.Look.Border is SolidPen) {
+				var solidPen = (SolidPen)tree.Look.Border;
+				if (solidPen.Color.A > 0.0) {
+					var c = solidPen.Color;
+					var r = shape.Rectangle;
+					var w = solidPen.Width;
+					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.NewPath ();
+					context.Save ();
+					context.LineWidth = w;
+
+					var x = r.X;
+					var y = r.Y;
+					var xDis = 0.5 * r.Width;
+					var yDis = 0.5 * r.Height;
+					var kappa = 0.5522848; // 4 * ((√(2) - 1) / 3)
+					var ox = xDis * kappa;  // control point offset horizontal
+					var oy = yDis * kappa;  // control point offset vertical
+					var xe = x + xDis;      // x-end
+					var ye = y + yDis;      // y-end
+
+					context.Translate (xDis, yDis);
+					context.MoveTo(x - xDis, y);
+					context.CurveTo(x - xDis, y - oy, x - ox, y - yDis, x, y - yDis);
+					context.CurveTo(x + ox, y - yDis, xe, y - oy, xe, y);
+					context.CurveTo(xe, y + oy, x + ox, ye, x, ye);
+					context.CurveTo(x - ox, ye, x - xDis, y + oy, x - xDis, y);
+
+					context.Stroke ();
+					context.Restore ();
+				}
+			}
+		}
+
+		public static void FillLine (Cairo.Context context, ShapeTree tree) {
+			// Do nothing.
+		}
+
+		public static void BorderLine (Cairo.Context context, ShapeTree tree) {
+			var shape = tree.Shape as LineShape;
+			if (tree.Look.Border is SolidPen) {
+				var solidPen = (SolidPen)tree.Look.Border;
+				if (solidPen.Color.A > 0.0 && solidPen.Width > 0.0) {
+					var c = solidPen.Color;
+					var w = solidPen.Width;
+					var p1 = shape.Line.StartPoint;
+					var p2 = shape.Line.EndPoint;
+					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.NewPath ();
+					context.LineWidth = w;
+					context.MoveTo (p1.X, p1.Y);
+					context.LineTo (p2.X, p2.Y);
 					context.Stroke ();
 				}
 			}
@@ -223,15 +333,19 @@ namespace Utils.Drawing
 		public static DrawDelegate FillRoutine (Type type)
 		{
 			if (type == typeof (RectangleShape)) return FillRectangle;
+			if (type == typeof (EllipseShape)) return FillEllipse;
+			if (type == typeof (LineShape)) return FillLine;
 
-			throw new NotImplementedException ();
+			throw new NotImplementedException ("Fill type not supported: " + type.ToString ());
 		}
 
 		public static DrawDelegate BorderRoutine (Type type)
 		{
 			if (type == typeof (RectangleShape)) return BorderRectangle;
+			if (type == typeof (EllipseShape)) return BorderEllipse;
+			if (type == typeof (LineShape)) return BorderLine;
 
-			throw new NotImplementedException ();
+			throw new NotImplementedException ("Border type not supprted: " + type.ToString ());
 		}
 
 		public static Rectangle Bounds (ShapeBase shape)
@@ -254,6 +368,11 @@ namespace Utils.Drawing
 	{
 		public Brush Fill;
 		public Pen Border;
+
+		public Look (Brush fill, Pen border) {
+			this.Fill = fill;
+			this.Border = border;
+		}
 	}
 
 	public struct Color
@@ -277,6 +396,12 @@ namespace Utils.Drawing
 		public Color Color;
 		public double Width;
 
+		public static SolidPen Red = new SolidPen (1.0, 1.0, 0.0, 0.0, 1.0);
+		public static SolidPen Green = new SolidPen (1.0, 0.0, 1.0, 0.0, 1.0);
+		public static SolidPen Blue = new SolidPen (1.0, 0.0, 0.0, 1.0, 1.0);
+		public static SolidPen Black = new SolidPen (1.0, 0.0, 0.0, 0.0, 1.0);
+		public static SolidPen White = new SolidPen (1.0, 1.0, 1.0, 1.0, 1.0);
+
 		public SolidPen (double width, Color color) {
 			this.Width = width;
 			this.Color = color;
@@ -291,6 +416,12 @@ namespace Utils.Drawing
 	public class SolidBrush : Brush
 	{
 		public Color Color;
+
+		public static SolidBrush Red = new SolidBrush (1.0, 0.0, 0.0, 1.0);
+		public static SolidBrush Green = new SolidBrush (0.0, 1.0, 0.0, 1.0);
+		public static SolidBrush Blue = new SolidBrush (0.0, 0.0, 1.0, 1.0);
+		public static SolidBrush Black = new SolidBrush (0.0, 0.0, 0.0, 1.0);
+		public static SolidBrush White = new SolidBrush (1.0, 1.0, 1.0, 1.0);
 
 		public SolidBrush (Color color)
 		{
@@ -383,6 +514,7 @@ namespace Utils.Drawing
 		IEnumerable<ShapeBase>, 
 		Utils.Document.IDraw<Cairo.Context>
 	{
+		public Look Look;
 		public ShapeBase Shape;
 		public ShapeTree Parent;
 		public List<ShapeTree> Children;
@@ -393,8 +525,9 @@ namespace Utils.Drawing
 		{
 		}
 
-		public ShapeTree (ShapeBase shape)
+		public ShapeTree (Look look, ShapeBase shape)
 		{
+			this.Look = look;
 			this.Shape = shape;
 			Children = new List<ShapeTree> ();
 			var type = shape.GetType ();
@@ -405,12 +538,14 @@ namespace Utils.Drawing
 		public void Draw (Cairo.Context context)
 		{
 			Fill (context, this);
+
+
 			Border (context, this);
 		}
 
-		public ShapeTree AddChild (ShapeBase shape)
+		public ShapeTree AddChild (Look look, ShapeBase shape)
 		{
-			var node = new ShapeTree (shape);
+			var node = new ShapeTree (look, shape);
 			node.Parent = this;
 			Children.Add (node);
 			return node;
@@ -533,7 +668,6 @@ namespace Utils.Drawing
 
 	public class RectangleShapeBase : ShapeBase
 	{
-		public Look Look;
 		public Rectangle Rectangle;
 
 		public override object this[int indexer] {
@@ -568,8 +702,19 @@ namespace Utils.Drawing
 
 	public class LineShape : ShapeBase
 	{
-		public Pen Border;
 		public Line Line;
+
+		public LineShape (Line line) {
+			this.Line = line;
+		}
+
+		public LineShape (Point p1, Point p2) {
+			this.Line = new Line (p1, p2);
+		}
+
+		public LineShape (double x1, double y1, double x2, double y2) {
+			this.Line = new Line (x1, y1, x2, y2);
+		}
 
 		public override object this[int indexer] {
 			get {
@@ -588,7 +733,6 @@ namespace Utils.Drawing
 
 	public abstract class PolygonShapeBase : ShapeBase
 	{
-		public Look Look;
 		public List<Point> Points;
 
 		public override object this[int indexer] {

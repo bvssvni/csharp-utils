@@ -4,6 +4,230 @@
     <TestRecord Name="Utils">
       <Tests>
         <TestRecord Name="TestDrawing">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:20:09</TestDate>
+              <Passed>1</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:20:50</TestDate>
+              <Passed>1</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:30:26</TestDate>
+              <Passed>1</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:31:13</TestDate>
+              <Passed>1</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:31:35</TestDate>
+              <Passed>1</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:34:21</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:35:07</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:36:23</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:44:16</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:44:51</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:45:27</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:45:42</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:46:57</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:48:15</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:50:34</TestDate>
+              <Passed>2</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T19:54:27</TestDate>
+              <Passed>3</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>Test successful
+
+Execution time: 0,18ms</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T20:00:20</TestDate>
+              <Passed>4</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>Test successful
+
+Execution time: 0,23ms</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2013-05-26T20:01:40</TestDate>
+              <Passed>4</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>Test successful
+
+Execution time: 0,24ms</Message>
+            </UnitTestResult>
+          </Results>
           <Tests>
             <TestRecord Name="TestDrawEllipse">
               <Results>
@@ -25,6 +249,271 @@ Execution time: 0,05ms</Message>
                 </UnitTestResult>
                 <UnitTestResult>
                   <TestDate>2013-05-26T18:10:00</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:30:26</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.EllipseShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:248 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:441 
+  at Utils.TestDrawing.TestDrawEllipse () [0x00064] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:58 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:31:13</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : The requested feature is not implemented.</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.BorderRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:256 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00032] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:443 
+  at Utils.TestDrawing.TestDrawEllipse () [0x00064] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:58 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:31:35</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Border type not supprted: Utils.Drawing.EllipseShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.BorderRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:256 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00032] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:443 
+  at Utils.TestDrawing.TestDrawEllipse () [0x00064] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:58 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:34:21</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:35:07</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:36:23</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:44:16</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:44:51</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:45:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:45:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:46:57</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:48:15</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:50:34</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:54:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:00:20</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:01:40</TestDate>
                   <Passed>1</Passed>
                   <Errors>0</Errors>
                   <Failures>0</Failures>
@@ -104,6 +593,693 @@ Execution time: 0,03ms</Message>
                   <Message>Test successful
 
 Execution time: 0,03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:05:43</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:20:09</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:20:50</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:30:26</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:31:13</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:31:35</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:34:21</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:35:07</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:36:23</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:44:16</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:44:51</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:45:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:45:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:46:57</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:48:15</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:50:34</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:54:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:00:20</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:01:40</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TestBranchIteration">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:20:09</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : The requested feature is not implemented.</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:229 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:422 
+  at Utils.TestDrawing.TestBranchIteration () [0x00023] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:18 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:20:50</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.EllipseShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:229 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:422 
+  at Utils.TestDrawing.TestBranchIteration () [0x00023] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:18 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:30:26</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.EllipseShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:248 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:441 
+  at Utils.TestDrawing.TestBranchIteration () [0x00023] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:18 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:31:13</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : The requested feature is not implemented.</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.BorderRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:256 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00032] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:443 
+  at Utils.TestDrawing.TestBranchIteration () [0x00023] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:18 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:31:35</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Border type not supprted: Utils.Drawing.EllipseShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.BorderRoutine (System.Type type) [0x00022] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:256 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00032] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:443 
+  at Utils.TestDrawing.TestBranchIteration () [0x00023] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:18 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:34:21</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:268 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:462 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:35:07</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:268 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:462 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:36:23</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:268 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:462 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:44:16</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:282 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:490 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:44:51</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:282 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:490 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:45:27</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:282 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:490 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:45:42</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:282 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:476 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:490 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:46:57</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:290 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:484 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:498 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:48:15</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:291 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:485 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:499 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:50:34</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.NotImplementedException : Fill type not supported: Utils.Drawing.LineShape</Message>
+                  <StackTrace>  at Utils.Drawing.RenderingModule.FillRoutine (System.Type type) [0x00044] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:298 
+  at Utils.Drawing.ShapeTree..ctor (Look look, Utils.Drawing.ShapeBase shape) [0x00026] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:492 
+  at Utils.Drawing.ShapeTree.AddChild (Look look, Utils.Drawing.ShapeBase shape) [0x00000] in /Users/sven/Desktop/csharp-utils/Utils/Packs/Utils.Drawing.cs:506 
+  at Utils.TestDrawing.TestBranchIteration () [0x0002c] in /Users/sven/Desktop/csharp-utils/Utils/Tests/TestDrawing.cs:19 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d5] in /private/tmp/source/bockbuild/profiles/mono-2-10/build-root/mono-2.10.12/_build/mono-2.10.12.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T19:54:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:00:20</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:01:40</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TestDrawLine">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:00:20</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-05-26T20:01:40</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0,00ms</Message>
                   <ConsoleOutput />
                   <ConsoleError />
                 </UnitTestResult>
