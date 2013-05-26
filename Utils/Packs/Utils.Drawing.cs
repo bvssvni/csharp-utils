@@ -9,6 +9,13 @@ namespace Utils.Drawing
 		public double Y;
 		public double Width;
 		public double Height;
+
+		public Rectangle (double x, double y, double width, double height) {
+			this.X = x;
+			this.Y = y;
+			this.Width = width;
+			this.Height = height;
+		}
 	}
 
 	public struct ABRectangle
@@ -173,12 +180,57 @@ namespace Utils.Drawing
 		}
 	}
 
+	/// <summary>
+	/// Rendering module.
+	/// 
+	/// Contains the logic of rendering.
+	/// Directs the drawing routines per shape type.
+	/// </summary>
 	public static class RenderingModule
 	{
-		public delegate void DrawDelegate (Cairo.Context context);
+		public delegate void DrawDelegate (Cairo.Context context, ShapeTree tree);
 
-		public static DrawDelegate DrawingRoutine (Type type)
+		public static void FillRectangle (Cairo.Context context, ShapeTree tree) {
+			var shape = tree.Shape as RectangleShape;
+			if (shape.Look.Fill is SolidBrush) {
+				var solidBrush = (SolidBrush)shape.Look.Fill;
+				if (solidBrush.Color.A > 0.0) {
+					var c = solidBrush.Color;
+					var r = shape.Rectangle;
+					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.Rectangle (r.X, r.Y, r.Width, r.Height);
+					context.Fill ();
+				}
+			}
+		}
+
+		public static void BorderRectangle (Cairo.Context context, ShapeTree tree) {
+			var shape = tree.Shape as RectangleShape;
+			if (shape.Look.Border is SolidPen) {
+				var solidPen = (SolidPen)shape.Look.Border;
+				if (solidPen.Color.A > 0.0 && solidPen.Width > 0.0) {
+					var c = solidPen.Color;
+					var w = solidPen.Width;
+					var r = shape.Rectangle;
+					context.Color = new Cairo.Color (c.R, c.G, c.B, c.A);
+					context.LineWidth = w;
+					context.Rectangle (r.X, r.Y, r.Width, r.Height);
+					context.Stroke ();
+				}
+			}
+		}
+
+		public static DrawDelegate FillRoutine (Type type)
 		{
+			if (type == typeof (RectangleShape)) return FillRectangle;
+
+			throw new NotImplementedException ();
+		}
+
+		public static DrawDelegate BorderRoutine (Type type)
+		{
+			if (type == typeof (RectangleShape)) return BorderRectangle;
+
 			throw new NotImplementedException ();
 		}
 
@@ -191,9 +243,6 @@ namespace Utils.Drawing
 
 	public class Brush
 	{
-		public void Draw (Cairo.Context context, ShapeBase shape) {
-
-		}
 	}
 
 	public class Pen
@@ -213,17 +262,45 @@ namespace Utils.Drawing
 		public double G;
 		public double B;
 		public double A;
+
+		public Color (double r, double g, double b, double a)
+		{
+			this.R = r;
+			this.G = g;
+			this.B = b;
+			this.A = a;
+		}
 	}
 
 	public class SolidPen : Pen
 	{
 		public Color Color;
 		public double Width;
+
+		public SolidPen (double width, Color color) {
+			this.Width = width;
+			this.Color = color;
+		}
+
+		public SolidPen (double width, double r, double g, double b, double a) {
+			this.Width = width;
+			this.Color = new Color (r, g, b, a);
+		}
 	}
 
 	public class SolidBrush : Brush
 	{
 		public Color Color;
+
+		public SolidBrush (Color color)
+		{
+			this.Color = color;
+		}
+
+		public SolidBrush (double r, double g, double b, double a)
+		{
+			Color = new Color () {R = r, G = g, B = b, A = a};
+		}
 	}
 
 	public class NavigationBase
@@ -302,21 +379,33 @@ namespace Utils.Drawing
 		public abstract ShapeBase CopyTo (ShapeBase shape);
 	}
 
-	public class ShapeTree : IEnumerable<ShapeBase>
+	public class ShapeTree : 
+		IEnumerable<ShapeBase>, 
+		Utils.Document.IDraw<Cairo.Context>
 	{
 		public ShapeBase Shape;
 		public ShapeTree Parent;
 		public List<ShapeTree> Children;
+		public RenderingModule.DrawDelegate Fill;
+		public RenderingModule.DrawDelegate Border;
 
 		public ShapeTree ()
 		{
-
 		}
 
 		public ShapeTree (ShapeBase shape)
 		{
 			this.Shape = shape;
 			Children = new List<ShapeTree> ();
+			var type = shape.GetType ();
+			Fill = RenderingModule.FillRoutine (type);
+			Border = RenderingModule.BorderRoutine (type);
+		}
+
+		public void Draw (Cairo.Context context)
+		{
+			Fill (context, this);
+			Border (context, this);
 		}
 
 		public ShapeTree AddChild (ShapeBase shape)
