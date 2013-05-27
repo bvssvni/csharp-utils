@@ -158,7 +158,6 @@ float utils_sigmoid (float x) {
 
 /*
 Calculates the position of a particle that is attached to a spring.
-Can be combined in 2D or 3D.
 */
 float utils_spring (in float springCenter, in float springCoefficient,
 		    in float mass, in float start, in float vel, in float time) {
