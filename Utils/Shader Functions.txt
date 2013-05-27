@@ -155,3 +155,26 @@ to {0, 1}.
 float utils_sigmoid (float x) {
 	return 1.0 / (1.0 + exp(-x));	
 }
+
+/*
+Calculates the position of a particle that is attached to a spring.
+Can be combined in 2D or 3D.
+*/
+float utils_spring (in float springCenter, in float springCoefficient,
+		    in float mass, in float start, in float vel, in float time) {
+	if (springCoefficient == 0.0) {
+		return start + vel * time;	
+	}
+	if (mass == 0.0) {
+		return springCenter;	
+	}
+	
+	#define M_PI 3.1415926535897932384626433832795
+	float x = start - springCenter;
+	float s = sqrt (mass * vel * vel + springCoefficient * x * x);	
+	float v = s / sqrt (mass);
+	float a = s / sqrt (springCoefficient);
+	float an = asin (start / a);
+	return a * sin (2.0 * M_PI * time * v + an);
+}
+
