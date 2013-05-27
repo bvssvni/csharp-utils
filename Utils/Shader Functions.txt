@@ -1,5 +1,38 @@
 
 /*
+Returns true if a coordinate is within a quadratic bezier path.
+You get a smooth polygon shape that intersects center of pairs.
+Counter-clockwise returns true for inside and false for outside.
+*/
+bool utils_bezier (in vec2 p1, in vec2 p2, in vec2 p3, in vec2 pos) {
+	vec2 ex = 0.5 * (p2 - p1);
+	vec2 ey = 0.5 * (p3 - p2);
+	float a = ex.x;
+	float b = ey.x;
+	float c = p1.x + 0.5 * (p2.x - p1.x);
+	float d = ex.y;
+	float e = ey.y;
+	float f = p1.y + 0.5 * (p2.y - p1.y);
+	float det = a * e - b * d;
+	if (det == 0.0) {
+		return false;
+	}
+	
+	det = 1.0 / det;
+	vec2 p = vec2 (e * det * pos.x - b * det * pos.y - (c * e - b * f) * det,
+		       -d * det * pos.x + a * det * pos.y + (c * d - a * f) * det);
+	
+	if (p.x < 0.0) {
+		return p.y > 0.0;	
+	}
+	if (p.x > 1.0) {
+		return false;	
+	}
+	
+	return p.y > 1.0 - sqrt (1.0 - p.x * p.x);
+}
+
+/*
 Calculates the position of a particle that bounces within a range.
 Can be combined in 2D or 3D.
 */
