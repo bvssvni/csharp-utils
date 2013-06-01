@@ -116,6 +116,8 @@
     <Compile Include="Modules\ComputeTreeModule.cs" />
     <Compile Include="Modules\PairIndicesModule.cs" />
     <Compile Include="Tests\TestPairIndicesModule.cs" />
+    <Compile Include="Objects\GroupManager.cs" />
+    <Compile Include="Tests\TestGroupManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
