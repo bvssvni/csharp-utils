@@ -1,18 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/PairIndicesModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/PermutationModule.cs">
     <Files>
-      <File FileName="Modules/PairIndicesModule.cs" Line="23" Column="1" />
-      <File FileName="Tests/TestPairIndicesModule.cs" Line="35" Column="4" />
-      <File FileName="Objects/GroupManager.cs" Line="143" Column="6" />
-      <File FileName="Tests/TestGroupManager.cs" Line="88" Column="37" />
+      <File FileName="Modules/PermutationModule.cs" Line="45" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
             <Node name="Modules" expanded="True">
-              <Node name="PairIndicesModule.cs" selected="True" />
+              <Node name="PermutationModule.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -30,7 +27,7 @@
         <State expanded="True">
           <Node name="Utils" expanded="True">
             <Node name="Utils" expanded="True">
-              <Node name="TestGroupManager" selected="True" />
+              <Node name="TestGroupManager" expanded="True" selected="True" />
             </Node>
           </Node>
         </State>
