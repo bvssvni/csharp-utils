@@ -118,6 +118,8 @@
     <Compile Include="Tests\TestPairIndicesModule.cs" />
     <Compile Include="Objects\GroupManager.cs" />
     <Compile Include="Tests\TestGroupManager.cs" />
+    <Compile Include="Modules\PermutationModule.cs" />
+    <Compile Include="Tests\TestPermutationModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

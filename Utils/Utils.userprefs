@@ -1,19 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Shader Functions.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/PairIndicesModule.cs">
     <Files>
-      <File FileName="Tests/TestDrawing.cs" Line="79" Column="4" />
-      <File FileName="Packs/Utils.Drawing.cs" Line="286" Column="6" />
-      <File FileName="Shader Functions.txt" Line="34" Column="1" />
+      <File FileName="Modules/PairIndicesModule.cs" Line="23" Column="1" />
+      <File FileName="Tests/TestPairIndicesModule.cs" Line="35" Column="4" />
+      <File FileName="Objects/GroupManager.cs" Line="143" Column="6" />
+      <File FileName="Tests/TestGroupManager.cs" Line="88" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True" />
-            <Node name="Objects" expanded="True" />
-            <Node name="Packs" expanded="True" />
-            <Node name="Shader Functions.txt" selected="True" />
+            <Node name="Modules" expanded="True">
+              <Node name="PairIndicesModule.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -30,7 +30,7 @@
         <State expanded="True">
           <Node name="Utils" expanded="True">
             <Node name="Utils" expanded="True">
-              <Node name="TestDrawing" expanded="True" selected="True" />
+              <Node name="TestGroupManager" selected="True" />
             </Node>
           </Node>
         </State>
