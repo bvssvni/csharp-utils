@@ -17,6 +17,10 @@ namespace Utils
 		public static int Index (int x, int y) {
 			return x + y * (y - 1) / 2;
 		}
+		
+		public static int Count (int n) {
+			return n * (n - 1) / 2;
+		}
 	}
 }
 
