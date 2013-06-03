@@ -6,7 +6,7 @@ using Play;
 namespace Utils
 {
 	/// <summary>
-	/// 
+	/// This is not quite solved since how to deal with events efficiently needs some work.
 	/// </summary>
 	public class GroupManager
 	{
