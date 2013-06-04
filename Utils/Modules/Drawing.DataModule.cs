@@ -3,6 +3,17 @@ using System.Collections.Generic;
 
 namespace Utils.Drawing
 {
+	/// <summary>
+	/// Data module.
+	/// 
+	/// Supported types:
+	/// 
+	/// 	TYPE			LIST
+	/// 	Rectangle		RectangleList
+	/// 	Point			PointList
+	/// 	Line
+	/// 	Color
+	/// </summary>
 	public static class DataModule
 	{
 		public const int TYPE_RECTANGLE = 1;
@@ -27,6 +38,9 @@ namespace Utils.Drawing
 
 		public const int TYPE_RECTANGLE_LIST = 101;
 		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
+
+		public const int TYPE_POINT_LIST = 202;
+		public const int FIELD_POINT_LIST_ITEMS = 1;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -151,6 +165,29 @@ namespace Utils.Drawing
 			}
 
 			manager [row, 0] = rectangleList.Items;
+		}
+
+		public static void AddPointList (GroupManager manager, PointList pointList) {
+			manager.Add (TYPE_POINT_LIST, pointList.Items);
+		}
+
+		public static PointList GetPointList (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_POINT_LIST) {
+				throw new Exception ("Invalid type: Expected PointList");
+			}
+
+			var pointList = new PointList () {
+				Items = (List<Point>)manager [row, FIELD_POINT_LIST_ITEMS]
+			};
+			return pointList;
+		}
+
+		public static void UpdatePointList (GroupManager manager, int row, PointList pointList) {
+			if ((int)manager [row, 0] != TYPE_POINT_LIST) {
+				throw new Exception ("Invalid type: Expected PointList");
+			}
+
+			manager [row, 0] = pointList.Items;
 		}
 	}
 }

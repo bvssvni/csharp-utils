@@ -68,6 +68,17 @@ namespace Utils
 		}
 
 		[Test()]
+		public void TestPointList ()
+		{
+			var manager = new GroupManager ();
+			var pointList = new PointList ();
+			DataModule.AddPointList (manager, pointList);
+			manager.Commit ();
+			pointList = DataModule.GetPointList (manager, 0);
+			DataModule.UpdatePointList (manager, 0, pointList);
+		}
+
+		[Test()]
 		public void TestLine ()
 		{
 			var manager = new GroupManager ();
