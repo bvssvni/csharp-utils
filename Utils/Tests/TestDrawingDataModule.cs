@@ -43,6 +43,8 @@ namespace Utils
 			manager.Commit ();
 			rectangleList = DataModule.GetRectangleList (manager, 0);
 			DataModule.UpdateRectangleList (manager, 0, rectangleList);
+			manager.Commit ();
+			rectangleList = DataModule.GetRectangleList (manager, 0);
 		}
 
 		[Test()]
@@ -76,6 +78,8 @@ namespace Utils
 			manager.Commit ();
 			pointList = DataModule.GetPointList (manager, 0);
 			DataModule.UpdatePointList (manager, 0, pointList);
+			manager.Commit ();
+			pointList = DataModule.GetPointList (manager, 0);
 		}
 
 		[Test()]
@@ -100,6 +104,19 @@ namespace Utils
 
 			line = DataModule.GetLine (manager, 0);
 			Assert.True (line.StartPoint.X == 10);
+		}
+
+		[Test()]
+		public void TestLineList ()
+		{
+			var manager = new GroupManager ();
+			var lineList = new LineList ();
+			DataModule.AddLineList (manager, lineList);
+			manager.Commit ();
+			lineList = DataModule.GetLineList (manager, 0);
+			DataModule.UpdateLineList (manager, 0, lineList);
+			manager.Commit ();
+			lineList = DataModule.GetLineList (manager, 0);
 		}
 
 		public void TestColor ()

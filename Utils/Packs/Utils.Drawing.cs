@@ -145,6 +145,11 @@ namespace Utils.Drawing
 		}
 	}
 
+	public struct LineList
+	{
+		public List<Line> Items;
+	}
+
 	public static class InterpolationModule
 	{
 		public delegate object Interpolate2Delegate (object a0, object a1, double time);

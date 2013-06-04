@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Utils.Drawing;
 
-namespace Utils.Drawing
+namespace Utils
 {
 	/// <summary>
 	/// Data module.
@@ -36,11 +37,14 @@ namespace Utils.Drawing
 		public const int FIELD_COLOR_B = 3;
 		public const int FIELD_COLOR_A = 4;
 
-		public const int TYPE_RECTANGLE_LIST = 101;
+		public const int TYPE_RECTANGLE_LIST = 1001;
 		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
 
-		public const int TYPE_POINT_LIST = 202;
+		public const int TYPE_POINT_LIST = 1002;
 		public const int FIELD_POINT_LIST_ITEMS = 1;
+
+		public const int TYPE_LINE_LIST = 1003;
+		public const int FIELD_LINE_LIST_ITEMS = 1;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -164,7 +168,7 @@ namespace Utils.Drawing
 				throw new Exception ("Invalid type: Expected RectangleList");
 			}
 
-			manager [row, 0] = rectangleList.Items;
+			manager [row, FIELD_RECTANGLE_LIST_ITEMS] = rectangleList.Items;
 		}
 
 		public static void AddPointList (GroupManager manager, PointList pointList) {
@@ -187,7 +191,30 @@ namespace Utils.Drawing
 				throw new Exception ("Invalid type: Expected PointList");
 			}
 
-			manager [row, 0] = pointList.Items;
+			manager [row, FIELD_POINT_LIST_ITEMS] = pointList.Items;
+		}
+
+		public static void AddLineList (GroupManager manager, LineList lineList) {
+			manager.Add (TYPE_LINE_LIST, lineList.Items);
+		}
+
+		public static LineList GetLineList (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_LINE_LIST) {
+				throw new Exception ("Invalid type: Expected LineList");
+			}
+
+			var lineList = new LineList () {
+				Items = (List<Line>)manager [row, FIELD_LINE_LIST_ITEMS]
+			};
+			return lineList;
+		}
+
+		public static void UpdateLineList (GroupManager manager, int row, LineList list) {
+			if ((int)manager [row, 0] != TYPE_LINE_LIST) {
+				throw new Exception ("Invalid type: Expected LineList");
+			}
+
+			manager [row, FIELD_LINE_LIST_ITEMS] = list.Items;
 		}
 	}
 }
