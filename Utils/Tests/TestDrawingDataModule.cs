@@ -302,6 +302,33 @@ namespace Utils
 
 			quaternionList = DataModule.GetQuaternionList (manager, 0);
 		}
+
+		[Test()]
+		public void TestWheel ()
+		{
+			var manager = new GroupManager ();
+			var wheel = new Wheel () {
+				Position = new Point () {
+					X = 0,
+					Y = 1
+				},
+				Angle = 2
+			};
+			DataModule.AddWheel (manager, wheel);
+			manager.Commit ();
+
+			wheel = DataModule.GetWheel (manager, 0);
+			Assert.True (wheel.Position.X == 0);
+			Assert.True (wheel.Position.Y == 1);
+			Assert.True (wheel.Angle == 2);
+
+			wheel.Position.X = 10;
+			DataModule.UpdateWheel (manager, 0, wheel);
+			manager.Commit ();
+
+			wheel = DataModule.GetWheel (manager, 0);
+			Assert.True (wheel.Position.X == 10);
+		}
 	}
 }
 

@@ -17,6 +17,7 @@ namespace Utils
 	/// 	Point4			Point4List
 	/// 	Quaternion		QuaternionList
 	/// 	Rectangle		RectangleList
+	/// 	Wheel
 	/// </summary>
 	public static class DataModule
 	{
@@ -56,6 +57,10 @@ namespace Utils
 		public const int FIELD_QUATERNION_Y = 2;
 		public const int FIELD_QUATERNION_Z = 3;
 		public const int FIELD_QUATERNION_W = 4;
+
+		public const int TYPE_WHEEL = 8;
+		public const int FIELD_WHEEL_POSITION = 1;
+		public const int FIELD_WHEEL_ANGLE = 2;
 
 		public const int TYPE_RECTANGLE_LIST = 1001;
 		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
@@ -430,6 +435,31 @@ namespace Utils
 			}
 
 			manager [row, FIELD_QUATERNION_LIST_ITEM] = quaternionList.Items;
+		}
+
+		public static void AddWheel (GroupManager manager, Wheel wheel) {
+			manager.Add (TYPE_WHEEL, wheel.Position, wheel.Angle);
+		}
+
+		public static Wheel GetWheel (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_WHEEL) {
+				throw new Exception ("Invalid type: Expected Wheel");
+			}
+
+			var wheel = new Wheel () {
+				Position = (Point)manager [row, FIELD_WHEEL_POSITION],
+				Angle = (double)manager [row, FIELD_WHEEL_ANGLE]
+			};
+			return wheel;
+		}
+
+		public static void UpdateWheel (GroupManager manager, int row, Wheel wheel) {
+			if ((int)manager [row, 0] != TYPE_WHEEL) {
+				throw new Exception ("Invalid type: Expted Wheel");
+			}
+
+			manager [row, FIELD_WHEEL_POSITION] = wheel.Position;
+			manager [row, FIELD_WHEEL_ANGLE] = wheel.Angle;
 		}
 	}
 }
