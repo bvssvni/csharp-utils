@@ -14,6 +14,7 @@ namespace Utils
 	/// 	Line			LineList
 	/// 	Point			PointList
 	/// 	Point3			Point3List
+	/// 	Point4
 	/// 	Rectangle		RectangleList
 	/// </summary>
 	public static class DataModule
@@ -42,6 +43,12 @@ namespace Utils
 		public const int FIELD_POINT3_X = 1;
 		public const int FIELD_POINT3_Y = 2;
 		public const int FIELD_POINT3_Z = 3;
+
+		public const int TYPE_POINT4 = 6;
+		public const int FIELD_POINT4_X = 1;
+		public const int FIELD_POINT4_Y = 2;
+		public const int FIELD_POINT4_Z = 3;
+		public const int FIELD_POINT4_W = 4;
 
 		public const int TYPE_RECTANGLE_LIST = 1001;
 		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
@@ -306,6 +313,35 @@ namespace Utils
 			}
 
 			manager [row, FIELD_POINT3_LIST_ITEMS] = point3List.Items;
+		}
+
+		public static void AddPoint4 (GroupManager manager, Point4 point4) {
+			manager.Add (TYPE_POINT4, point4.X, point4.Y, point4.Z, point4.W);
+		}
+
+		public static Point4 GetPoint4 (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_POINT4) {
+				throw new Exception ("Invalid type: Expected Point4");
+			}
+
+			var point4 = new Point4 () {
+				X = (double)manager [row, FIELD_POINT4_X],
+				Y = (double)manager [row, FIELD_POINT4_Y],
+				Z = (double)manager [row, FIELD_POINT4_Z],
+				W = (double)manager [row, FIELD_POINT4_W]
+			};
+			return point4;
+		}
+
+		public static void UpdatePoint4 (GroupManager manager, int row, Point4 point4) {
+			if ((int)manager [row, 0] != TYPE_POINT4) {
+				throw new Exception ("Invalid type: Expected Point4");
+			}
+
+			manager [row, FIELD_POINT4_X] = point4.X;
+			manager [row, FIELD_POINT4_Y] = point4.Y;
+			manager [row, FIELD_POINT4_Z] = point4.Z;
+			manager [row, FIELD_POINT4_W] = point4.W;
 		}
 	}
 }

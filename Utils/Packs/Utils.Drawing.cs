@@ -51,6 +51,19 @@ namespace Utils.Drawing
 		public List<Point3> Items;
 	}
 
+	public struct Point4
+	{
+		public double X;
+		public double Y;
+		public double Z;
+		public double W;
+	}
+
+	public struct Point4List
+	{
+		public List<Point4List> Items;
+	}
+
 	public struct Wheel
 	{
 		public Point Pos;
