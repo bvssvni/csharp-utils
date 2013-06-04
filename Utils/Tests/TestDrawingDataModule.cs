@@ -12,22 +12,22 @@ namespace Utils
 		{
 			var manager = new GroupManager ();
 			var rect = new Rectangle (0, 1, 2, 3);
-			rect.AddTo (manager);
+			DataModule.AddRectangle (manager, rect);
 			manager.Commit ();
 
 			rect.X = 10;
 
-			rect.GetFrom (manager, 0);
+			rect = DataModule.GetRectangle (manager, 0);
 			Assert.True (rect.X == 0);
 			Assert.True (rect.Y == 1);
 			Assert.True (rect.Width == 2);
 			Assert.True (rect.Height == 3);
 
 			rect.X = 10;
-			rect.Update (manager, 0);
+			DataModule.UpdateRectangle (manager, 0, rect);
 			manager.Commit ();
 
-			rect.GetFrom (manager, 0);
+			rect = DataModule.GetRectangle (manager, 0);
 			Assert.True (rect.X == 10);
 		}
 
@@ -36,21 +36,45 @@ namespace Utils
 		{
 			var manager = new GroupManager ();
 			var point = new Point (0, 1);
-			point.AddTo (manager);
+			DataModule.AddPoint (manager, point);
 			manager.Commit ();
 
 			point.X = 10;
 
-			point.GetFrom (manager, 0);
+			point = DataModule.GetPoint (manager, 0);
 			Assert.True (point.X == 0);
 			Assert.True (point.Y == 1);
 
 			point.X = 10;
-			point.Update (manager, 0);
+			DataModule.UpdatePoint (manager, 0, point);
 			manager.Commit ();
 
-			point.GetFrom (manager, 0);
+			point = DataModule.GetPoint (manager, 0);
 			Assert.True (point.X == 10);
+		}
+
+		[Test()]
+		public void TestLine ()
+		{
+			var manager = new GroupManager ();
+			var line = new Line (0, 1, 2, 3);
+			DataModule.AddLine (manager, line);
+			manager.Commit ();
+
+			line.StartPoint = new Point (10, 11);
+
+			line = DataModule.GetLine (manager, 0);
+			Assert.True (line.StartPoint.X == 0);
+			Assert.True (line.StartPoint.Y == 1);
+			Assert.True (line.EndPoint.X == 2);
+			Assert.True (line.EndPoint.Y == 3);
+
+			line.StartPoint = new Point (10, 11);
+			DataModule.UpdateLine (manager, 0, line);
+			manager.Commit ();
+
+			line = DataModule.GetLine (manager, 0);
+			Assert.True (line.StartPoint.X == 10);
 		}
 	}
 }
