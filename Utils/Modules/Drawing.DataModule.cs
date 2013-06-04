@@ -18,6 +18,12 @@ namespace Utils.Drawing
 		public const int FIELD_LINE_START_POINT = 1;
 		public const int FIELD_LINE_END_POINT = 2;
 
+		public const int TYPE_COLOR = 4;
+		public const int FIELD_COLOR_R = 1;
+		public const int FIELD_COLOR_G = 2;
+		public const int FIELD_COLOR_B = 3;
+		public const int FIELD_COLOR_A = 4;
+
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
 		}
@@ -91,6 +97,33 @@ namespace Utils.Drawing
 
 			manager [row, FIELD_LINE_START_POINT] = line.StartPoint;
 			manager [row, FIELD_LINE_END_POINT] = line.EndPoint;
+		}
+
+		public static void AddColor (GroupManager manager, Color color) {
+			manager.Add (TYPE_COLOR, color.R, color.G, color.B, color.A);
+		}
+
+		public static Color GetColor (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_COLOR) {
+				throw new Exception ("Invalid type: Expected Color");
+			}
+
+			var color = new Color ((double)manager [row, FIELD_COLOR_R],
+			                       (double)manager [row, FIELD_COLOR_G],
+			                       (double)manager [row, FIELD_COLOR_B],
+			                       (double)manager [row, FIELD_COLOR_A]);
+			return color;
+		}
+
+		public static void UpdateColor (GroupManager manager, int row, Color color) {
+			if ((int)manager [row, 0] != TYPE_COLOR) {
+				throw new Exception ("Invalid type: Expected Color");
+			}
+
+			manager [row, FIELD_COLOR_R] = color.R;
+			manager [row, FIELD_COLOR_G] = color.G;
+			manager [row, FIELD_COLOR_B] = color.B;
+			manager [row, FIELD_COLOR_A] = color.A;
 		}
 	}
 }

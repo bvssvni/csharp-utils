@@ -76,6 +76,28 @@ namespace Utils
 			line = DataModule.GetLine (manager, 0);
 			Assert.True (line.StartPoint.X == 10);
 		}
+
+		public void TestColor ()
+		{
+			var manager = new GroupManager ();
+			var color = new Color (0, 0.1, 0.2, 0.3);
+			DataModule.AddColor (manager, color);
+			manager.Commit ();
+
+			color.R = 1.0;
+
+			color = DataModule.GetColor (manager, 0);
+			Assert.True (color.R == 0);
+			Assert.True (color.G == 0.1);
+			Assert.True (color.B == 0.2);
+			Assert.True (color.A == 0.3);
+
+			color.R = 1.0;
+			DataModule.UpdateColor (manager, 0, color);
+
+			color = DataModule.GetColor (manager, 0);
+			Assert.True (color.R == 1);
+		}
 	}
 }
 
