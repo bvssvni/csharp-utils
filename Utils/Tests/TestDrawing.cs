@@ -35,7 +35,12 @@ namespace Utils
 			var format = Cairo.Format.ARGB32;
 			var image = new Cairo.ImageSurface (bytes, format, 32, 32, 32 * 4); 
 			var shape = new RectangleShape ();
-			shape.Rectangle = new Rectangle (10.0, 10.0, 12.0, 12.0);
+			shape.Rectangle = new Rectangle () {
+				X = 10.0, 
+				Y = 10.0, 
+				Width = 12.0,
+				Height = 12.0
+			};
 			var look = new Look (SolidBrush.Red, SolidPen.Black);
 			var op = new ShapeTree (look, shape);
 			using (var context = new Cairo.Context (image)) {
@@ -53,7 +58,12 @@ namespace Utils
 			var format = Cairo.Format.ARGB32;
 			var image = new Cairo.ImageSurface (bytes, format, 32, 32, 32 * 4); 
 			var shape = new EllipseShape ();
-			shape.Rectangle = new Rectangle (10.0, 4.0, 12.0, 18.0);
+			shape.Rectangle = new Rectangle () {
+				X = 10.0, 
+				Y = 4.0,
+				Width = 12.0,
+				Height = 18.0
+			};
 			var look = new Look (SolidBrush.Red, SolidPen.Black);
 			var op = new ShapeTree (look, shape);
 			using (var context = new Cairo.Context (image)) {

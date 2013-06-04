@@ -9,13 +9,6 @@ namespace Utils.Drawing
 		public double Y;
 		public double Width;
 		public double Height;
-
-		public Rectangle (double x, double y, double width, double height) {
-			this.X = x;
-			this.Y = y;
-			this.Width = width;
-			this.Height = height;
-		}
 	}
 
 	public struct RectangleList

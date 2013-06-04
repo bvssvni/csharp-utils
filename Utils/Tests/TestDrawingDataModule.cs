@@ -12,7 +12,12 @@ namespace Utils
 		public void TestRectangle()
 		{
 			var manager = new GroupManager ();
-			var rect = new Rectangle (0, 1, 2, 3);
+			var rect = new Rectangle () {
+				X = 0, 
+				Y = 1, 
+				Width = 2, 
+				Height = 3
+			};
 			DataModule.AddRectangle (manager, rect);
 			manager.Commit ();
 

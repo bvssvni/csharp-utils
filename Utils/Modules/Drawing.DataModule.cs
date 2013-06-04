@@ -58,12 +58,12 @@ namespace Utils
 				throw new Exception ("Invalid type: Expected Rectangle");
 			}
 
-			var rect = new Rectangle (
-				(double)manager [row, FIELD_RECTANGLE_X],
-				(double)manager [row, FIELD_RECTANGLE_Y],
-				(double)manager [row, FIELD_RECTANGLE_WIDTH],
-			    (double)manager [row, FIELD_RECTANGLE_HEIGHT]
-				);
+			var rect = new Rectangle () {
+				X = (double)manager [row, FIELD_RECTANGLE_X],
+				Y = (double)manager [row, FIELD_RECTANGLE_Y],
+				Width = (double)manager [row, FIELD_RECTANGLE_WIDTH],
+			    Height = (double)manager [row, FIELD_RECTANGLE_HEIGHT]
+			};
 			return rect;
 		}
 
