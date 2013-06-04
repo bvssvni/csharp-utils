@@ -1,13 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/PermutationModule.cs">
-    <Files>
-      <File FileName="Modules/PermutationModule.cs" Line="75" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Utils" expanded="True" />
+          <Node name="Utils" expanded="True">
+            <Node name="Modules" expanded="True" selected="True" />
+          </Node>
         </State>
       </Pad>
       <Pad Id="ClassPad">

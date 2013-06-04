@@ -21,7 +21,7 @@ namespace Utils
 			manager.Add ("pear");
 			Assert.True (Group.Size (wordsOfLengthFour.Group) == 0);
 			Assert.True (manager.Count == 0);
-			manager.Refresh ();
+			manager.Commit ();
 			Assert.True (Group.Size (wordsOfLengthFour.Group) == 1);
 			Assert.True (manager.Count == 2);
 			Assert.True (wordsOfLengthFour.Group.CompareTo (new Group (new int[] {1, 2})) == 0);
@@ -35,10 +35,10 @@ namespace Utils
 			manager.Add ("pear");
 			manager.Add ("orange");
 			Assert.True (manager.Count == 0);
-			manager.Refresh ();
+			manager.Commit ();
 			manager.RemoveAt (1);
 			Assert.True (manager.Count == 3);
-			manager.Refresh ();
+			manager.Commit ();
 			Assert.True (manager.Count == 2);
 			Assert.True (((string)manager[0, 0]) == "apple");
 			Assert.True (((string)manager[1, 0]) == "orange");
@@ -58,11 +58,11 @@ namespace Utils
 			manager.Add ("pear");
 			Assert.True (Group.Size (wordsOfLengthFour.Group) == 0);
 			Assert.True (manager.Count == 0);
-			manager.Refresh ();
+			manager.Commit ();
 			Assert.True (Group.Size (wordsOfLengthFour.Group) == 1);
 
 			manager[1, 0] = "orange";
-			manager.Refresh ();
+			manager.Commit ();
 			Assert.True (Group.Size (wordsOfLengthFour.Group) == 0);
 		}
 
@@ -79,14 +79,24 @@ namespace Utils
 			
 			manager.AddController (wordsOfLengthFour);
 			manager.Add ("banana");
-			manager.Refresh ();
+			manager.Commit ();
 
 			manager[0, 0] = "pear";
 			manager.RemoveAt (0);
-			manager.Refresh ();
+			manager.Commit ();
 
 			Assert.True (manager.Count == 0);
 			Assert.True (Group.Size (wordsOfLengthFour.Group) == 0);
+		}
+
+		[Test()]
+		public void TestRollback ()
+		{
+			var manager = new GroupManager ();
+			manager.Add ("banana");
+			manager.Rollback ();
+			manager.Commit ();
+			Assert.True (manager.Count == 0);
 		}
 	}
 }
