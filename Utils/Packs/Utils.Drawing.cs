@@ -18,6 +18,11 @@ namespace Utils.Drawing
 		}
 	}
 
+	public struct RectangleList
+	{
+		public List<Rectangle> Items;
+	}
+
 	public struct ABRectangle
 	{
 		public double X1;
@@ -119,7 +124,7 @@ namespace Utils.Drawing
 		}
 	}
 
-	public class Line
+	public struct Line
 	{
 		public Point StartPoint;
 		public Point EndPoint;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Utils.Drawing;
 
@@ -29,6 +30,19 @@ namespace Utils
 
 			rect = DataModule.GetRectangle (manager, 0);
 			Assert.True (rect.X == 10);
+		}
+
+		[Test()]
+		public void TestRectangleList ()
+		{
+			var manager = new GroupManager ();
+			var rectangleList = new RectangleList () {
+				Items = new List<Rectangle> ()
+			};
+			DataModule.AddRectangeList (manager, rectangleList);
+			manager.Commit ();
+			rectangleList = DataModule.GetRectangleList (manager, 0);
+			DataModule.UpdateRectangleList (manager, 0, rectangleList);
 		}
 
 		[Test()]

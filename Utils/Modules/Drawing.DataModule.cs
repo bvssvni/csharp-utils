@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Utils.Drawing
 {
@@ -23,6 +24,9 @@ namespace Utils.Drawing
 		public const int FIELD_COLOR_G = 2;
 		public const int FIELD_COLOR_B = 3;
 		public const int FIELD_COLOR_A = 4;
+
+		public const int TYPE_RECTANGLE_LIST = 101;
+		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -124,6 +128,29 @@ namespace Utils.Drawing
 			manager [row, FIELD_COLOR_G] = color.G;
 			manager [row, FIELD_COLOR_B] = color.B;
 			manager [row, FIELD_COLOR_A] = color.A;
+		}
+
+		public static void AddRectangeList (GroupManager manager, RectangleList rectangleList) {
+			manager.Add (TYPE_RECTANGLE_LIST, rectangleList.Items);
+		}
+
+		public static RectangleList GetRectangleList (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_RECTANGLE_LIST) {
+				throw new Exception ("Invalid type: Expected RectangleList");
+			}
+
+			var rectangleList = new RectangleList () {
+				Items = (List<Rectangle>)manager [row, FIELD_RECTANGLE_LIST_ITEMS]
+			};
+			return rectangleList;
+		}
+
+		public static void UpdateRectangleList (GroupManager manager, int row, RectangleList rectangleList) {
+			if ((int)manager [row, 0] != TYPE_RECTANGLE_LIST) {
+				throw new Exception ("Invalid type: Expected RectangleList");
+			}
+
+			manager [row, 0] = rectangleList.Items;
 		}
 	}
 }
