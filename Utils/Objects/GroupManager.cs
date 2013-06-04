@@ -49,6 +49,9 @@ namespace Utils
 	/// 	AddMember - Is called when a new row is added to group.
 	/// 	RemoveMemeber - Is called when a row is removed from a group.
 	/// 	Refresh - Is called after changes to group is done.
+	/// 
+	/// The group manager checks for equality before marking updates as changes.
+	/// Override 'Equals' to not check by reference.
 	/// </summary>
 	public class GroupManager
 	{
