@@ -10,10 +10,11 @@ namespace Utils
 	/// Supported types:
 	/// 
 	/// 	TYPE			LIST
-	/// 	Rectangle		RectangleList
-	/// 	Point			PointList
-	/// 	Line			LineList
 	/// 	Color			ColorList
+	/// 	Line			LineList
+	/// 	Point			PointList
+	/// 	Point3
+	/// 	Rectangle		RectangleList
 	/// </summary>
 	public static class DataModule
 	{
@@ -36,6 +37,11 @@ namespace Utils
 		public const int FIELD_COLOR_G = 2;
 		public const int FIELD_COLOR_B = 3;
 		public const int FIELD_COLOR_A = 4;
+
+		public const int TYPE_POINT3 = 5;
+		public const int FIELD_POINT3_X = 1;
+		public const int FIELD_POINT3_Y = 2;
+		public const int FIELD_POINT3_Z = 3;
 
 		public const int TYPE_RECTANGLE_LIST = 1001;
 		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
@@ -247,6 +253,33 @@ namespace Utils
 			}
 
 			manager [row, FIELD_COLOR_LIST_ITEMS] = colorList.Items;
+		}
+
+		public static void AddPoint3 (GroupManager manager, Point3 point3) {
+			manager.Add (TYPE_POINT3, point3.X, point3.Y, point3.Z);
+		}
+
+		public static Point3 GetPoint3 (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_POINT3) {
+				throw new Exception ("Invalid type: Expected Point3");
+			}
+
+			var point3 = new Point3 () {
+				X = (double)manager [row, FIELD_POINT3_X],
+				Y = (double)manager [row, FIELD_POINT3_Y],
+				Z = (double)manager [row, FIELD_POINT3_Z]
+			};
+			return point3;
+		}
+
+		public static void UpdatePoint3 (GroupManager manager, int row, Point3 point3) {
+			if ((int)manager [row, 0] != TYPE_POINT3) {
+				throw new Exception ("Invalid type: Expected Point3");
+			}
+
+			manager [row, FIELD_POINT3_X] = point3.X;
+			manager [row, FIELD_POINT3_Y] = point3.Y;
+			manager [row, FIELD_POINT3_Z] = point3.Z;
 		}
 	}
 }

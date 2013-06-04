@@ -181,6 +181,32 @@ namespace Utils
 			manager.Commit ();
 			colorList = DataModule.GetColorList (manager, 0);
 		}
+
+		[Test()]
+		public void TestPoint3 ()
+		{
+			var manager = new GroupManager ();
+			var point3 = new Point3 () {
+				X = 0,
+				Y = 1,
+				Z = 2
+			};
+			DataModule.AddPoint3 (manager, point3);
+			manager.Commit ();
+
+			point3.X = 1;
+
+			point3 = DataModule.GetPoint3 (manager, 0);
+			Assert.True (point3.X == 0);
+			Assert.True (point3.Y == 1);
+			Assert.True (point3.Z == 2);
+
+			point3.X = 10;
+			DataModule.UpdatePoint3 (manager, 0, point3);
+			manager.Commit ();
+			point3 = DataModule.GetPoint3 (manager, 0);
+			Assert.True (point3.X == 10);
+		}
 	}
 }
 
