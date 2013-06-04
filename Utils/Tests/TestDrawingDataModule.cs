@@ -94,7 +94,16 @@ namespace Utils
 		public void TestLine ()
 		{
 			var manager = new GroupManager ();
-			var line = new Line (0, 1, 2, 3);
+			var line = new Line () {
+				StartPoint = new Point () {
+					X = 0, 
+					Y = 1
+				}, 
+				EndPoint = new Point () {
+					X = 2, 
+					Y = 3
+				}
+			};
 			DataModule.AddLine (manager, line);
 			manager.Commit ();
 

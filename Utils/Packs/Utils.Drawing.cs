@@ -128,16 +128,6 @@ namespace Utils.Drawing
 	{
 		public Point StartPoint;
 		public Point EndPoint;
-
-		public Line (Point p1, Point p2) {
-			StartPoint = p1;
-			EndPoint = p2;
-		}
-
-		public Line (double x1, double y1, double x2, double y2) {
-			StartPoint = new Point () {X = x1, Y = y1};
-			EndPoint = new Point () {X = x2, Y = y2};
-		}
 	}
 
 	public struct LineList
@@ -721,11 +711,23 @@ namespace Utils.Drawing
 		}
 
 		public LineShape (Point p1, Point p2) {
-			this.Line = new Line (p1, p2);
+			this.Line = new Line () {
+				StartPoint = p1,
+				EndPoint = p2
+			};
 		}
 
 		public LineShape (double x1, double y1, double x2, double y2) {
-			this.Line = new Line (x1, y1, x2, y2);
+			this.Line = new Line () {
+				StartPoint = new Point () {
+					X = x1, 
+					Y = y1
+				}, 
+				EndPoint = new Point () {
+					X = x2, 
+					Y = y2
+				}
+			};
 		}
 
 		public override object this[int indexer] {

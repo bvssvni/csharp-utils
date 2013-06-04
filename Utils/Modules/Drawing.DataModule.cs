@@ -112,8 +112,10 @@ namespace Utils
 				throw new Exception ("Invalid type: Expected Line");
 			}
 
-			var line = new Line ((Point)manager [row, FIELD_LINE_START_POINT],
-			                     (Point)manager [row, FIELD_LINE_END_POINT]);
+			var line = new Line () {
+				StartPoint = (Point)manager [row, FIELD_LINE_START_POINT],
+			    EndPoint = (Point)manager [row, FIELD_LINE_END_POINT]
+			};
 			return line;
 		}
 
