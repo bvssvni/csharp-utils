@@ -207,6 +207,18 @@ namespace Utils
 			point3 = DataModule.GetPoint3 (manager, 0);
 			Assert.True (point3.X == 10);
 		}
+
+		[Test()]
+		public void TestPoint3List ()
+		{
+			var manager = new GroupManager ();
+			var point3List = new Point3List ();
+			DataModule.AddPoint3List (manager, point3List);
+			manager.Commit ();
+			point3List = DataModule.GetPoint3List (manager, 0);
+			DataModule.UpdatePoint3List (manager, 0, point3List);
+			point3List = DataModule.GetPoint3List (manager, 0);
+		}
 	}
 }
 
