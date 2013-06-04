@@ -64,9 +64,22 @@ namespace Utils.Drawing
 		public List<Point4> Items;
 	}
 
+	public struct Quaternion
+	{
+		public double X;
+		public double Y;
+		public double Z;
+		public double W;
+	}
+
+	public struct QuaternionList
+	{
+		public List<Quaternion> Items;
+	}
+
 	public struct Wheel
 	{
-		public Point Pos;
+		public Point Position;
 		public double Angle;
 	}
 

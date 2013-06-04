@@ -15,6 +15,7 @@ namespace Utils
 	/// 	Point			PointList
 	/// 	Point3			Point3List
 	/// 	Point4			Point4List
+	/// 	Quaternion
 	/// 	Rectangle		RectangleList
 	/// </summary>
 	public static class DataModule
@@ -49,6 +50,12 @@ namespace Utils
 		public const int FIELD_POINT4_Y = 2;
 		public const int FIELD_POINT4_Z = 3;
 		public const int FIELD_POINT4_W = 4;
+
+		public const int TYPE_QUATERNION = 7;
+		public const int FIELD_QUATERNION_X = 1;
+		public const int FIELD_QUATERNION_Y = 2;
+		public const int FIELD_QUATERNION_Z = 3;
+		public const int FIELD_QUATERNION_W = 4;
 
 		public const int TYPE_RECTANGLE_LIST = 1001;
 		public const int FIELD_RECTANGLE_LIST_ITEMS = 1;
@@ -368,6 +375,35 @@ namespace Utils
 			}
 
 			manager [row, FIELD_POINT4_LIST_ITEMS] = point4List.Items;
+		}
+
+		public static void AddQuaternion (GroupManager manager, Quaternion quaternion) {
+			manager.Add (TYPE_QUATERNION, quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
+		}
+
+		public static Quaternion GetQuaternion (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_QUATERNION) {
+				throw new Exception ("Invalid type: Expected Quaternion");
+			}
+
+			var quaternion = new Quaternion () {
+				X = (double)manager [row, FIELD_QUATERNION_X],
+				Y = (double)manager [row, FIELD_QUATERNION_Y],
+				Z = (double)manager [row, FIELD_QUATERNION_Z],
+				W = (double)manager [row, FIELD_QUATERNION_W]
+			};
+			return quaternion;
+		}
+
+		public static void UpdateQuaternion (GroupManager manager, int row, Quaternion quaternion) {
+			if ((int)manager [row, 0] != TYPE_QUATERNION) {
+				throw new Exception ("Invalid type: Expted Quaternion");
+			}
+
+			manager [row, FIELD_QUATERNION_X] = quaternion.X;
+			manager [row, FIELD_QUATERNION_Y] = quaternion.Y;
+			manager [row, FIELD_QUATERNION_Z] = quaternion.X;
+			manager [row, FIELD_QUATERNION_W] = quaternion.W;
 		}
 	}
 }

@@ -260,6 +260,33 @@ namespace Utils
 
 			point4List = DataModule.GetPoint4List (manager, 0);
 		}
+
+		[Test()]
+		public void TestQuaternion ()
+		{
+			var manager = new GroupManager ();
+			var quaternion = new Quaternion () {
+				X = 0,
+				Y = 1,
+				Z = 2,
+				W = 3
+			};
+			DataModule.AddQuaternion (manager, quaternion);
+			manager.Commit ();
+
+			quaternion = DataModule.GetQuaternion (manager, 0);
+			Assert.True (quaternion.X == 0);
+			Assert.True (quaternion.Y == 1);
+			Assert.True (quaternion.Z == 2);
+			Assert.True (quaternion.W == 3);
+
+			quaternion.X = 10;
+			DataModule.UpdateQuaternion (manager, 0, quaternion);
+			manager.Commit ();
+
+			quaternion = DataModule.GetQuaternion (manager, 0);
+			Assert.True (quaternion.X == 10);
+		}
 	}
 }
 
