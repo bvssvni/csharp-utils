@@ -287,6 +287,21 @@ namespace Utils
 			quaternion = DataModule.GetQuaternion (manager, 0);
 			Assert.True (quaternion.X == 10);
 		}
+
+		[Test()]
+		public void TestQuaternionList ()
+		{
+			var manager = new GroupManager ();
+			var quaternionList = new QuaternionList ();
+			DataModule.AddQuaternionList (manager, quaternionList);
+			manager.Commit ();
+
+			quaternionList = DataModule.GetQuaternionList (manager, 0);
+			DataModule.UpdateQuaternionList (manager, 0, quaternionList);
+			manager.Commit ();
+
+			quaternionList = DataModule.GetQuaternionList (manager, 0);
+		}
 	}
 }
 

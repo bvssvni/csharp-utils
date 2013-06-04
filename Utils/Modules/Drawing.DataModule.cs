@@ -15,7 +15,7 @@ namespace Utils
 	/// 	Point			PointList
 	/// 	Point3			Point3List
 	/// 	Point4			Point4List
-	/// 	Quaternion
+	/// 	Quaternion		QuaternionList
 	/// 	Rectangle		RectangleList
 	/// </summary>
 	public static class DataModule
@@ -74,6 +74,9 @@ namespace Utils
 
 		public const int TYPE_POINT4_LIST = 1006;
 		public const int FIELD_POINT4_LIST_ITEMS = 1;
+
+		public const int TYPE_QUATERNION_LIST = 1007;
+		public const int FIELD_QUATERNION_LIST_ITEM = 1;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -404,6 +407,29 @@ namespace Utils
 			manager [row, FIELD_QUATERNION_Y] = quaternion.Y;
 			manager [row, FIELD_QUATERNION_Z] = quaternion.X;
 			manager [row, FIELD_QUATERNION_W] = quaternion.W;
+		}
+
+		public static void AddQuaternionList (GroupManager manager, QuaternionList quaternionList) {
+			manager.Add (TYPE_QUATERNION_LIST, quaternionList.Items);
+		}
+
+		public static QuaternionList GetQuaternionList (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_QUATERNION_LIST) {
+				throw new Exception ("Invalid type: Expected QuaternionList");
+			}
+
+			var quaternionList = new QuaternionList () {
+				Items = (List<Quaternion>)manager [row, FIELD_QUATERNION_LIST_ITEM]
+			};
+			return quaternionList;
+		}
+
+		public static void UpdateQuaternionList (GroupManager manager, int row, QuaternionList quaternionList) {
+			if ((int)manager [row, 0] != TYPE_QUATERNION_LIST) {
+				throw new Exception ("Invalid type: Expected QuaternionList");
+			}
+
+			manager [row, FIELD_QUATERNION_LIST_ITEM] = quaternionList.Items;
 		}
 	}
 }
