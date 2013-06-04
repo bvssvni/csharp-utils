@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Utils.Drawing
 {
-	public struct Rectangle
+	public class Rectangle
 	{
 		public double X;
 		public double Y;
@@ -18,7 +18,7 @@ namespace Utils.Drawing
 		}
 	}
 
-	public struct ABRectangle
+	public class ABRectangle
 	{
 		public double X1;
 		public double Y1;
@@ -30,7 +30,7 @@ namespace Utils.Drawing
 		}
 	}
 
-	public struct Point
+	public class Point
 	{
 		public double X;
 		public double Y;
@@ -39,9 +39,24 @@ namespace Utils.Drawing
 			this.X = x;
 			this.Y = y;
 		}
+
+		public override bool Equals(object obj)
+		{
+			var p = obj as Point;
+			if (p == null) {
+				return false;
+			}
+
+			return this.X == p.X && this.Y == p.Y;
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
 	}
 
-	public struct Wheel
+	public class Wheel
 	{
 		public Point Pos;
 		public double Angle;
@@ -72,7 +87,7 @@ namespace Utils.Drawing
 		T Shear (G info);
 	}
 
-	public struct Matrix : 
+	public class Matrix : 
 		IMultiply<Matrix>,
 		IRotate<Matrix, double>,
 		ITranslate<Matrix, Point>,
@@ -119,7 +134,7 @@ namespace Utils.Drawing
 		}
 	}
 
-	public struct Line
+	public class Line
 	{
 		public Point StartPoint;
 		public Point EndPoint;

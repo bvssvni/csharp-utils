@@ -115,7 +115,15 @@ namespace Utils
 				return r [column];
 			}
 			set {
-				m_toBeChanged.Add (new Tuple<int, int, object> (row, column, value));
+				var r = m_items [row];
+				if (column >= r.Length) {
+					return;
+				}
+
+				if (r [column] != value) {
+					// Only mark field for update if it really changes.
+					m_toBeChanged.Add (new Tuple<int, int, object> (row, column, value));
+				}
 			}
 		}
 
