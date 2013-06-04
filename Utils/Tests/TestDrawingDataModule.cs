@@ -140,6 +140,19 @@ namespace Utils
 			color = DataModule.GetColor (manager, 0);
 			Assert.True (color.R == 1);
 		}
+
+		[Test()]
+		public void TestColorList ()
+		{
+			var manager = new GroupManager ();
+			var colorList = new ColorList ();
+			DataModule.AddColorList (manager, colorList);
+			manager.Commit ();
+			colorList = DataModule.GetColorList (manager, 0);
+			DataModule.UpdateColorList (manager, 0, colorList);
+			manager.Commit ();
+			colorList = DataModule.GetColorList (manager, 0);
+		}
 	}
 }
 

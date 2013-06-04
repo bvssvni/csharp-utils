@@ -406,6 +406,11 @@ namespace Utils.Drawing
 		}
 	}
 
+	public struct ColorList
+	{
+		public List<Color> Items;
+	}
+
 	public class SolidPen : Pen
 	{
 		public Color Color;

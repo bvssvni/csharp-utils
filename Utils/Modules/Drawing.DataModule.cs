@@ -12,8 +12,8 @@ namespace Utils
 	/// 	TYPE			LIST
 	/// 	Rectangle		RectangleList
 	/// 	Point			PointList
-	/// 	Line
-	/// 	Color
+	/// 	Line			LineList
+	/// 	Color			ColorList
 	/// </summary>
 	public static class DataModule
 	{
@@ -45,6 +45,9 @@ namespace Utils
 
 		public const int TYPE_LINE_LIST = 1003;
 		public const int FIELD_LINE_LIST_ITEMS = 1;
+
+		public const int TYPE_COLOR_LIST = 1004;
+		public const int FIELD_COLOR_LIST_ITEMS = 1;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -215,6 +218,29 @@ namespace Utils
 			}
 
 			manager [row, FIELD_LINE_LIST_ITEMS] = list.Items;
+		}
+
+		public static void AddColorList (GroupManager manager, ColorList colorList) {
+			manager.Add (TYPE_COLOR_LIST, colorList.Items);
+		}
+
+		public static ColorList GetColorList (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_COLOR_LIST) {
+				throw new Exception ("Invalid type: Expected ColorList");
+			}
+
+			var colorList = new ColorList () {
+				Items = (List<Color>)manager [row, FIELD_COLOR_LIST_ITEMS]
+			};
+			return colorList;
+		}
+
+		public static void UpdateColorList (GroupManager manager, int row, ColorList colorList) {
+			if ((int)manager [row, 0] != TYPE_COLOR_LIST) {
+				throw new Exception ("Invalid type: Expected ColorList");
+			}
+
+			manager [row, FIELD_COLOR_LIST_ITEMS] = colorList.Items;
 		}
 	}
 }
