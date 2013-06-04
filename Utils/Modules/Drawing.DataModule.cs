@@ -14,7 +14,7 @@ namespace Utils
 	/// 	Line			LineList
 	/// 	Point			PointList
 	/// 	Point3			Point3List
-	/// 	Point4
+	/// 	Point4			Point4List
 	/// 	Rectangle		RectangleList
 	/// </summary>
 	public static class DataModule
@@ -64,6 +64,9 @@ namespace Utils
 
 		public const int TYPE_POINT3_LIST = 1005;
 		public const int FIELD_POINT3_LIST_ITEMS = 1;
+
+		public const int TYPE_POINT4_LIST = 1006;
+		public const int FIELD_POINT4_LIST_ITEMS = 1;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -342,6 +345,29 @@ namespace Utils
 			manager [row, FIELD_POINT4_Y] = point4.Y;
 			manager [row, FIELD_POINT4_Z] = point4.Z;
 			manager [row, FIELD_POINT4_W] = point4.W;
+		}
+
+		public static void AddPoint4List (GroupManager manager, Point4List point4List) {
+			manager.Add (TYPE_POINT4_LIST, point4List.Items);
+		}
+
+		public static Point4List GetPoint4List (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_POINT4_LIST) {
+				throw new Exception ("Invalid type: Expected Point4List");
+			}
+
+			var point4List = new Point4List () {
+				Items = (List<Point4>)manager [row, FIELD_POINT4_LIST_ITEMS]
+			};
+			return point4List;
+		}
+
+		public static void UpdatePoint4List (GroupManager manager, int row, Point4List point4List) {
+			if ((int)manager [row, 0] != TYPE_POINT4_LIST) {
+				throw new Exception ("Invalid type: Expceted Point4List");
+			}
+
+			manager [row, FIELD_POINT4_LIST_ITEMS] = point4List.Items;
 		}
 	}
 }

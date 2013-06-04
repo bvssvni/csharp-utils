@@ -61,7 +61,7 @@ namespace Utils.Drawing
 
 	public struct Point4List
 	{
-		public List<Point4List> Items;
+		public List<Point4> Items;
 	}
 
 	public struct Wheel
