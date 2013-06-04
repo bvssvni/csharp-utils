@@ -136,7 +136,12 @@ namespace Utils
 		public void TestColor ()
 		{
 			var manager = new GroupManager ();
-			var color = new Color (0, 0.1, 0.2, 0.3);
+			var color = new Color () {
+				R = 0.0, 
+				G = 0.1,
+				B = 0.2, 
+				A = 0.3
+			};
 			DataModule.AddColor (manager, color);
 			manager.Commit ();
 

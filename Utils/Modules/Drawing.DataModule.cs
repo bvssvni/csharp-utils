@@ -135,10 +135,12 @@ namespace Utils
 				throw new Exception ("Invalid type: Expected Color");
 			}
 
-			var color = new Color ((double)manager [row, FIELD_COLOR_R],
-			                       (double)manager [row, FIELD_COLOR_G],
-			                       (double)manager [row, FIELD_COLOR_B],
-			                       (double)manager [row, FIELD_COLOR_A]);
+			var color = new Color () {
+				R = (double)manager [row, FIELD_COLOR_R],
+			    G = (double)manager [row, FIELD_COLOR_G],
+			    B = (double)manager [row, FIELD_COLOR_B],
+			    A = (double)manager [row, FIELD_COLOR_A]
+			};
 			return color;
 		}
 

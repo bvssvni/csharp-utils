@@ -391,14 +391,6 @@ namespace Utils.Drawing
 		public double G;
 		public double B;
 		public double A;
-
-		public Color (double r, double g, double b, double a)
-		{
-			this.R = r;
-			this.G = g;
-			this.B = b;
-			this.A = a;
-		}
 	}
 
 	public struct ColorList
@@ -424,7 +416,12 @@ namespace Utils.Drawing
 
 		public SolidPen (double width, double r, double g, double b, double a) {
 			this.Width = width;
-			this.Color = new Color (r, g, b, a);
+			this.Color = new Color () {
+				R = r, 
+				G = g, 
+				B = b, 
+				A = a
+			};
 		}
 	}
 
