@@ -87,8 +87,10 @@ namespace Utils
 				throw new Exception ("Invalid type: Expected Point");
 			}
 
-			var p = new Point ((double)manager [row, FIELD_POINT_X],
-			                   (double)manager [row, FIELD_POINT_Y]);
+			var p = new Point () {
+				X = (double)manager [row, FIELD_POINT_X],
+			    Y = (double)manager [row, FIELD_POINT_Y]
+			};
 			return p;
 		}
 

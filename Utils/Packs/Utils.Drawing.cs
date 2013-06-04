@@ -39,16 +39,18 @@ namespace Utils.Drawing
 	{
 		public double X;
 		public double Y;
-
-		public Point (double x, double y) {
-			this.X = x;
-			this.Y = y;
-		}
 	}
 
 	public struct PointList
 	{
 		public List<Point> Items;
+	}
+
+	public struct Point3
+	{
+		public double X;
+		public double Y;
+		public double Z;
 	}
 
 	public struct Wheel
@@ -140,8 +142,8 @@ namespace Utils.Drawing
 		}
 
 		public Line (double x1, double y1, double x2, double y2) {
-			StartPoint = new Point (x1, y1);
-			EndPoint = new Point (x2, y2);
+			StartPoint = new Point () {X = x1, Y = y1};
+			EndPoint = new Point () {X = x2, Y = y2};
 		}
 	}
 

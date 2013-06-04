@@ -51,7 +51,10 @@ namespace Utils
 		public void TestPoint ()
 		{
 			var manager = new GroupManager ();
-			var point = new Point (0, 1);
+			var point = new Point () {
+				X = 0, 
+				Y = 1
+			};
 			DataModule.AddPoint (manager, point);
 			manager.Commit ();
 
@@ -90,7 +93,10 @@ namespace Utils
 			DataModule.AddLine (manager, line);
 			manager.Commit ();
 
-			line.StartPoint = new Point (10, 11);
+			line.StartPoint = new Point () {
+				X = 10, 
+				Y = 11
+			};
 
 			line = DataModule.GetLine (manager, 0);
 			Assert.True (line.StartPoint.X == 0);
@@ -98,7 +104,10 @@ namespace Utils
 			Assert.True (line.EndPoint.X == 2);
 			Assert.True (line.EndPoint.Y == 3);
 
-			line.StartPoint = new Point (10, 11);
+			line.StartPoint = new Point () {
+				X = 10, 
+				Y = 11
+			};
 			DataModule.UpdateLine (manager, 0, line);
 			manager.Commit ();
 
