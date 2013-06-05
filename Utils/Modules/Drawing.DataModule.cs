@@ -9,14 +9,14 @@ namespace Utils
 	/// 
 	/// Supported types:
 	/// 
-	/// 	TYPE			LIST
+	/// 	TYPE			LIST				TREE
 	/// 	Color			ColorList
 	/// 	Line			LineList
 	/// 	Point			PointList
 	/// 	Point3			Point3List
 	/// 	Point4			Point4List
 	/// 	Quaternion		QuaternionList
-	/// 	Rectangle		RectangleList
+	/// 	Rectangle		RectangleList		RectangleTree
 	/// 	Wheel			WheelList
 	/// </summary>
 	public static class DataModule
@@ -85,6 +85,10 @@ namespace Utils
 
 		public const int TYPE_WHEEL_LIST = 1008;
 		public const int FIELD_WHEEL_LIST_ITEMS = 1;
+
+		public const int TYPE_RECTANGLE_TREE = 2001;
+		public const int FIELD_RECTANGLE_TREE_ITEMS = 1;
+		public const int FIELD_RECTANGLE_TREE_NODES = 2;
 
 		public static void AddRectangle (GroupManager manager, Rectangle rect) {
 			manager.Add (TYPE_RECTANGLE, rect.X, rect.Y, rect.Width, rect.Height);
@@ -486,6 +490,26 @@ namespace Utils
 			}
 
 			manager [row, FIELD_WHEEL_LIST_ITEMS] = wheelList.Items;
+		}
+
+		public static void AddRectangleTree (GroupManager manager, RectangleTree rectangleTree) {
+			manager.Add (TYPE_RECTANGLE_TREE, rectangleTree);
+		}
+
+		public static RectangleTree GetRectangleTree (GroupManager manager, int row) {
+			if ((int)manager [row, 0] != TYPE_RECTANGLE_TREE) {
+				throw new Exception ("Invalid type: Expected RectangleTree");
+			}
+
+			return (RectangleTree)manager [row, 1];
+		}
+
+		public static void UpdateRectangleTree (GroupManager manager, int row, RectangleTree rectangleTree) {
+			if ((int)manager [row, 0] != TYPE_RECTANGLE_TREE) {
+				throw new Exception ("Invalid type: Expected RectangleTree");
+			}
+
+			manager [row, 1] = rectangleTree;
 		}
 	}
 }

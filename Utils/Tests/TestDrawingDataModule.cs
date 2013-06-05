@@ -53,6 +53,21 @@ namespace Utils
 		}
 
 		[Test()]
+		public void TestRectangleTree ()
+		{
+			var manager = new GroupManager ();
+			var rectangleTree = new RectangleTree ();
+			DataModule.AddRectangleTree (manager, rectangleTree);
+			manager.Commit ();
+
+			rectangleTree = DataModule.GetRectangleTree (manager, 0);
+			DataModule.UpdateRectangleTree (manager, 0, rectangleTree);
+			manager.Commit ();
+
+			rectangleTree = DataModule.GetRectangleTree (manager, 0);
+		}
+
+		[Test()]
 		public void TestPoint ()
 		{
 			var manager = new GroupManager ();

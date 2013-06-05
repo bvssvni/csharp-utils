@@ -16,6 +16,12 @@ namespace Utils.Drawing
 		public List<Rectangle> Items;
 	}
 
+	public struct RectangleTree
+	{
+		public List<Rectangle> Items;
+		public List<RectangleTree> Nodes;
+	}
+
 	public struct ABRectangle
 	{
 		public double X1;
