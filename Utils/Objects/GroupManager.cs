@@ -49,9 +49,10 @@ namespace Utils
 	/// 	AddMember - Is called when a new row is added to group.
 	/// 	RemoveMemeber - Is called when a row is removed from a group.
 	/// 	Refresh - Is called after changes to group is done.
-	/// 
-	/// The group manager checks for equality before marking updates as changes.
-	/// Override 'Equals' to not check by reference.
+	///
+	/// Updates will trigger call to filter function even values are not different.
+	/// This decision is based on the assumption that checking for equality is about
+	/// equal expensive as checking the filter.
 	/// </summary>
 	public class GroupManager
 	{
@@ -123,10 +124,7 @@ namespace Utils
 					return;
 				}
 
-				if (r [column] != value) {
-					// Only mark field for update if it really changes.
-					m_toBeChanged.Add (new Tuple<int, int, object> (row, column, value));
-				}
+				m_toBeChanged.Add (new Tuple<int, int, object> (row, column, value));
 			}
 		}
 
