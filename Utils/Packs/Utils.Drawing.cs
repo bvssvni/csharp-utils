@@ -83,6 +83,11 @@ namespace Utils.Drawing
 		public double Angle;
 	}
 
+	public struct WheelList
+	{
+		public List<Wheel> Items;
+	}
+
 	public interface IMultiply<T>
 	{
 		T Multiply (T b);

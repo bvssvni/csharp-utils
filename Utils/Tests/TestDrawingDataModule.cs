@@ -329,6 +329,21 @@ namespace Utils
 			wheel = DataModule.GetWheel (manager, 0);
 			Assert.True (wheel.Position.X == 10);
 		}
+
+		[Test()]
+		public void TestWheelList ()
+		{
+			var manager = new GroupManager ();
+			var wheelList = new WheelList ();
+			DataModule.AddWheelList (manager, wheelList);
+			manager.Commit ();
+
+			wheelList = DataModule.GetWheelList (manager, 0);
+			DataModule.UpdateWheelList (manager, 0, wheelList);
+			manager.Commit ();
+
+			wheelList = DataModule.GetWheelList (manager, 0);
+		}
 	}
 }
 
