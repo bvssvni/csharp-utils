@@ -11,17 +11,6 @@ namespace Utils.Drawing
 		public double Height;
 	}
 
-	public struct RectangleList
-	{
-		public List<Rectangle> Items;
-	}
-
-	public struct RectangleTree
-	{
-		public List<Rectangle> Items;
-		public List<RectangleTree> Nodes;
-	}
-
 	public struct ABRectangle
 	{
 		public double X1;
@@ -40,21 +29,11 @@ namespace Utils.Drawing
 		public double Y;
 	}
 
-	public struct PointList
-	{
-		public List<Point> Items;
-	}
-
 	public struct Point3
 	{
 		public double X;
 		public double Y;
 		public double Z;
-	}
-
-	public struct Point3List
-	{
-		public List<Point3> Items;
 	}
 
 	public struct Point4
@@ -65,11 +44,6 @@ namespace Utils.Drawing
 		public double W;
 	}
 
-	public struct Point4List
-	{
-		public List<Point4> Items;
-	}
-
 	public struct Quaternion
 	{
 		public double X;
@@ -78,20 +52,10 @@ namespace Utils.Drawing
 		public double W;
 	}
 
-	public struct QuaternionList
-	{
-		public List<Quaternion> Items;
-	}
-
 	public struct Wheel
 	{
 		public Point Position;
 		public double Angle;
-	}
-
-	public struct WheelList
-	{
-		public List<Wheel> Items;
 	}
 
 	public interface IMultiply<T>
@@ -170,11 +134,6 @@ namespace Utils.Drawing
 	{
 		public Point StartPoint;
 		public Point EndPoint;
-	}
-
-	public struct LineList
-	{
-		public List<Line> Items;
 	}
 
 	public static class InterpolationModule
@@ -423,11 +382,6 @@ namespace Utils.Drawing
 		public double G;
 		public double B;
 		public double A;
-	}
-
-	public struct ColorList
-	{
-		public List<Color> Items;
 	}
 
 	public class SolidPen : Pen

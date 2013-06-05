@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
 
 namespace Utils
 {
-	public class Tree
+	/// <summary>
+	/// This is a generic tree type.
+	/// </summary>
+	public class Tree<T>
 	{
-		public Tree()
-		{
-		}
+		public List<T> Items;
+		public List<Tree<T>> Nodes;
 	}
 }
 

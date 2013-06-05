@@ -120,8 +120,7 @@
     <Compile Include="Tests\TestGroupManager.cs" />
     <Compile Include="Modules\PermutationModule.cs" />
     <Compile Include="Tests\TestPermutationModule.cs" />
-    <Compile Include="Modules\Drawing.DataModule.cs" />
-    <Compile Include="Tests\TestDrawingDataModule.cs" />
+    <Compile Include="Objects\Tree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
