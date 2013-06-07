@@ -116,8 +116,6 @@
     <Compile Include="Modules\ComputeTreeModule.cs" />
     <Compile Include="Modules\PairIndicesModule.cs" />
     <Compile Include="Tests\TestPairIndicesModule.cs" />
-    <Compile Include="Objects\GroupManager.cs" />
-    <Compile Include="Tests\TestGroupManager.cs" />
     <Compile Include="Modules\PermutationModule.cs" />
     <Compile Include="Tests\TestPermutationModule.cs" />
     <Compile Include="Objects\Tree.cs" />

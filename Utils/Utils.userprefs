@@ -3,11 +3,7 @@
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True" selected="True" />
-          </Node>
-        </State>
+        <State expanded="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
@@ -21,9 +17,7 @@
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Utils" expanded="True">
-              <Node name="TestGroupManager" expanded="True" selected="True" />
-            </Node>
+            <Node name="Utils" expanded="True" />
           </Node>
         </State>
       </Pad>
