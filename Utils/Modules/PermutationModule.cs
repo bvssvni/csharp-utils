@@ -69,6 +69,23 @@ namespace Utils
 
 			return false;
 		}
+
+		public static int Compare<T> (T[] a, T[] b) where T : IComparable {
+			if (a.Length != b.Length) {
+				return a.Length.CompareTo (b.Length);
+			}
+
+			int n = a.Length;
+			int res = 0;
+			for (int i = 0; i < n; i++) {
+				res = a [i].CompareTo (b [i]);
+				if (res != 0) {
+					return res;
+				}
+			}
+
+			return 0;
+		}
 	}
 }
 

@@ -27,7 +27,7 @@ namespace Utils
 		}
 
 		[Test()]
-		public void TestCase()
+		public void TestIncrease()
 		{
 			var arr = new int[] {0, 1, 2, 3};
 			Assert.True (PermutationModule.Increase (arr));
@@ -78,6 +78,18 @@ namespace Utils
 			Assert.True (CompareArrays (arr, new int[] {3, 2, 1, 0}));
 			Assert.False (PermutationModule.Increase (arr));
 			Assert.True (CompareArrays (arr, new int[] {3, 2, 1, 0}));
+		}
+
+		[Test()]
+		public void TestCompare () {
+			var a = new int[] {0, 1, 2, 3};
+			var b = new int[] {3, 2, 1, 0};
+			Assert.True (PermutationModule.Compare (a, b) == -1);
+			var c = new int[] {3, 2, 0, 1};
+			Assert.True (PermutationModule.Compare (a, c) == -1);
+			Assert.True (PermutationModule.Compare (b, c) == 1);
+			Assert.True (PermutationModule.Compare (c, b) == -1);
+			Assert.True (PermutationModule.Compare (c, c) == 0);
 		}
 	}
 }
