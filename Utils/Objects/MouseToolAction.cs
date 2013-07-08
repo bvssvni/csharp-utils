@@ -1,5 +1,5 @@
 /*
-CairoCanvasViewModule - Methods for "blacking out" areas outside view.
+MouseToolAction - Represents action by holding a modifier key and using a mouse button.
 BSD license.  
 by Sven Nilsen, 2013
 http://www.cutoutpro.com  
