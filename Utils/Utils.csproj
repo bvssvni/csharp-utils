@@ -119,6 +119,7 @@
     <Compile Include="Modules\PermutationModule.cs" />
     <Compile Include="Tests\TestPermutationModule.cs" />
     <Compile Include="Objects\Tree.cs" />
+    <Compile Include="Modules\CairoCanvasViewModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,9 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/TestPermutationModule.cs">
+    <Files>
+      <File FileName="Modules/PermutationModule.cs" Line="86" Column="4" />
+      <File FileName="Tests/TestPermutationModule.cs" Line="92" Column="56" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="Utils" expanded="True">
+            <Node name="Modules" expanded="True" />
+            <Node name="Tests" expanded="True">
+              <Node name="TestPermutationModule.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
@@ -17,7 +28,9 @@
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True">
           <Node name="Utils" expanded="True">
-            <Node name="Utils" expanded="True" />
+            <Node name="Utils" expanded="True" selected="True">
+              <Node name="TestPermutationModule" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
