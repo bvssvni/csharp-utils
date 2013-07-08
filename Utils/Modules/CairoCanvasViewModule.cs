@@ -83,10 +83,10 @@ namespace Utils
 			context.Fill ();
 		}
 		
-		public static Matrix ToViewFromControl (Rectangle controlBounds,
-		                                        Rectangle view,
-		                                        double settingsWidth,
-		                                        double settingsHeight) {
+		public static Matrix ViewToControlMatrix (Rectangle controlBounds,
+		                                          Rectangle view,
+		                                          double settingsWidth,
+		                                          double settingsHeight) {
 			
 			var m = new Matrix ();
 			m.Translate (view.X - controlBounds.X, view.Y - controlBounds.Y);

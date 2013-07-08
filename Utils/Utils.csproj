@@ -121,6 +121,7 @@
     <Compile Include="Objects\Tree.cs" />
     <Compile Include="Modules\CairoCanvasViewModule.cs" />
     <Compile Include="Objects\MouseToolAction.cs" />
+    <Compile Include="Helpers\CanvasHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
