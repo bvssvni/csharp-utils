@@ -62,7 +62,7 @@ namespace Utils
 			throw new Exception ("Data is not within order");
 		}
 
-		private ReferenceTree<T> InsertCopy (T data) {
+		public ReferenceTree<T> InsertCopy (T data) {
 			var res = data.CompareTo (this.Data);
 			// Need to create copy.
 			if (res == -1) {
@@ -90,6 +90,22 @@ namespace Utils
 			} else {
 				throw new Exception ("Data already exists");
 			}
+		}
+
+		public static ReferenceTree<T> InsertCopy (ReferenceTree<T> tree, T data) {
+			if (tree == null) {
+				return new ReferenceTree<T> (data);
+			}
+			
+			return tree.InsertCopy (data);
+		}
+
+		public static ReferenceTree<T> Insert (ReferenceTree<T> tree, T data) {
+			if (tree == null) {
+				return new ReferenceTree<T> (data);
+			}
+
+			return tree.Insert (data);
 		}
 
 		public ReferenceTree<T> Insert (T data) {
@@ -297,6 +313,7 @@ namespace Utils
 				}
 			}
 		}
+
 	}
 }
 

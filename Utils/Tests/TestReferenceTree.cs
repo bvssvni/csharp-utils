@@ -89,6 +89,34 @@ namespace Utils
 			Assert.True (d.Contains (3));
 		}
 
+		[Test()]
+		public void TestRandom () {
+			var rnd = new Random (0);
+			ReferenceTree<int> a = null;
+			for (int i = 0; i < 10000; i++) {
+				a = ReferenceTree<int>.Insert (a, rnd.Next ());
+			}
+
+			Assert.False (a == null);
+
+			var nb = rnd.Next ();
+			var nc = rnd.Next ();
+			var b = ReferenceTree<int>.InsertCopy (a, nb);
+			var c = ReferenceTree<int>.InsertCopy (a, nc);
+
+			Assert.True (b.Contains (nb));
+			Assert.True (c.Contains (nc));
+			Assert.False (b.Contains (nc));
+			Assert.False (c.Contains (nb));
+
+			for (int i = 0; i < 1000; i++) {
+				var n = rnd.Next ();
+				b = ReferenceTree<int>.Insert (b, n);
+				Assert.False (a.Contains (n));
+				Assert.False (c.Contains (n));
+				Assert.True (b.Contains (n));
+			}
+		}
 	}
 }
 
