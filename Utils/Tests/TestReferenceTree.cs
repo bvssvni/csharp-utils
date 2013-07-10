@@ -7,7 +7,7 @@ namespace Utils
 	public class TestReferenceTree
 	{
 		[Test()]
-		public void TestCase()
+		public void TestConstruction ()
 		{
 			var a = new ReferenceTree<int> (2) {
 				Left = new ReferenceTree<int> (1),
@@ -46,6 +46,49 @@ namespace Utils
 			Assert.True (e.Contains (4));
 
 		}
+
+		[Test()]
+		public void TestInsert () {
+			var a = new ReferenceTree<int> (1);
+			var b = new ReferenceTree<int> (2) {
+				Left = a
+			};
+			// 'a' got a reference because it is owned by 'b'.
+			Assert.True (a.References == 1);
+			Assert.True (b.References == 0);
+
+			// When inserting, since there is only one reference,
+			// the returned tree should be the same object as 'b'.
+			Assert.True (b.Insert (0) == b);
+			Assert.True (b.Left.Left.Data == 0);
+
+			var c = new ReferenceTree<int> (3) {
+				Left = a
+			};
+			// 'a' got two references because it is owned by 'b' and 'c'.
+			Assert.True (a.References == 2);
+			Assert.True (c.References == 0);
+
+			// Now that 'a' is shared, we create a new tree.
+			var d = c.Insert (-1);
+			Assert.False (c == d);
+			c = d;
+
+			Assert.True (c.Contains (-1));
+			Assert.True (c.Contains (1));
+			Assert.True (c.Contains (3));
+			Assert.True (c.References == 0);
+
+			// Check that old tree was not influenced.
+			Assert.False (b.Contains (-1));
+
+			d = c.Insert (-2);
+			Assert.True (d.Contains (-2));
+			Assert.True (d.Contains (-1));
+			Assert.True (d.Contains (1));
+			Assert.True (d.Contains (3));
+		}
+
 	}
 }
 

@@ -62,6 +62,79 @@ namespace Utils
 			throw new Exception ("Data is not within order");
 		}
 
+		private ReferenceTree<T> InsertCopy (T data) {
+			var res = data.CompareTo (this.Data);
+			// Need to create copy.
+			if (res == -1) {
+				if (this.Left == null) {
+					return new ReferenceTree<T> (data) {
+						Parent = this
+					};
+				} else {
+					return new ReferenceTree<T> (this.Data) {
+						Left = this.Left.InsertCopy (data),
+						Right = this.Right
+					};
+				}
+			} else if (res == 1) {
+				if (this.Right == null) {
+					return new ReferenceTree<T> (data) {
+						Parent = this
+					};
+				} else {
+					return new ReferenceTree<T> (this.Data) {
+						Right = this.Right.InsertCopy (data),
+						Left = this.Left
+					};
+				}
+			} else {
+				throw new Exception ("Data already exists");
+			}
+		}
+
+		public ReferenceTree<T> Insert (T data) {
+			if (References <= 1) {
+				var res = data.CompareTo (this.Data);
+				// Can manipulate tree directly.
+				if (res == -1) {
+					if (this.Left == null) {
+						this.Left = new ReferenceTree<T> (data);
+						return this;
+					} else {
+						var ret = this.Left.Insert (data);
+						if (ret != this.Left) {
+							return new ReferenceTree<T> (this.Data) {
+								Left = ret,
+								Right = this.Right
+							};
+						} else {
+							return this;
+						}
+					}
+				} else if (res == 1) {
+					if (this.Right == null) {
+						this.Right = new ReferenceTree<T> (data);
+						return this;
+					} else {
+						var ret = this.Right.Insert (data);
+						if (ret != this.Right) {
+							return new ReferenceTree<T> (this.Data) {
+								Right = ret,
+								Left = this.Left
+							};
+						} else {
+							return this;
+						}
+					}
+				}
+
+				throw new Exception ("Data already exists");
+			} else {
+				// This node is shared, so we need to create a copy.
+				return InsertCopy (data);
+			}
+		}
+
 		private static void IncreaseReference (ReferenceTree<T> tree) {
 			if (tree == null) {
 				return;
@@ -140,7 +213,7 @@ namespace Utils
 		public ReferenceTree (T data)
 		{
 			this.Data = data;
-			this.References = 1;
+			this.References = 0;
 		}
 
 		public bool Contains (T data) {
