@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Utils
 {
@@ -6,6 +7,11 @@ namespace Utils
 	/// Pair indices module.
 	/// 
 	/// Converts from and to an index space that stores unique number for each pair.
+	/// This index space can be expanded continiously.
+	/// For each pair, the following is true:
+	/// 
+	/// 	x < y
+	/// 
 	/// </summary>
 	public static class PairIndicesModule
 	{
@@ -20,6 +26,19 @@ namespace Utils
 		
 		public static int Count (int n) {
 			return n * (n - 1) / 2;
+		}
+
+		public delegate T GenerateDelegate<T> (int i, int j);
+
+		public static List<T> Generate<T> (int n, GenerateDelegate<T> f) {
+			var list = new List<T> (Count (n));
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < i; j++) {
+					list.Add (f (j, i));
+				}
+			}
+
+			return list;
 		}
 	}
 }
