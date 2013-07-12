@@ -122,6 +122,9 @@
     <Compile Include="Modules\CairoCanvasViewModule.cs" />
     <Compile Include="Objects\MouseToolAction.cs" />
     <Compile Include="Helpers\CanvasHelper.cs" />
+    <Compile Include="Objects\KeyTree.cs" />
+    <Compile Include="Modules\CompareIndicesModule.cs" />
+    <Compile Include="Tests\TestCompareIndicesModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
