@@ -17,13 +17,13 @@ namespace Utils
 	/// This can be organized in a such way that sorting in one dimension is possible.
 	/// When we compare, we can split in positive and negative parts.
 	/// 
-	/// 			-2
-	/// 		-1	0	1
-	/// 			2
+	/// Here is a quad tree comparison that can also be sorted in one dimension:
 	/// 
-	/// 		-3	-2	-4
-	/// 		-1	0	1
-	/// 		4	2	3
+	/// 	-----------------
+	/// 	|	-1	|	1	|
+	/// 	-----------------
+	/// 	|	-2	|	2	|
+	/// 	-----------------
 	/// 
 	/// The geometrical mapping is not significant as long we can map the spaces.
 	/// 
@@ -40,6 +40,7 @@ namespace Utils
 		public static int ToCompare (int i) {
 			return (i & 1) == 0 ? (-i - 2) >> 1 : (i + 1) >> 1;
 		}
+
 	}
 }
 
