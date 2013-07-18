@@ -1,16 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/TestPersistentList.cs">
+    <Files>
+      <File FileName="Modules/DualQuaternionModule.cs" Line="15" Column="93" />
+      <File FileName="Packs/Utils.Persistent.cs" Line="395" Column="3" />
+      <File FileName="Packs/Utils.Drawing.cs" Line="951" Column="5" />
+      <File FileName="Tests/TestPersistentList.cs" Line="32" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True">
-              <Node name="PairIndicesModule.cs" selected="True" />
-            </Node>
-            <Node name="Objects" expanded="True" />
-            <Node name="Tests" expanded="True" />
+            <Node name="Tests" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>

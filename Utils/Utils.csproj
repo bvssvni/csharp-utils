@@ -124,6 +124,10 @@
     <Compile Include="Helpers\CanvasHelper.cs" />
     <Compile Include="Modules\CompareIndicesModule.cs" />
     <Compile Include="Tests\TestCompareIndicesModule.cs" />
+    <Compile Include="Modules\DualQuaternionModule.cs" />
+    <Compile Include="Tests\TestPersistentList.cs" />
+    <Compile Include="Tests\TestPersistentDictionary.cs" />
+    <Compile Include="Packs\Utils.Persistency.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
