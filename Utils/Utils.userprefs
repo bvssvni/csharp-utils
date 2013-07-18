@@ -1,21 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Packs/Utils.Persistency.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/TestPersistentList.cs">
     <Files>
-      <File FileName="Modules/DualQuaternionModule.cs" Line="15" Column="93" />
-      <File FileName="Packs/Utils.Persistency.cs" Line="398" Column="1" />
-      <File FileName="Tests/TestPersistentList.cs" Line="5" Column="28" />
-      <File FileName="Tests/TestPersistentDictionary.cs" Line="4" Column="28" />
+      <File FileName="Tests/TestPersistentList.cs" Line="34" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Utils" expanded="True">
-            <Node name="Packs" expanded="True">
-              <Node name="Utils.Persistency.cs" selected="True" />
+            <Node name="Tests" expanded="True">
+              <Node name="TestPersistentList.cs" selected="True" />
             </Node>
-            <Node name="Tests" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -30,8 +26,8 @@
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True">
-          <Node name="Utils" expanded="True" selected="True">
-            <Node name="Utils" expanded="True" />
+          <Node name="Utils" expanded="True">
+            <Node name="Utils" selected="True" />
           </Node>
         </State>
       </Pad>
