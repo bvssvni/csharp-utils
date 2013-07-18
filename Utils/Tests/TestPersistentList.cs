@@ -26,6 +26,24 @@ namespace Utils.Persistency
 			list.Restore ();
 			Assert.True (list [0] == "hello");
 		}
+
+		[Test()]
+		public void TestMultipleAdd () {
+			var list = new PersistentList<string> ();
+			list.Store ();
+			list.Add ("one");
+			list.Store ();
+			list.Add ("two");
+			list.Store ();
+			list.Add ("three");
+			Assert.True (list.Count == 3);
+			list.Restore ();
+			Assert.True (list.Count == 2);
+			list.Restore ();
+			Assert.True (list.Count == 1);
+			list.Restore ();
+			Assert.True (list.Count == 0);
+		}
 	}
 }
 
