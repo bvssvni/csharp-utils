@@ -4,8 +4,10 @@ Utils.Persistency - Classes that remember previous states.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
-Version: 0.000 in angular degrees version notation
+Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
+
+0.001 - Added 'UndoRedo'.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -416,6 +418,101 @@ namespace Utils.Persistency
 			}
 		}		
 #endregion
+	}
+
+	/// <summary>
+	/// Undo redo.
+	/// 
+	/// Supports undo and redo on a persistent object.
+	/// Before each action, call 'NewAction' with a description.
+	/// </summary>
+	public class UndoRedo<T> where T : PersistentBase<T>
+	{
+		private T m_current;
+		private T m_future;
+		private int m_cursor = 0;
+		private List<string> m_descriptions;
+		
+		public bool CanUndo {
+			get {
+				return m_cursor > 0;
+			}
+		}
+		
+		public bool CanRedo {
+			get {
+				return m_cursor < m_descriptions.Count;
+			}
+		}
+		
+		public int Cursor {
+			get {
+				return m_cursor;
+			}
+		}
+		
+		public int Count {
+			get {
+				return m_descriptions.Count;
+			}
+		}
+		
+		public List<string> Descriptions {
+			get {
+				return m_descriptions;
+			}
+		}
+		
+		public string PreviousDescription {
+			get {
+				if (m_cursor == 0) {
+					return null;
+				}
+				
+				return m_descriptions [m_cursor - 1];
+			}
+		}
+		
+		public UndoRedo(T current)
+		{
+			this.m_current = current;
+			this.m_descriptions = new List<string> ();
+		}
+		
+		public void NewAction (string description) {
+			if (m_cursor < m_descriptions.Count) {
+				m_descriptions.RemoveRange (m_cursor, m_descriptions.Count - m_cursor);
+			}
+			
+			m_descriptions.Add (description);
+			m_cursor++;
+			m_current.Store ();
+			if (m_future is IDisposable) {
+				((IDisposable)m_future).Dispose ();
+			}
+			
+			m_future = null;
+		}
+		
+		public void Undo () {
+			m_cursor--;
+			if (m_future != null) {
+				m_future.Store ();
+			}
+			
+			m_future = m_current.Copy (m_future);
+			m_future.Store ();
+			m_current.Restore ();
+		}
+		
+		public void Redo () {
+			m_cursor++;
+			if (m_future == null) {return;}
+			
+			m_current.Store ();
+			m_future.Copy (m_current);
+			m_future.Restore ();
+		}
 	}
 }
 
