@@ -25,6 +25,23 @@ namespace Utils.Persistency
 			a.Restore ();
 			Assert.True (a[10] == "Hello");
 		}
+
+		[Test()]
+		public void TestAddAfterStore () {
+			var a = new PersistentDictionary<int, string> ();
+			a.Add (10, "Hello");
+			a.Store ();
+			a.Add (9, "World");
+			a.Store ();
+			Assert.True (a.ContainsKey (9));
+			Assert.True (a.ContainsKey (10));
+			a.Restore ();
+			Assert.True (a.ContainsKey (9));
+			Assert.True (a.ContainsKey (10));
+			a.Restore ();
+			Assert.True (a.ContainsKey (10));
+			Assert.False (a.ContainsKey (9));
+		}
 	}
 }
 

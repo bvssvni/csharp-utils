@@ -129,6 +129,7 @@
     <Compile Include="Tests\TestPersistentDictionary.cs" />
     <Compile Include="Packs\Utils.Persistency.cs" />
     <Compile Include="Modules\HashModule.cs" />
+    <Compile Include="Objects\UndoRedo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

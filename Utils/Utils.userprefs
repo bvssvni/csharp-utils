@@ -1,17 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/TestPersistentList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/HashModule.cs">
     <Files>
       <File FileName="Tests/TestPersistentList.cs" Line="34" Column="21" />
+      <File FileName="Modules/HashModule.cs" Line="60" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Utils" expanded="True">
-            <Node name="Tests" expanded="True">
-              <Node name="TestPersistentList.cs" selected="True" />
-            </Node>
+            <Node name="Modules" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>

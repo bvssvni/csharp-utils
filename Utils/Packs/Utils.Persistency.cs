@@ -1,3 +1,35 @@
+/*
+
+Utils.Persistency - Classes that remember previous states.
+BSD license.
+by Sven Nilsen, 2013
+http://www.cutoutpro.com
+Version: 0.000 in angular degrees version notation
+http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+The views and conclusions contained in the software and documentation are those
+of the authors and should not be interpreted as representing official policies,
+either expressed or implied, of the FreeBSD Project.
+
+*/
+
 using System;
 using System.Collections.Generic;
 
@@ -102,7 +134,6 @@ namespace Utils.Persistency
 	public class PersistentList<T> : PersistentBase<PersistentList<T>>, IList<T>
 	{
 		private List<PersistentValue<T>> m_list;
-		private bool m_changed = false;
 		
 		public override PersistentList<T> Copy(PersistentList<T> to)
 		{
@@ -116,7 +147,7 @@ namespace Utils.Persistency
 		}
 		
 		public override bool HasChanged (PersistentList<T> obj) {
-			return obj == null || m_changed;
+			return obj == null || m_list.Count != obj.Count;
 		}
 		
 		public override void StoreMembers()
@@ -167,12 +198,10 @@ namespace Utils.Persistency
 		}
 		public void Insert(int index, T item)
 		{
-			m_changed = true;
 			m_list.Insert (index, new PersistentValue<T> (item));
 		}
 		public void RemoveAt(int index)
 		{
-			m_changed = true;
 			m_list.RemoveAt (index);
 		}
 		public T this[int index] {
@@ -188,12 +217,10 @@ namespace Utils.Persistency
 		#region ICollection implementation
 		public void Add(T item)
 		{
-			m_changed = true;
 			m_list.Add (new PersistentValue<T> (item));
 		}
 		public void Clear()
 		{
-			m_changed = true;
 			m_list.Clear ();
 		}
 		public bool Contains(T item)
@@ -211,8 +238,7 @@ namespace Utils.Persistency
 		{
 			int index = IndexOf (item);
 			if (index == -1) {return false;}
-			
-			m_changed = true;
+
 			m_list.RemoveAt (index);
 			return true;
 		}
@@ -243,7 +269,6 @@ namespace Utils.Persistency
 		IDictionary<TKey, TValue>
 	{
 		private Dictionary<TKey, PersistentValue<TValue>> m_dict;
-		private bool m_changed = false;
 		
 		public override PersistentDictionary<TKey, TValue> Copy(PersistentDictionary<TKey, TValue> to = null)
 		{
@@ -258,10 +283,23 @@ namespace Utils.Persistency
 			
 			return to;
 		}
-		
+
+		private static bool AreDifferentKeys(Dictionary<TKey, PersistentValue<TValue>> a,
+		                                 Dictionary<TKey, PersistentValue<TValue>> b) {
+			foreach (var pair in a) {
+				if (b.ContainsKey (pair.Key)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 		public override bool HasChanged(PersistentDictionary<TKey, TValue> obj)
 		{
-			return obj == null || m_changed;
+			return obj == null 
+				|| m_dict.Count != obj.m_dict.Count 
+				|| AreDifferentKeys (this.m_dict, obj.m_dict);
 		}
 		
 		public override void RestoreMembers()
@@ -301,7 +339,6 @@ namespace Utils.Persistency
 		#region IDictionary implementation		
 		public void Add(TKey key, TValue value)
 		{
-			m_changed = true;
 			m_dict.Add (key, new PersistentValue<TValue> (value));
 		}		
 		public bool ContainsKey(TKey key)
@@ -310,12 +347,7 @@ namespace Utils.Persistency
 		}		
 		public bool Remove(TKey key)
 		{
-			var removed = m_dict.Remove (key);
-			if (removed) {
-				m_changed = true;
-			}
-			
-			return removed;
+			return m_dict.Remove (key);
 		}		
 		public bool TryGetValue(TKey key, out TValue value)
 		{
@@ -346,12 +378,10 @@ namespace Utils.Persistency
 		#region ICollection implementation		
 		void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
 		{
-			m_changed = true;
 			m_dict.Add (item.Key, new PersistentValue<TValue> (item.Value));
 		}
 		public void Clear()
 		{
-			m_changed = true;
 			m_dict.Clear ();
 		}		
 		bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item)
@@ -367,13 +397,7 @@ namespace Utils.Persistency
 		}		
 		bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
 		{
-			m_changed = true;
-			var removed = m_dict.Remove (item.Key);
-			if (removed) {
-				m_changed = true;
-			}
-			
-			return removed;
+			return m_dict.Remove (item.Key);
 		}		
 		#endregion		
 		#region IEnumerable implementation		
