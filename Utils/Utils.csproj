@@ -130,6 +130,8 @@
     <Compile Include="Packs\Utils.Persistency.cs" />
     <Compile Include="Modules\HashModule.cs" />
     <Compile Include="Tests\TestUndoRedo.cs" />
+    <Compile Include="Tests\GeometryModule.cs" />
+    <Compile Include="Tests\TestGeometryModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
