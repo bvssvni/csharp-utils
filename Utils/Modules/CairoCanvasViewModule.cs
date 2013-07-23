@@ -45,22 +45,26 @@ namespace Utils
 		/// <param name="settingsHeight">Settings height.</param>
 		public static Rectangle ViewRectangle (Rectangle controlBounds,
 		                                       double settingsWidth, double settingsHeight) {
-			double rControl = controlBounds.Height / controlBounds.Width;
+			double cx = controlBounds.X;
+			double cy = controlBounds.Y;
+			double cw = controlBounds.Width;
+			double ch = controlBounds.Height;
+			double rControl = ch / cw;
 			double rSettings = settingsHeight / settingsWidth;
-			double wHalf = 0.5 * controlBounds.Width;
-			double hHalf = 0.5 * controlBounds.Height;
-			double xCenter = controlBounds.X + wHalf;
-			double yCenter = controlBounds.Y + hHalf;
+			double wHalf = 0.5 * cw;
+			double hHalf = 0.5 * ch;
+			double xCenter = cx + wHalf;
+			double yCenter =cy + hHalf;
 			if (rControl >= rSettings) {
 				// The control is taller than settings ratio.
-				double hView = controlBounds.Width * rSettings;
+				double hView = cw * rSettings;
 				double hHalfView = 0.5 * hView;
-				return new Rectangle (0, yCenter - hHalfView, controlBounds.Width, hView);
+				return new Rectangle (0, yCenter - hHalfView, cw, hView);
 			} else {
 				// The control is wider than settings ratio.
-				double wView = controlBounds.Height / rSettings;
+				double wView = ch / rSettings;
 				double wHalfView = 0.5 * wView;
-				return new Rectangle (xCenter - wHalfView, 0, wView, controlBounds.Height);
+				return new Rectangle (xCenter - wHalfView, 0, wView, ch);
 			}
 		}
 		
