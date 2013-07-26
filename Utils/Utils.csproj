@@ -125,13 +125,11 @@
     <Compile Include="Modules\CompareIndicesModule.cs" />
     <Compile Include="Tests\TestCompareIndicesModule.cs" />
     <Compile Include="Modules\DualQuaternionModule.cs" />
-    <Compile Include="Tests\TestPersistentList.cs" />
-    <Compile Include="Tests\TestPersistentDictionary.cs" />
-    <Compile Include="Packs\Utils.Persistency.cs" />
     <Compile Include="Modules\HashModule.cs" />
-    <Compile Include="Tests\TestUndoRedo.cs" />
     <Compile Include="Tests\GeometryModule.cs" />
     <Compile Include="Tests\TestGeometryModule.cs" />
+    <Compile Include="Packs\Utils.Persistency.cs" />
+    <Compile Include="Tests\TestPersistency.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -4,15 +4,8 @@ Utils.Persistency - Classes that remember previous states.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
-Version: 0.002 in angular degrees version notation
+Version: 0.000 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
-
-
-
-0.002 - Added 'GetValue' and 'SetValue' to make subclassing of PersistentDictionary easier.
-		Added 'CopyMembers' to create new references of all members.
-		This is used in 'UndoRedo' to create future state from current.
-0.001 - Added 'UndoRedo'.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -40,187 +33,229 @@ either expressed or implied, of the FreeBSD Project.
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// When inheriting from PersistentDictionary or PersistentList,
-/// remember to override the 'Copy' method.
-/// 
-/// public override PersistentDictionary<string, object> Copy(PersistentDictionary<string, object> to)
-/// {
-///		if (to == null)
-///		{
-///			to = new Frame ();
-///		}
-///			
-///		return base.Copy(to);
-///	}
-/// </summary>
 namespace Utils.Persistency
 {
-	public interface IStoreRestore
+	public interface IPersistent
 	{
 		void Store();
-		void Restore();
-		void CopyMembers();
+		void Undo();
+		void Redo();
 	}
-	
-	/// <summary>
-	/// Persistent object.
-	/// 
-	/// The 'Store' function stores the current state.
-	/// The 'Restore' function restores the previous state.
-	/// 
-	/// It is important that 'Store' and 'Restore' is called equal number of times.
-	/// </summary>
-	public abstract class PersistentBase<T> : IStoreRestore where T : PersistentBase<T>
+
+	public class Persistent<T> : IPersistent
 	{
-		private T m_previous;
-		private int m_noChange = 0;
-		
-		public abstract T Copy (T to = default (T));
-		public abstract void CopyMembers ();
-		public abstract bool HasChanged (T obj);
-		
-		public abstract void StoreMembers ();
-		public abstract void RestoreMembers ();
-		
-		/// <summary>
-		/// Returns the previous state, null if unchanged.
-		/// </summary>
-		public void Store () {
-			StoreMembers ();
-			
-			if (HasChanged (m_previous)) {
-				var copy = Copy ();
-				copy.m_previous = m_previous;
-				copy.m_noChange = m_noChange;
-				m_previous = copy;
-			} else {
-				m_noChange++;
-			}
-		}
-		
-		public void Restore () {
-			if (m_noChange > 0) {
-				m_noChange--;
-			} else {
-				if (m_previous == null) {
-					throw new Exception ("Restoring persistent object failed:\r\nNo previous state.\r\nDid you forgot a call to 'Store'?");
-				}
-				
-				m_previous.Copy ((T)this);
-				this.m_noChange = m_previous.m_noChange;
-				this.m_previous = m_previous.m_previous;
-			}
-			
-			RestoreMembers ();
-		}
-	}
-	
-	/// <summary>
-	/// Persistent value.
-	/// 
-	/// Used internally in PersistentList and PersistentDictionary.
-	/// </summary>
-	internal class PersistentValue<T> : PersistentBase<PersistentValue<T>>
-	{
+		private Stack<T> m_previous;
+		private Stack<int> m_previousSteps;
+		private Stack<T> m_next;
+		private Stack<int> m_nextSteps;
+
 		public T Value;
-		
-		public PersistentValue(T value)
+
+		public Persistent(T val)
 		{
-			this.Value = value;
+			m_previous = new Stack<T>();
+			m_previousSteps = new Stack<int>();
+			m_next = new Stack<T>();
+			m_nextSteps = new Stack<int>();
+			this.Value = val;
 		}
-		
-		public override PersistentValue<T> Copy(PersistentValue<T> to = null)
+
+		public void Store()
 		{
-			if (to == null) {
-				to = new PersistentValue<T> (Value);
-				return to;
+			if (this.Value is IPersistent)
+			{
+				// Store sub structure.
+				var persistentValue = (IPersistent)this.Value;
+				persistentValue.Store();
+			}
+
+			m_next.Clear();
+			m_nextSteps.Clear();
+			if (m_previous.Count == 0 || !this.Value.Equals(m_previous.Peek()))
+			{
+				m_previous.Push(this.Value);
+				m_previousSteps.Push(1);
+			}
+			else
+			{
+				// The value equals the previous value.
+				// Increase counter.
+				m_previousSteps.Push(m_previousSteps.Pop() + 1);
+			}
+		}
+
+		private void UndoRedo(Stack<T> previous,
+		                      Stack<int> previousSteps,
+		                      Stack<T> next,
+		                      Stack<int> nextSteps)
+		{
+			if (next.Count == 0 || !this.Value.Equals(next.Peek()))
+			{
+				next.Push(this.Value);
+				nextSteps.Push(1);
+			}
+			else
+			{
+				nextSteps.Push(nextSteps.Pop() + 1);
 			}
 			
-			to.Value = Value;
-			return to;
-		}
-		
-		public override void CopyMembers()
-		{
-			if (Value is IStoreRestore) {
-				var copyMethod = Value.GetType ().GetMethod("Copy");
-				Value = (T)copyMethod.Invoke (Value, new object [] {null});
-				((IStoreRestore)Value).CopyMembers ();
+			if (previousSteps.Peek() > 1)
+			{
+				// Decrease counter.
+				previousSteps.Push(previousSteps.Pop() - 1);
+				this.Value = previous.Peek();
+			}
+			else
+			{
+				// Get previous value.
+				this.Value = previous.Pop();
+				previousSteps.Pop();
 			}
 		}
-		
-		public override bool HasChanged(PersistentValue<T> obj)
+
+		public void Undo()
 		{
-			return obj == null || !this.Value.Equals (obj.Value);
-		}
-		
-		public override void StoreMembers()
-		{
-			if (Value is IStoreRestore) {
-				((IStoreRestore)Value).Store();
+			UndoRedo(m_previous, m_previousSteps, m_next, m_nextSteps);
+
+			if (this.Value is IPersistent)
+			{
+				var persistentValue = (IPersistent)this.Value;
+				persistentValue.Undo();
 			}
 		}
-		
-		public override void RestoreMembers()
+
+		public void Redo()
 		{
-			if (Value is IStoreRestore) {
-				((IStoreRestore)Value).Restore();
+			if (this.Value is IPersistent)
+			{
+				var persistentValue = (IPersistent)this.Value;
+				persistentValue.Redo();
 			}
+
+			UndoRedo(m_next, m_nextSteps, m_previous, m_previousSteps);
 		}
 	}
-	
+
 	/// <summary>
 	/// List of persistent objects.
 	/// </summary>
-	public class PersistentList<T> : PersistentBase<PersistentList<T>>, IList<T>
+	public class PersistentList<T> : IPersistent, IList<T>
 	{
-		private List<PersistentValue<T>> m_list;
-		
-		public override PersistentList<T> Copy(PersistentList<T> to)
+		private Stack<List<Persistent<T>>> m_previous;
+		private Stack<int> m_previousSteps;
+		private Stack<List<Persistent<T>>> m_next;
+		private Stack<int> m_nextSteps;
+		private List<Persistent<T>> m_list;
+
+		private static List<Persistent<T>> CopyList(List<Persistent<T>> list)
 		{
-			if (to == null) {
-				to = new PersistentList<T> (m_list.Count);
-			}
-			
-			to.m_list.Clear ();
-			to.m_list.AddRange (m_list);
-			return to;
+			var newList = new List<Persistent<T>>(list.Count);
+			newList.AddRange(list);
+			return newList;
 		}
-		
-		public override void CopyMembers()
+
+		public void Store()
 		{
 			int n = m_list.Count;
-			for (int i = 0; i < n; i++) {
-				m_list [i] = m_list [i].Copy ();
-				m_list [i].CopyMembers ();
+			for (int i = 0; i < n; i++) 
+			{
+				var persistentValue = m_list[i] as IPersistent;
+				if (persistentValue != null)
+				{
+					persistentValue.Store();
+				}
+			}
+
+			m_next.Clear();
+			m_nextSteps.Clear();
+			if (m_previous.Count == 0 || m_list.Count != m_previous.Peek().Count)
+			{
+				m_previous.Push(CopyList(m_list));
+				m_previousSteps.Push(1);
+			}
+			else
+			{
+				// The value equals the previous value.
+				// Increase counter.
+				m_previousSteps.Push(m_previousSteps.Pop() + 1);
 			}
 		}
-		
-		public override bool HasChanged (PersistentList<T> obj) {
-			return obj == null || m_list.Count != obj.Count;
-		}
-		
-		public override void StoreMembers()
+
+		private void UndoRedo(Stack<List<Persistent<T>>> previous,
+		                      Stack<int> previousSteps,
+		                      Stack<List<Persistent<T>>> next,
+		                      Stack<int> nextSteps)
 		{
-			foreach (var item in m_list) {
-				item.Store ();
+			if (next.Count == 0 || this.m_list.Count != next.Peek().Count)
+			{
+				next.Push(CopyList(m_list));
+				nextSteps.Push(1);
+			}
+			else
+			{
+				nextSteps.Push(nextSteps.Pop() + 1);
+			}
+			
+			if (previousSteps.Peek() > 1)
+			{
+				// Decrease counter.
+				previousSteps.Push(previousSteps.Pop() - 1);
+				m_list = previous.Peek();
+			}
+			else
+			{
+				// Get previous value.
+				m_list = previous.Pop();
+				previousSteps.Pop();
 			}
 		}
-		
-		public override void RestoreMembers()
+
+		public void Undo()
 		{
-			foreach (var item in m_list) {
-				item.Restore ();
+			UndoRedo(m_previous, m_previousSteps, m_next, m_nextSteps);
+
+			int n = m_list.Count;
+			for (int i = 0; i < n; i++) 
+			{
+				var persistentValue = m_list[i] as IPersistent;
+				if (persistentValue != null)
+				{
+					persistentValue.Undo();
+				}
 			}
+
 		}
-		
+
+		public void Redo()
+		{
+			int n = m_list.Count;
+			for (int i = 0; i < n; i++) 
+			{
+				var persistentValue = m_list[i] as IPersistent;
+				if (persistentValue != null)
+				{
+					persistentValue.Redo();
+				}
+			}
+
+			UndoRedo(m_next, m_nextSteps, m_previous, m_previousSteps);
+
+		}
+
 		public PersistentList () {
-			m_list = new List<PersistentValue<T>> ();
+			m_previous = new Stack<List<Persistent<T>>>();
+			m_previousSteps = new Stack<int>();
+			m_next = new Stack<List<Persistent<T>>>();
+			m_nextSteps = new Stack<int>();
+			m_list = new List<Persistent<T>> ();
 		}
 		
 		public PersistentList (int capacity) {
-			m_list = new List<PersistentValue<T>> (capacity);
+			m_previous = new Stack<List<Persistent<T>>>();
+			m_previousSteps = new Stack<int>();
+			m_next = new Stack<List<Persistent<T>>>();
+			m_nextSteps = new Stack<int>();
+			m_list = new List<Persistent<T>> (capacity);
 		}
 		
 		public int Count {
@@ -249,7 +284,7 @@ namespace Utils.Persistency
 		}
 		public void Insert(int index, T item)
 		{
-			m_list.Insert (index, new PersistentValue<T> (item));
+			m_list.Insert (index, new Persistent<T> (item));
 		}
 		public void RemoveAt(int index)
 		{
@@ -268,7 +303,7 @@ namespace Utils.Persistency
 		#region ICollection implementation
 		public void Add(T item)
 		{
-			m_list.Add (new PersistentValue<T> (item));
+			m_list.Add (new Persistent<T> (item));
 		}
 		public void Clear()
 		{
@@ -311,16 +346,113 @@ namespace Utils.Persistency
 		}
 #endregion
 	}
-	
+
 	/// <summary>
 	/// Persistent dictionary.
 	/// </summary>
 	public class PersistentDictionary<TKey, TValue>
-		: PersistentBase<PersistentDictionary<TKey, TValue>>, 
+		: IPersistent, 
 		IDictionary<TKey, TValue>
 	{
-		private Dictionary<TKey, PersistentValue<TValue>> m_dict;
+		private Dictionary<TKey, Persistent<TValue>> m_dict;
+
+		private Stack<Dictionary<TKey, Persistent<TValue>>> m_previous;
+		private Stack<int> m_previousSteps;
+		private Stack<Dictionary<TKey, Persistent<TValue>>> m_next;
+		private Stack<int> m_nextSteps;
+
+		private static Dictionary<TKey, Persistent<TValue>> CopyDictionary(Dictionary<TKey, Persistent<TValue>> dict)
+		{
+			return new Dictionary<TKey, Persistent<TValue>>(dict);
+		}
+
+		public void Store()
+		{
+			foreach (var pair in m_dict)
+			{
+				var persistentValue = pair.Value as IPersistent;
+				if (persistentValue != null)
+				{
+					persistentValue.Store();
+				}
+			}
+
+			m_next.Clear();
+			m_nextSteps.Clear();
+			if (m_previous.Count == 0 || 
+			    m_dict.Count != m_previous.Peek().Count ||
+			    AreDifferentKeys(m_dict, m_previous.Peek()))
+			{
+				m_previous.Push(CopyDictionary(m_dict));
+				m_previousSteps.Push(1);
+			}
+			else
+			{
+				// The value equals the previous value.
+				// Increase counter.
+				m_previousSteps.Push(m_previousSteps.Pop() + 1);
+			}
+		}
 		
+		private void UndoRedo(Stack<Dictionary<TKey, Persistent<TValue>>> previous,
+		                      Stack<int> previousSteps,
+		                      Stack<Dictionary<TKey, Persistent<TValue>>> next,
+		                      Stack<int> nextSteps)
+		{
+			if (next.Count == 0 || 
+			    this.m_dict.Count != next.Peek().Count ||
+			    AreDifferentKeys(m_dict, next.Peek()))
+			{
+				next.Push(CopyDictionary(m_dict));
+				nextSteps.Push(1);
+			}
+			else
+			{
+				nextSteps.Push(nextSteps.Pop() + 1);
+			}
+			
+			if (previousSteps.Peek() > 1)
+			{
+				// Decrease counter.
+				previousSteps.Push(previousSteps.Pop() - 1);
+				m_dict = previous.Peek();
+			}
+			else
+			{
+				// Get previous value.
+				m_dict = previous.Pop();
+				previousSteps.Pop();
+			}
+		}
+
+		public void Undo()
+		{
+			UndoRedo(m_previous, m_previousSteps, m_next, m_nextSteps);
+
+			foreach (var pair in m_dict)
+			{
+				var persistentValue = pair.Value as IPersistent;
+				if (persistentValue != null)
+				{
+					persistentValue.Undo();
+				}
+			}
+		}
+
+		public void Redo()
+		{
+			foreach (var pair in m_dict)
+			{
+				var persistentValue = pair.Value as IPersistent;
+				if (persistentValue != null)
+				{
+					persistentValue.Redo();
+				}
+			}
+
+			UndoRedo(m_next, m_nextSteps, m_previous, m_previousSteps);
+		}
+
 		protected T GetValue<T>(TKey key, T defaultValue) where T : TValue
 		{
 			if (ContainsKey(key))
@@ -351,33 +483,8 @@ namespace Utils.Persistency
 			}
 		}
 		
-		public override PersistentDictionary<TKey, TValue> Copy(PersistentDictionary<TKey, TValue> to = null)
-		{
-			if (to == null) {
-				to = new PersistentDictionary<TKey, TValue> (m_dict.Count);
-			}
-			
-			to.m_dict.Clear ();
-			foreach (var pair in m_dict) {
-				to.m_dict.Add (pair.Key, pair.Value);
-			}
-			
-			return to;
-		}
-		
-		public override void CopyMembers()
-		{
-			var keys = new TKey [m_dict.Count];
-			m_dict.Keys.CopyTo (keys, 0);
-			foreach (var key in keys) {
-				var copy = m_dict [key].Copy ();
-				m_dict [key] = copy;
-				copy.CopyMembers ();
-			}
-		}
-		
-		private static bool AreDifferentKeys(Dictionary<TKey, PersistentValue<TValue>> a,
-		                                     Dictionary<TKey, PersistentValue<TValue>> b) {
+		private static bool AreDifferentKeys(Dictionary<TKey, Persistent<TValue>> a,
+		                                     Dictionary<TKey, Persistent<TValue>> b) {
 			foreach (var pair in a) {
 				if (b.ContainsKey (pair.Key)) {
 					return true;
@@ -387,33 +494,20 @@ namespace Utils.Persistency
 			return false;
 		}
 		
-		public override bool HasChanged(PersistentDictionary<TKey, TValue> obj)
-		{
-			return obj == null 
-				|| m_dict.Count != obj.m_dict.Count 
-					|| AreDifferentKeys (this.m_dict, obj.m_dict);
-		}
-		
-		public override void RestoreMembers()
-		{
-			foreach (var val in m_dict.Values) {
-				val.Restore ();
-			}
-		}
-		
-		public override void StoreMembers()
-		{
-			foreach (var val in m_dict.Values) {
-				val.Store ();
-			}
-		}
-		
 		public PersistentDictionary () {
-			m_dict = new Dictionary<TKey, PersistentValue<TValue>> ();
+			m_previous = new Stack<Dictionary<TKey, Persistent<TValue>>>();
+			m_previousSteps = new Stack<int>();
+			m_next = new Stack<Dictionary<TKey, Persistent<TValue>>>();
+			m_nextSteps = new Stack<int>();
+			m_dict = new Dictionary<TKey, Persistent<TValue>> ();
 		}
 		
 		public PersistentDictionary (int capacity) {
-			m_dict = new Dictionary<TKey, PersistentValue<TValue>> (capacity);
+			m_previous = new Stack<Dictionary<TKey, Persistent<TValue>>>();
+			m_previousSteps = new Stack<int>();
+			m_next = new Stack<Dictionary<TKey, Persistent<TValue>>>();
+			m_nextSteps = new Stack<int>();
+			m_dict = new Dictionary<TKey, Persistent<TValue>> (capacity);
 		}
 		
 		public int Count {
@@ -431,7 +525,7 @@ namespace Utils.Persistency
 		#region IDictionary implementation		
 		public void Add(TKey key, TValue value)
 		{
-			m_dict.Add (key, new PersistentValue<TValue> (value));
+			m_dict.Add (key, new Persistent<TValue> (value));
 		}		
 		public bool ContainsKey(TKey key)
 		{
@@ -443,7 +537,7 @@ namespace Utils.Persistency
 		}		
 		public bool TryGetValue(TKey key, out TValue value)
 		{
-			PersistentValue<TValue> val;
+			Persistent<TValue> val;
 			var res = m_dict.TryGetValue (key, out val);
 			value = val.Value;
 			return res;
@@ -470,7 +564,7 @@ namespace Utils.Persistency
 		#region ICollection implementation		
 		void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
 		{
-			m_dict.Add (item.Key, new PersistentValue<TValue> (item.Value));
+			m_dict.Add (item.Key, new Persistent<TValue> (item.Value));
 		}
 		public void Clear()
 		{
@@ -509,17 +603,16 @@ namespace Utils.Persistency
 		}		
 #endregion
 	}
-	
+
 	/// <summary>
 	/// Undo redo.
 	/// 
 	/// Supports undo and redo on a persistent object.
 	/// Before each action, call 'NewAction' with a description.
 	/// </summary>
-	public class UndoRedo<T> where T : PersistentBase<T>
+	public class UndoRedo<T> where T : IPersistent
 	{
-		private T m_current;
-		private T m_future;
+		private T m_data;
 		private int m_cursor = 0;
 		private List<string> m_descriptions;
 		
@@ -563,9 +656,9 @@ namespace Utils.Persistency
 			}
 		}
 		
-		public UndoRedo(T current)
+		public UndoRedo(T data)
 		{
-			this.m_current = current;
+			this.m_data = data;
 			this.m_descriptions = new List<string> ();
 		}
 		
@@ -576,33 +669,17 @@ namespace Utils.Persistency
 			
 			m_descriptions.Add (description);
 			m_cursor++;
-			m_current.Store ();
-			if (m_future is IDisposable) {
-				((IDisposable)m_future).Dispose ();
-			}
-			
-			m_future = null;
+			m_data.Store ();
 		}
 		
 		public void Undo () {
 			m_cursor--;
-			if (m_future != null) {
-				m_future.Store ();
-			}
-			
-			m_future = (T)m_current.Copy ();
-			m_future.CopyMembers ();
-			m_future.Store ();
-			m_current.Restore ();
+			m_data.Undo();
 		}
 		
 		public void Redo () {
 			m_cursor++;
-			if (m_future == null) {return;}
-			
-			m_current.Store ();
-			m_future.Copy (m_current);
-			m_future.Restore ();
+			m_data.Redo();
 		}
 	}
 }
