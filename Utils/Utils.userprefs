@@ -1,18 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Tests/GeometryModule.cs">
-    <Files>
-      <File FileName="Tests/GeometryModule.cs" Line="10" Column="28" />
-      <File FileName="Tests/TestGeometryModule.cs" Line="13" Column="69" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True" />
+            <Node name="Objects" expanded="True" />
+            <Node name="Packs" expanded="True" />
             <Node name="Tests" expanded="True">
-              <Node name="GeometryModule.cs" selected="True" />
+              <Node name="TestPersistency.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -27,7 +24,11 @@
         <State selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" />
+        <State expanded="True">
+          <Node name="Utils" expanded="True">
+            <Node name="Utils" expanded="True" selected="True" />
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

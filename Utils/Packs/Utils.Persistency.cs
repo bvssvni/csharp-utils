@@ -4,8 +4,10 @@ Utils.Persistency - Classes that remember previous states.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
-Version: 0.000 in angular degrees version notation
+Version: 0.001 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
+
+0.001 - Added 'ILoaded' interface.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -42,6 +44,17 @@ namespace Utils.Persistency
 		void Redo();
 	}
 
+	/// <summary>
+	/// Inherit from this interface if you want to save unused memory.
+	/// The 'Persistent<T>' sets the flag 'Loaded' to false when
+	/// the value is no longer current.
+	/// The 'Loaded' flag is set to true when the value is brought back.
+	/// </summary>
+	public interface ILoaded
+	{
+		bool Loaded {get; set;}
+	}
+
 	public class Persistent<T> : IPersistent
 	{
 		private Stack<T> m_previous;
@@ -71,8 +84,16 @@ namespace Utils.Persistency
 
 			m_next.Clear();
 			m_nextSteps.Clear();
-			if (m_previous.Count == 0 || !this.Value.Equals(m_previous.Peek()))
+			bool previousIsZero = m_previous.Count == 0;
+			bool valueEqualsPrevious = previousIsZero ? false : this.Value.Equals(m_previous.Peek());
+			if (!valueEqualsPrevious)
 			{
+				if (!previousIsZero)
+				{
+					// Put objects to sleep that are no longer used.
+					((ILoaded)m_previous.Peek()).Loaded = false;
+				}
+
 				m_previous.Push(this.Value);
 				m_previousSteps.Push(1);
 			}
@@ -89,7 +110,9 @@ namespace Utils.Persistency
 		                      Stack<T> next,
 		                      Stack<int> nextSteps)
 		{
-			if (next.Count == 0 || !this.Value.Equals(next.Peek()))
+			bool nextIsZero = next.Count == 0;
+			bool valueEqualsNext = nextIsZero ? false : this.Value.Equals(next.Peek());
+			if (!valueEqualsNext)
 			{
 				next.Push(this.Value);
 				nextSteps.Push(1);
@@ -115,6 +138,8 @@ namespace Utils.Persistency
 
 		public void Undo()
 		{
+			var old = this.Value;
+
 			UndoRedo(m_previous, m_previousSteps, m_next, m_nextSteps);
 
 			if (this.Value is IPersistent)
@@ -122,10 +147,18 @@ namespace Utils.Persistency
 				var persistentValue = (IPersistent)this.Value;
 				persistentValue.Undo();
 			}
+
+			if (!this.Value.Equals(old))
+			{
+				if (old is ILoaded) {((ILoaded)old).Loaded = false;}
+				if (this.Value is ILoaded) {((ILoaded)this.Value).Loaded = true;}
+			}
 		}
 
 		public void Redo()
 		{
+			var old = this.Value;
+
 			if (this.Value is IPersistent)
 			{
 				var persistentValue = (IPersistent)this.Value;
@@ -133,6 +166,12 @@ namespace Utils.Persistency
 			}
 
 			UndoRedo(m_next, m_nextSteps, m_previous, m_previousSteps);
+
+			if (!this.Value.Equals(old))
+			{
+				if (old is ILoaded) {((ILoaded)old).Loaded = false;}
+				if (this.Value is ILoaded) {((ILoaded)this.Value).Loaded = true;}
+			}
 		}
 	}
 
