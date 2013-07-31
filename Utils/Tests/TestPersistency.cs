@@ -35,6 +35,29 @@ namespace Utils.Persistency
 		}
 
 		[Test()]
+		public void TestList2()
+		{
+			var a = new PersistentList<string>();
+			a.Add("one");
+			a.Store();
+			a.RemoveAt(0);
+			a.Undo();
+			Assert.True(a.Count == 1);
+			Assert.True(a[0] == "one");
+			a.Redo();
+			Assert.True(a.Count == 0);
+			a.Store();
+			a.Add("one");
+			a.Add("two");
+			a.Undo();
+			Assert.True(a.Count == 0);
+			a.Redo();
+			Assert.True(a.Count == 2);
+			Assert.True(a[0] == "one");
+			Assert.True(a[1] == "two");
+		}
+
+		[Test()]
 		public void TestDictionary()
 		{
 			var a = new PersistentDictionary<string, int>();
