@@ -133,6 +133,7 @@
     <Compile Include="Modules\IndexingModule.cs" />
     <Compile Include="Tests\TestIndexing.cs" />
     <Compile Include="Modules\GDICanvasViewModule.cs" />
+    <Compile Include="Objects\RectangleD.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
