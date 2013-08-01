@@ -88,7 +88,7 @@ namespace Utils.Persistency
 			bool valueEqualsPrevious = previousIsZero ? false : this.Value.Equals(m_previous.Peek());
 			if (!valueEqualsPrevious)
 			{
-				if (!previousIsZero)
+				if (!previousIsZero && m_previous.Peek() is ILoaded)
 				{
 					// Put objects to sleep that are no longer used.
 					((ILoaded)m_previous.Peek()).Loaded = false;

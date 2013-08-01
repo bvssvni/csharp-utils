@@ -58,6 +58,29 @@ namespace Utils.Persistency
 		}
 
 		[Test()]
+		public void TestList3()
+		{
+			var a = new Persistent<string>("one");
+			var b = new Persistent<string>("two");
+			var persistent = new PersistentList<Persistent<string>>();
+			persistent.Add(a);
+			persistent.Add(b);
+			persistent.Store();
+			a.Value = "1";
+			b.Value = "2";
+			persistent.Store();
+			persistent[0] = b;
+			persistent[1] = a;
+			persistent.Store();
+			persistent.Undo();
+			Assert.True(persistent[0] == b);
+			Assert.True(persistent[1] == a);
+			persistent.Undo();
+			Assert.True(persistent[0] == a);
+			Assert.True(persistent[1] == b);
+		}
+
+		[Test()]
 		public void TestDictionary()
 		{
 			var a = new PersistentDictionary<string, int>();
@@ -153,6 +176,7 @@ namespace Utils.Persistency
 			persistent.Value = b;
 			persistent.Store();
 			Assert.False(a.Loaded);
+			Assert.True(b.Loaded);
 			var c = new LoadedTestObject();
 			persistent.Value = c;
 			persistent.Store();
