@@ -1,5 +1,5 @@
 /*
-CanvasHelper - Makes it easy to render cairo graphics and handle mouse actions.
+GDICanvasHelper - A helper for handling mouse events and centered rendering.
 BSD license.  
 by Sven Nilsen, 2013
 http://www.cutoutpro.com  
@@ -29,9 +29,9 @@ either expressed or implied, of the FreeBSD Project.
 */
 
 using System;
-using Cairo;
-using Gtk;
-using Gdk;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace Utils
 {
@@ -39,10 +39,9 @@ namespace Utils
 	/// Makes it easy to render cairo graphics and handle mouse actions on a widget.
 	/// Renders everything outside the view area as black.
 	/// </summary>
-	public class CanvasHelper
+	public class GDICanvasHelper
 	{
-		private Widget m_control;
-		private RenderDelegate m_renderDelegate;
+		private Control m_control;
 		private double m_settingsWidth;
 		private double m_settingsHeight;
 		private MouseToolAction[] m_mouseToolActions;
@@ -50,79 +49,100 @@ namespace Utils
 		private MouseToolAction.MouseButton m_mouseState;
 		private MouseToolAction.ModifierKey m_modifierState;
 		private Matrix m_mouseDownViewTransform = null;
-		private Cairo.PointD m_mouseDownViewPosition;
-		private Cairo.PointD m_mouseDownControlPosition;
+		private PointD m_mouseDownViewPosition;
+		private PointD m_mouseDownControlPosition;
 		
-		public delegate void RenderDelegate (Context context);
+		public delegate void RenderDelegate (Graphics context);
 		
-		public Cairo.PointD MouseDownViewPosition {
+		public PointD MouseDownViewPosition {
 			get {
 				return m_mouseDownViewPosition;
 			}
 		}
 		
-		public Cairo.PointD MouseDownControlPosition {
+		public PointD MouseDownControlPosition {
 			get {
 				return m_mouseDownControlPosition;
 			}
 		}
 		
-		public CanvasHelper()
+		public GDICanvasHelper()
 		{
 		}
 		
-		private Cairo.Rectangle CurrentControlBounds {
+		private Rectangle CurrentControlBounds {
 			get {
-				return new Cairo.Rectangle (0.0, 
-				                            0.0, 
-				                            m_control.Allocation.Width, 
-				                            m_control.Allocation.Height);
+				return new Rectangle (0, 
+				                      0, 
+				                      m_control.ClientRectangle.Width, 
+				                      m_control.ClientRectangle.Height);
 			}
 		}
 		
-		private Cairo.Rectangle CurrentView {
+		private RectangleD CurrentView {
 			get {
 				var controlBounds = this.CurrentControlBounds;
-				var view = CairoCanvasViewModule.ViewRectangle (controlBounds, 
-				                                                m_settingsWidth, 
-				                                                m_settingsHeight);
+				var view = GDICanvasViewModule.ViewRectangle (controlBounds, 
+				                                              m_settingsWidth, 
+				                                              m_settingsHeight);
 				return view;
 			}
 		}
 		
-		private Matrix CurrentViewTransform {
+		public Matrix CurrentViewToControlMatrix {
 			get {
-				var viewTransform = CairoCanvasViewModule.ViewToControlMatrix (this.CurrentControlBounds, 
-				                                                               this.CurrentView,
-				                                                               m_settingsWidth,
-				                                                               m_settingsHeight);
+				var viewTransform = GDICanvasViewModule.ViewToControlMatrix (this.CurrentControlBounds, 
+				                                                             this.CurrentView,
+				                                                             m_settingsWidth,
+				                                                             m_settingsHeight);
 				return viewTransform;
 			}
 		}
 		
-		public void Step1_SetControl (Widget control) {
+		public Matrix CurrentViewToBufferMatrix {
+			get {
+				var viewTransform = GDICanvasViewModule.ViewToBufferMatrix (this.CurrentControlBounds, 
+				                                                            this.CurrentView,
+				                                                            m_settingsWidth,
+				                                                            m_settingsHeight);
+				return viewTransform;
+			}
+		}
+		
+		private bool m_shiftDown = false;
+		private bool m_ctrlDown = false;
+		
+		public void Step1_SetControl (Control control) {
 			
 			m_control = control;
-			m_control.ExposeEvent += (o, args) => {
-				using (var context = Gdk.CairoHelper.Create (args.Event.Window)) {
-					CairoFillModule.Fill(context, m_control, new Cairo.Color(1, 1, 1));
-					context.Antialias = Cairo.Antialias.Subpixel;
-					context.Save ();
-					context.Transform (this.CurrentViewTransform);
-					if (m_renderDelegate != null) {
-						m_renderDelegate (context);
-					}
-					context.Restore ();
-					CairoCanvasViewModule.Draw (context, 
-					                            this.CurrentControlBounds,
-					                            this.CurrentView);
+			
+			var form = m_control.FindForm();
+			form.KeyDown += delegate(object sender, KeyEventArgs e) { 
+				if (e.KeyCode == Keys.ShiftKey)
+				{
+					m_shiftDown = true;
+				}
+				if (e.KeyCode == Keys.ControlKey)
+				{
+					m_ctrlDown = true;
+				}
+			};
+			form.KeyUp += delegate(object sender, KeyEventArgs e) { 
+				if (e.KeyCode == Keys.ShiftKey)
+				{
+					m_shiftDown = false;
+				}
+				if (e.KeyCode == Keys.Control)
+				{
+					m_ctrlDown = false;
 				}
 			};
 			
-			m_control.ButtonPressEvent += delegate(object o, Gtk.ButtonPressEventArgs args) {
+			
+			m_control.MouseDown += delegate(object o, MouseEventArgs args) {
 				// Change keyboard modifier state.
-				var shift = (args.Event.State & ModifierType.ShiftMask) == ModifierType.ShiftMask;
-				var ctrl = (args.Event.State & ModifierType.ControlMask) == ModifierType.ControlMask;
+				var shift = m_shiftDown;
+				var ctrl = m_ctrlDown;
 				if (shift) {
 					m_modifierState |= MouseToolAction.ModifierKey.Shift;
 				}
@@ -131,24 +151,27 @@ namespace Utils
 				}
 				
 				// Change mouse button state.
-				var button = args.Event.Button;
+				var button = args.Button;
 				switch (button) {
-					case 1: m_mouseState |= MouseToolAction.MouseButton.Left; break;
-					case 2: m_mouseState |= MouseToolAction.MouseButton.Middle; break;
-					case 3: m_mouseState |= MouseToolAction.MouseButton.Right; break;
+					case MouseButtons.Left: m_mouseState |= MouseToolAction.MouseButton.Left; break;
+					case MouseButtons.Middle: m_mouseState |= MouseToolAction.MouseButton.Middle; break;
+					case MouseButtons.Right: m_mouseState |= MouseToolAction.MouseButton.Right; break;
 				}
 				
-				var viewTransform = this.CurrentViewTransform;
+				var viewTransform = this.CurrentViewToControlMatrix;
 				m_mouseDownViewTransform = viewTransform;
 				
 				// Set mouse down locations.
-				var px = args.Event.X;
-				var py = args.Event.Y;
-				this.m_mouseDownControlPosition = new Cairo.PointD (px, py);
+				float px = args.X;
+				float py = args.Y;
+				this.m_mouseDownControlPosition = new PointD (px, py);
 				var inv = viewTransform.Clone () as Matrix;
 				inv.Invert ();
-				inv.TransformPoint (ref px, ref py);
-				this.m_mouseDownViewPosition = new Cairo.PointD (px, py);
+				var ps = new PointF[]{new PointF(px, py)};
+				inv.TransformPoints(ps);
+				px = ps[0].X;
+				py = ps[0].Y;
+				this.m_mouseDownViewPosition = new PointD (px, py);
 				
 				// If pressing a mouse button, complete the previous mouse tool action.
 				if (this.m_currentMouseToolAction != null) {
@@ -171,10 +194,10 @@ namespace Utils
 					}
 				}
 			};
-			m_control.ButtonReleaseEvent += delegate(object o, Gtk.ButtonReleaseEventArgs args) {
+			m_control.MouseUp += delegate(object o, MouseEventArgs args) {
 				// Change keyboard modifier state.
-				var shift = (args.Event.State & ModifierType.ShiftMask) == ModifierType.ShiftMask;
-				var ctrl = (args.Event.State & ModifierType.ControlMask) == ModifierType.ControlMask;
+				var shift = m_shiftDown;
+				var ctrl = m_ctrlDown;
 				if (shift) {
 					m_modifierState &= ~MouseToolAction.ModifierKey.Shift;
 				}
@@ -183,18 +206,23 @@ namespace Utils
 				}
 				
 				// Change mouse button state.
-				var button = args.Event.Button;
+				var button = args.Button;
 				switch (button) {
-					case 1: m_mouseState &= ~MouseToolAction.MouseButton.Left; break;
-					case 2: m_mouseState &= ~MouseToolAction.MouseButton.Middle; break;
-					case 3: m_mouseState &= ~MouseToolAction.MouseButton.Right; break;
+					case MouseButtons.Left: m_mouseState &= ~MouseToolAction.MouseButton.Left; break;
+					case MouseButtons.Middle: m_mouseState &= ~MouseToolAction.MouseButton.Middle; break;
+					case MouseButtons.Right: m_mouseState &= ~MouseToolAction.MouseButton.Right; break;
 				}
 				
-				var px = args.Event.X;
-				var py = args.Event.Y;
+				m_mouseDownViewTransform = this.CurrentViewToControlMatrix;
+				
+				float px = args.X;
+				float py = args.Y;
 				var inv = this.m_mouseDownViewTransform.Clone () as Matrix;
 				inv.Invert ();
-				inv.TransformPoint (ref px, ref py);
+				var ps = new PointF[]{new PointF(px, py)};
+				inv.TransformPoints(ps);
+				px = ps[0].X;
+				py = ps[0].Y;
 				
 				if (this.m_currentMouseToolAction != null) {
 					if (this.m_currentMouseToolAction.MouseUp != null) {
@@ -204,14 +232,17 @@ namespace Utils
 				
 				this.m_currentMouseToolAction = null;
 			};
-			m_control.MotionNotifyEvent += delegate(object o, Gtk.MotionNotifyEventArgs args) {
+			m_control.MouseMove += delegate(object o, MouseEventArgs args) {
 				if (ReferenceEquals (this.m_mouseDownViewTransform, null)) {return;}
 				
-				var px = args.Event.X;
-				var py = args.Event.Y;
+				float px = args.X;
+				float py = args.Y;
 				var inv = this.m_mouseDownViewTransform.Clone () as Matrix;
 				inv.Invert ();
-				inv.TransformPoint (ref px, ref py);
+				var ps = new PointF[]{new PointF(px, py)};
+				inv.TransformPoints (ps);
+				px = ps[0].X;
+				py = ps[0].Y;
 				if (this.m_currentMouseToolAction != null) {
 					if (this.m_currentMouseToolAction.MouseMove != null) {
 						this.m_currentMouseToolAction.MouseMove (px, py);
@@ -219,10 +250,6 @@ namespace Utils
 				}
 			};
 			
-			m_control.AddEvents ((int)(
-				EventMask.ButtonPressMask 
-				| EventMask.ButtonReleaseMask 
-				| EventMask.PointerMotionMask));
 		}
 		
 		public void Step2_SetTargetResolution (double targetResolutionWidth,
@@ -231,11 +258,7 @@ namespace Utils
 			m_settingsHeight = targetResolutionHeight;
 		}
 		
-		public void Step3_SetRenderDelegate (RenderDelegate renderDelegate) {
-			m_renderDelegate = renderDelegate;
-		}
-		
-		public void Step4_SetMouseToolActions (MouseToolAction[] mouseToolActions) {
+		public void Step3_SetMouseToolActions (MouseToolAction[] mouseToolActions) {
 			m_mouseToolActions = mouseToolActions;
 		}
 	}

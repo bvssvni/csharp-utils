@@ -47,6 +47,7 @@
       <HintPath>..\..\..\Downloads\opentk\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Objects\Tree.cs" />
     <Compile Include="Modules\CairoCanvasViewModule.cs" />
     <Compile Include="Objects\MouseToolAction.cs" />
-    <Compile Include="Helpers\CanvasHelper.cs" />
     <Compile Include="Modules\CompareIndicesModule.cs" />
     <Compile Include="Tests\TestCompareIndicesModule.cs" />
     <Compile Include="Modules\DualQuaternionModule.cs" />
@@ -134,6 +134,9 @@
     <Compile Include="Tests\TestIndexing.cs" />
     <Compile Include="Modules\GDICanvasViewModule.cs" />
     <Compile Include="Objects\RectangleD.cs" />
+    <Compile Include="Helpers\GDICanvasHelper.cs" />
+    <Compile Include="Objects\PointD.cs" />
+    <Compile Include="Helpers\CairoCanvasHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
