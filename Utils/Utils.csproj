@@ -132,6 +132,7 @@
     <Compile Include="Tests\TestPersistency.cs" />
     <Compile Include="Modules\IndexingModule.cs" />
     <Compile Include="Tests\TestIndexing.cs" />
+    <Compile Include="Modules\GDICanvasViewModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

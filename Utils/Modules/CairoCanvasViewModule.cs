@@ -3,8 +3,10 @@ CairoCanvasViewModule - Methods for "blacking out" areas outside view.
 BSD license.  
 by Sven Nilsen, 2013
 http://www.cutoutpro.com  
-Version: 0.000 in angular degrees version notation  
+Version: 0.001 in angular degrees version notation  
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html  
+
+0.001 - Added 'ViewToBufferMatrix'.
 
 Redistribution and use in source and binary forms, with or without  
 modification, are permitted provided that the following conditions are met:  
@@ -95,6 +97,16 @@ namespace Utils
 			var m = new Matrix ();
 			m.Translate (view.X - controlBounds.X, view.Y - controlBounds.Y);
 			m.Scale (view.Width / settingsWidth, view.Height / settingsHeight);
+			return m;
+		}
+
+		public static Matrix ViewToBufferMatrix (Rectangle controlBounds,
+		                                         Rectangle view,
+		                                         double settingsWidth,
+		                                         double settingsHeight) {
+			
+			var m = new Matrix ();
+			m.Scale ((float)(view.Width / settingsWidth), (float)(view.Height / settingsHeight));
 			return m;
 		}
 	}
