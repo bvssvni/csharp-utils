@@ -4,9 +4,10 @@ Utils.Persistency - Classes that remember previous states.
 BSD license.
 by Sven Nilsen, 2013
 http://www.cutoutpro.com
-Version: 0.001 in angular degrees version notation
+Version: 0.002 in angular degrees version notation
 http://isprogrammingeasy.blogspot.no/2012/08/angular-degrees-versioning-notation.html
 
+0.002 - Made 'UndoRedo' ignore repetitive actions of same description.
 0.001 - Added 'ILoaded' interface.
 
 Redistribution and use in source and binary forms, with or without
@@ -654,7 +655,20 @@ namespace Utils.Persistency
 		private T m_data;
 		private int m_cursor = 0;
 		private List<string> m_descriptions;
-		
+		private bool m_ignoreRepetitiveActions = false;
+
+		public bool IgnoreRepetitiveActions
+		{
+			get
+			{
+				return m_ignoreRepetitiveActions;
+			}
+			set
+			{
+				m_ignoreRepetitiveActions = value;
+			}
+		}
+
 		public bool CanUndo {
 			get {
 				return m_cursor > 0;
@@ -702,6 +716,12 @@ namespace Utils.Persistency
 		}
 		
 		public void NewAction (string description) {
+			if (m_ignoreRepetitiveActions && description == this.PreviousDescription)
+			{
+				// Ignore repetitive actions.
+				return;
+			}
+
 			if (m_cursor < m_descriptions.Count) {
 				m_descriptions.RemoveRange (m_cursor, m_descriptions.Count - m_cursor);
 			}

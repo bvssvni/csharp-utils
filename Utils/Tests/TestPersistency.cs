@@ -209,6 +209,24 @@ namespace Utils.Persistency
 			Assert.False(b.Loaded);
 			Assert.True(c.Loaded);
 		}
+
+		[Test()]
+		public void TestIgnoreRepetitiveActions()
+		{
+			var list = new PersistentList<string>();
+			var undoRedo = new UndoRedo<PersistentList<string>>(list);
+			undoRedo.NewAction("add");
+			list.Add("1");
+			undoRedo.NewAction("add");
+			list.Add("2");
+			undoRedo.Undo();
+			Assert.True(list.Count == 1);
+			undoRedo.IgnoreRepetitiveActions = true;
+			undoRedo.NewAction("add");
+			list.Add("2");
+			undoRedo.Undo();
+			Assert.True(list.Count == 0);
+		}
 	}
 }
 
