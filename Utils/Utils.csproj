@@ -138,6 +138,8 @@
     <Compile Include="Objects\PointD.cs" />
     <Compile Include="Helpers\CairoCanvasHelper.cs" />
     <Compile Include="Modules\ClusterModule.cs" />
+    <Compile Include="Modules\ClosestNeighborModule.cs" />
+    <Compile Include="Tests\TestClosestNeighbor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
