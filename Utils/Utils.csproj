@@ -137,6 +137,7 @@
     <Compile Include="Helpers\GDICanvasHelper.cs" />
     <Compile Include="Objects\PointD.cs" />
     <Compile Include="Helpers\CairoCanvasHelper.cs" />
+    <Compile Include="Modules\ClusterModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
