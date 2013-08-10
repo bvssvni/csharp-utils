@@ -48,6 +48,9 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -61,8 +64,6 @@
     <Compile Include="Objects\SpriteFit.cs" />
     <Compile Include="Tests\TestSpriteSheetAnalyzer.cs" />
     <Compile Include="Objects\SpriteIsland.cs" />
-    <Compile Include="Modules\RunScript.cs" />
-    <Compile Include="Tests\TestRunScript.cs" />
     <Compile Include="Tests\TestBinaryHeap.cs" />
     <Compile Include="Objects\BinaryHeap.cs" />
     <Compile Include="Modules\VectorGroup.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Modules\ClusterModule.cs" />
     <Compile Include="Modules\ClosestNeighborModule.cs" />
     <Compile Include="Tests\TestClosestNeighbor.cs" />
+    <Compile Include="Modules\ClassifyModule.cs" />
+    <Compile Include="Modules\ConcurrencyModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
