@@ -53,6 +53,8 @@ namespace Utils
 			{
 				state.Count -= n;
 			}
+
+			m_done = 0;
 		}
 
 		public bool Tick()

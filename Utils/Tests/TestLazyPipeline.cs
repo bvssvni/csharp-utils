@@ -45,8 +45,11 @@ namespace Utils
 			var start = DateTime.Now;
 			while (pipeline.Tick())
 			{
-				pipeline.Flush();
+
 			}
+
+			pipeline.Flush();
+			Assert.True(pipeline.Done == 0);
 
 			var end = DateTime.Now;
 			var totalSeconds = end.Subtract(start).TotalSeconds;
