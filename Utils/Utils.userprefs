@@ -1,19 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Objects/OpenBinaryFormat.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/ConcurrencyModule.cs">
     <Files>
-      <File FileName="Modules/ClassifyModule.cs" Line="50" Column="1" />
-      <File FileName="Objects/IntervalTree.cs" Line="1" Column="1" />
-      <File FileName="Objects/Group.cs" Line="1150" Column="1" />
-      <File FileName="Objects/OpenBinaryFormat.cs" Line="389" Column="1" />
+      <File FileName="../../Test/calc/research.html" Line="5084" Column="65" />
+      <File FileName="Modules/ConcurrencyModule.cs" Line="14" Column="36" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Utils" expanded="True">
-            <Node name="Objects" expanded="True">
-              <Node name="OpenBinaryFormat.cs" selected="True" />
+            <Node name="Modules" expanded="True">
+              <Node name="ConcurrencyModule.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -28,11 +26,7 @@
         <State selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True">
-          <Node name="Utils" expanded="True">
-            <Node name="Utils" expanded="True" />
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

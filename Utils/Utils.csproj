@@ -43,13 +43,13 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cairo" />
-    <Reference Include="OpenTK">
-      <HintPath>..\..\..\Downloads\opentk\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\..\..\Users\sven\Downloads\opentk\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +142,8 @@
     <Compile Include="Modules\ClosestNeighborModule.cs" />
     <Compile Include="Tests\TestClosestNeighbor.cs" />
     <Compile Include="Modules\ClassifyModule.cs" />
-    <Compile Include="Modules\ConcurrencyModule.cs" />
+    <Compile Include="Objects\LazyPipeline.cs" />
+    <Compile Include="Tests\TestLazyPipeline.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
