@@ -133,11 +133,23 @@ namespace Utils
 		}
 
 		[Test()]
-		public void TestLength()
+		public void TestLengthComplex()
 		{
 			var a = Number.Complex(3, 4);
 			var b = a * Number.Conjugate(a);
 			Assert.True(b == 5 * 5);
+		}
+
+		[Test()]
+		public void TestLengthQuaternion()
+		{
+			int s0 = 13;
+			int s1 = 5;
+			int s2 = 3;
+			int s3 = 7;
+			var a = Number.Quaternion(s0, s1, s2, s3);
+			var b = a * Number.Conjugate(a);
+			Assert.True(b == s0*s0 + s1*s1 + s2*s2 + s3*s3);
 		}
 	}
 }

@@ -92,16 +92,15 @@ namespace Utils
 				{
 					Number aNumberDx = (Number)aNumber.dX;
 					Number bNumberDx = (Number)bNumber.dX;
-					ab = Subtract(ab, Multiply(aNumberDx.dX, bNumberDx.dX));
+					ab = Subtract(ab, Multiply(aNumberDx.dX, Conjugate(bNumberDx.dX)));
 				}
 
 				result = new Number()
 				{
-
 					X = ab,
 					dX = Add(
 						Multiply(((Number)a).X, ((Number)b).dX),
-						Multiply(((Number)a).dX, Conjugate(((Number)b).X))
+						Multiply(((Number)a).dX, ((Number)b).X)
 						)
 				};
 			}
@@ -131,6 +130,9 @@ namespace Utils
 					return numResult.X;
 				}
 			}
+
+			// TEST
+			// Console.WriteLine("Multiplying {0} * {1} = {2}", a, b, result);
 
 			return result;
 		}
