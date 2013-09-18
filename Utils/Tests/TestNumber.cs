@@ -131,6 +131,14 @@ namespace Utils
 			var f = e * b;
 			Assert.True(f == a);
 		}
+
+		[Test()]
+		public void TestLength()
+		{
+			var a = Number.Complex(3, 4);
+			var b = a * Number.Conjugate(a);
+			Assert.True(b == 5 * 5);
+		}
 	}
 }
 

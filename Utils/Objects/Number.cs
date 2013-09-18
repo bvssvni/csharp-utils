@@ -287,12 +287,48 @@ namespace Utils
 			return new Number(){X = Add(a.X, b.X), dX = Add(a.dX, b.dX)};
 		}
 
+		public static Number operator + (Number a, object b)
+		{
+			var res = Add(a, b);
+			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
+		}
+
+		public static Number operator + (object a, Number b)
+		{
+			var res = Add(a, b);
+			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
+		}
+
 		public static Number operator - (Number a, Number b)
 		{
 			return new Number(){X = Subtract(a.X, b.X), dX = Subtract(a.dX, b.dX)};
 		}
 
+		public static Number operator - (Number a, object b)
+		{
+			var res = Subtract(a, b);
+			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
+		}
+
+		public static Number operator - (object a, Number b)
+		{
+			var res = Subtract(a, b);
+			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
+		}
+
 		public static Number operator * (Number a, Number b)
+		{
+			var res = Multiply(a, b);
+			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
+		}
+
+		public static Number operator * (Number a, object b)
+		{
+			var res = Multiply(a, b);
+			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
+		}
+
+		public static Number operator * (object a, Number b)
 		{
 			var res = Multiply(a, b);
 			return res is Number ? (Number)res : new Number(){X = res, dX = 0.0};
