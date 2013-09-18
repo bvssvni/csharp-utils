@@ -144,6 +144,8 @@
     <Compile Include="Modules\ClassifyModule.cs" />
     <Compile Include="Objects\LazyPipeline.cs" />
     <Compile Include="Tests\TestLazyPipeline.cs" />
+    <Compile Include="Objects\Number.cs" />
+    <Compile Include="Tests\TestNumber.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

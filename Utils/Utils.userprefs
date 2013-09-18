@@ -1,18 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/ConcurrencyModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Test/calc/research.html">
     <Files>
-      <File FileName="../../Test/calc/research.html" Line="5084" Column="65" />
-      <File FileName="Modules/ConcurrencyModule.cs" Line="14" Column="36" />
+      <File FileName="../../Test/calc/research.html" Line="5176" Column="1" />
+      <File FileName="Objects/LazyPipeline.cs" Line="57" Column="15" />
+      <File FileName="Tests/TestLazyPipeline.cs" Line="48" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Utils" expanded="True">
-            <Node name="Modules" expanded="True">
-              <Node name="ConcurrencyModule.cs" selected="True" />
+            <Node name="Objects" expanded="True">
+              <Node name="LazyPipeline.cs" selected="True" />
             </Node>
+            <Node name="Tests" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -26,7 +28,13 @@
         <State selected="True" />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Utils" expanded="True">
+            <Node name="Utils" expanded="True">
+              <Node name="TestLazyPipeline" selected="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
