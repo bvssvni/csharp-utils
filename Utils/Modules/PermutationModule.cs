@@ -86,6 +86,32 @@ namespace Utils
 
 			return 0;
 		}
+
+		public static T[] ByIndex<T> (T[] items, long index)
+		{
+			var list = new List<T>(items);
+			var output = new List<T>(items.Length);
+			int n = items.Length;
+			long fn = 1;
+
+			for (int i = 0; i < n; i++)
+			{
+				fn *= (i+1);
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				long block = fn / (n-i);
+				int ind = (int)(index / block);
+				var item = list[ind];
+				list.RemoveAt(ind);
+				output.Add(item);
+				fn /= (n-i);
+				index -= ind * block;
+			}
+
+			return output.ToArray();
+		}
 	}
 }
 
